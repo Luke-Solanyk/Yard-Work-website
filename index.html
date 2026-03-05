@@ -10,6 +10,7 @@
             --green: #4caf50;
             --light-bg: #f4f7f6;
             --white: #ffffff;
+            --overlay: rgba(26, 43, 72, 0.75);
         }
 
         body {
@@ -21,53 +22,82 @@
             line-height: 1.6;
         }
 
-        header {
-            background-color: var(--white);
+        /* Hero Banner Styles */
+        .hero {
+            position: relative;
+            height: 400px;
+            background-image: url('Images/yardwork1.1.png');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             text-align: center;
-            padding: 2rem 1rem;
-            border-bottom: 5px solid var(--navy);
+            color: white;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--overlay);
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            padding: 1rem;
         }
 
         .logo-text {
-            color: var(--navy);
-            font-size: 2.5rem;
+            font-size: 3.5rem;
             margin: 0;
             text-transform: uppercase;
-            letter-spacing: 2px;
+            letter-spacing: 4px;
+            font-weight: 800;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
         }
 
         .subtitle {
             color: var(--green);
             font-weight: bold;
-            font-size: 1.2rem;
+            font-size: 1.5rem;
             margin-top: 0.5rem;
+            letter-spacing: 2px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
         }
 
         .container {
-            max-width: 800px;
-            margin: 2rem auto;
+            max-width: 850px;
+            margin: -50px auto 3rem auto; /* Overlaps the hero slightly for modern look */
             padding: 0 1rem;
+            position: relative;
+            z-index: 10;
         }
 
         .card {
             background: var(--white);
-            padding: 1.5rem;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
             margin-bottom: 2rem;
         }
 
         h2 {
             color: var(--navy);
             border-left: 5px solid var(--green);
-            padding-left: 10px;
+            padding-left: 15px;
             margin-top: 0;
+            font-size: 1.8rem;
         }
 
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
         }
 
         ul {
@@ -75,62 +105,91 @@
             padding: 0;
         }
 
+        ul li {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: flex-start;
+        }
+
         ul li::before {
-            content: "✓ ";
+            content: "✓";
             color: var(--green);
             font-weight: bold;
+            margin-right: 10px;
+            font-size: 1.2rem;
         }
 
         .price-tag {
             background-color: var(--green);
             color: white;
-            padding: 1rem;
+            padding: 1.5rem;
             text-align: center;
-            font-size: 1.2rem;
-            border-radius: 4px;
+            font-size: 1.4rem;
+            border-radius: 8px;
             font-weight: bold;
+            margin-bottom: 1.5rem;
         }
 
         .contact-box {
             background-color: var(--navy);
             color: white;
-            padding: 2rem;
+            padding: 3rem 2rem;
             text-align: center;
-            border-radius: 8px;
+            border-radius: 12px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
         }
 
         .phone {
-            font-size: 1.8rem;
+            font-size: 2.2rem;
             display: block;
-            margin: 1rem 0;
-            color: #fff;
+            margin: 1.5rem 0;
+            color: var(--green);
             text-decoration: none;
+            font-weight: bold;
+            transition: transform 0.2s;
+        }
+        
+        .phone:hover {
+            transform: scale(1.05);
         }
 
         .hours-list {
-            background: #eef2f3;
-            padding: 1rem;
-            border-radius: 5px;
+            background: #f8fafb;
+            padding: 1.5rem;
+            border-radius: 8px;
             text-align: center;
+            border: 1px solid #ddd;
         }
 
         .badge {
             display: inline-block;
             background: var(--navy);
             color: white;
-            padding: 2px 8px;
-            border-radius: 4px;
-            font-size: 0.8rem;
-            margin-bottom: 10px;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 5px;
+        }
+
+        @media (max-width: 600px) {
+            .hero { height: 300px; }
+            .logo-text { font-size: 2.2rem; }
+            .subtitle { font-size: 1.1rem; }
+            .phone { font-size: 1.6rem; }
         }
     </style>
 </head>
 <body>
 
-<header>
-    <h1 class="logo-text">Luke & Williams</h1>
-    <div class="subtitle">YARD WORK + SNOW PLOWING</div>
-</header>
+<section class="hero">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+        <h1 class="logo-text">Luke & Williams</h1>
+        <div class="subtitle">YARD WORK + SNOW PLOWING</div>
+    </div>
+</section>
 
 <div class="container">
     
@@ -138,7 +197,7 @@
         <h2>Our Services</h2>
         <div class="grid">
             <div>
-                <h3>Outdoor Care</h3>
+                <h3 style="color: var(--green);">Outdoor Care</h3>
                 <ul>
                     <li>Lawn Mowing & Pastures</li>
                     <li>Leaf & Pine Needle Raking</li>
@@ -147,10 +206,10 @@
                 </ul>
             </div>
             <div>
-                <h3>Winter & Specialized</h3>
+                <h3 style="color: var(--green);">Winter & Specialized</h3>
                 <ul>
                     <li>Snow Plowing (Driveways, Patios, Front Walks)</li>
-                    <li>Animal Watching <span class="badge">Available 7 Days/Week</span></li>
+                    <li>Animal Watching <br><span class="badge">Available 7 Days/Week</span></li>
                 </ul>
             </div>
         </div>
@@ -161,23 +220,29 @@
         <div class="price-tag">
             "You decide all the prices."
         </div>
-        <div class="hours-list" style="margin-top: 1rem;">
-            <p><strong>Mon, Wed, Fri, & Sat:</strong><br>
-            10:00am – 4:00pm</p>
-            <p><em>*Animal watching is available all week long.</em></p>
+        <div class="hours-list">
+            <p style="margin-top: 0;"><strong>Monday, Wednesday, Friday, & Saturday:</strong><br>
+            <span style="font-size: 1.2rem; color: var(--navy);">10:00am – 4:00pm</span></p>
+            <hr style="border: 0; border-top: 1px solid #ddd; margin: 1rem 0;">
+            <p style="margin-bottom: 0;"><em>*Animal watching is available all week long.</em></p>
         </div>
     </div>
 
     <div class="contact-box">
-        <h2>Contact Us Today</h2>
-        <p>Ready to get started? Call or Text us at:</p>
+        <h2 style="color: white; border-left-color: var(--green); display: inline-block;">Contact Us Today</h2>
+        <p style="font-size: 1.1rem; margin-top: 1rem;">Ready to get started? Call or Text us at:</p>
         <a href="tel:9709805188" class="phone">(970) 980-5188</a>
-        <p style="font-size: 0.9rem; opacity: 0.9;">
-            We will need to know: Your <strong>house number</strong>, <br>
-            <strong>what you want us to do</strong>, and <strong>when we should come</strong>.
-        </p>
+        <div style="background: rgba(255,255,255,0.1); padding: 1.5rem; border-radius: 8px; font-size: 1rem;">
+            We will need to know:<br>
+            <strong>Your House Number</strong> • 
+            <strong>The Service Required</strong> • 
+            <strong>Desired Timing</strong>
+        </div>
     </div>
 
+    <footer style="text-align: center; padding: 2rem; color: #777; font-size: 0.8rem;">
+        &copy; 2023 Luke & Williams Yard Care. All Rights Reserved.
+    </footer>
 </div>
 
 </body>
