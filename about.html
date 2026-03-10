@@ -1,1 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>About • Luke &amp; Will's Yardwork</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    :root {
+      --navy: #1a2b48;
+      --green: #4caf50;
+      --light-bg: #f4f7f6;
+      --white: #ffffff;
+      --overlay: rgba(26, 43, 72, 0.75);
+    }
 
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--light-bg);
+      color: var(--navy);
+      line-height: 1.6;
+    }
+
+    .page-wrapper {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      background: var(--navy);
+      color: var(--white);
+      padding: 1.5rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-weight: 700;
+      font-size: 1.25rem;
+      letter-spacing: 0.05em;
+    }
+
+    nav a {
+      color: var(--white);
+      text-decoration: none;
+      margin-left: 1.5rem;
+      font-size: 0.95rem;
+      text-transform: uppercase;
+    }
+
+    nav a:hover {
+      color: var(--green);
+    }
+
+    .hero {
+      position: relative;
+      background: url("https://via.placeholder.com/1600x600?text=Yardwork+Background") center/cover no-repeat;
+      color: var(--white);
+      padding: 5rem 2rem;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: var(--overlay);
+    }
+
+    .hero-inner {
+      position: relative;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .hero h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .hero p {
+      font-size: 1.05rem;
+      opacity: 0.95;
+    }
+
+    .badge {
+      display: inline-block;
+      margin-bottom: 1rem;
+      padding: 0.25rem 0.75rem;
+      border-radius: 999px;
+      background: var(--green);
+      color: var(--white);
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    main {
+      flex: 1;
+      padding: 3rem 1.5rem 4rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 2fr) minmax(0, 1.4fr);
+      gap: 2.5rem;
+      align-items: flex-start;
+    }
+
+    .section-title {
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+      color: var(--navy);
+    }
+
+    .section-subtitle {
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: #6b7a96;
+      margin-bottom: 0.35rem;
+    }
+
+    .about-text p {
+      margin-bottom: 1rem;
+      font-size: 0.98rem;
+    }
+
+    .highlight {
+      color: var(--green);
+      font-weight: 600;
+    }
+
+    .pill-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 0.5rem;
+    }
+
+    .pill {
+      border-radius: 999px;
+      border: 1px solid #d0d7e2;
+      padding: 0.35rem 0.8rem;
+      font-size: 0.8rem;
+      background: var(--white);
+    }
+
+    .card {
+      background: var(--white);
+      border-radius: 1rem;
+      padding: 1.75rem;
+      box-shadow: 0 10px 30px rgba(26, 43, 72, 0.08);
+      border: 1px solid #dde3ee;
+    }
+
+    .card h3 {
+      font-size: 1.1rem;
+      margin-bottom: 0.75rem;
+      color: var(--navy);
+    }
+
+    .card ul {
+      list-style: none;
+      margin-top: 0.5rem;
+    }
+
+    .card li {
+      margin-bottom: 0.5rem;
+      font-size: 0.95rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 0.4rem;
+    }
+
+    .card li::before {
+      content: "•";
+      color: var(--green);
+      font-weight: 700;
+      margin-top: 0.05rem;
+    }
+
+    .duo {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1.25rem;
+    }
+
+    .person {
+      flex: 1;
+      background: var(--light-bg);
+      border-radius: 0.75rem;
+      padding: 1rem;
+      border: 1px solid #dde3ee;
+    }
+
+    .person h4 {
+      margin-bottom: 0.25rem;
+      font-size: 1rem;
+      color: var(--navy);
+    }
+
+    .person span {
+      display: block;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: #6b7a96;
+      margin-bottom: 0.5rem;
+    }
+
+    .cta-strip {
+      margin-top: 3rem;
+      padding: 1.5rem 1.75rem;
+      border-radius: 1rem;
+      background: linear-gradient(135deg, var(--navy), #22365a);
+      color: var(--white);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .cta-strip p {
+      max-width: 600px;
+      font-size: 0.98rem;
+    }
+
+    .cta-strip button {
+      border: none;
+      background: var(--green);
+      color: var(--white);
+      padding: 0.7rem 1.4rem;
+      border-radius: 999px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .cta-strip button:hover {
+      filter: brightness(1.05);
+    }
+
+    footer {
+      text-align: center;
+      padding: 1.5rem;
+      font-size: 0.85rem;
+      color: #7b879c;
+    }
+
+    @media (max-width: 800px) {
+      .about-grid {
+        grid-template-columns: 1fr;
+      }
+
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.75rem;
+      }
+
+      nav {
+        display: flex;
+        flex-wrap: wrap;
+      }
+
+      .hero {
+        padding: 4rem 1.5rem;
+      }
+
+      .hero h1 {
+        font-size: 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page-wrapper">
+    <header>
+      <div class="logo">Luke &amp; Will's Yardwork</div>
+      <nav>
+        <a href="/">Home</a>
+        <a href="/about.html">About</a>
+        <a href="/services.html">Services</a>
+        <a href="/contact.html">Contact</a>
+      </nav>
+    </header>
+
+    <section class="hero">
+      <div class="hero-inner">
+        <div class="badge">About Us</div>
+        <h1>Neighbors who turned yardwork into a craft.</h1>
+        <p>
+          Luke and Will started with one mower, a couple of rakes, and a simple idea:
+          treat every yard like it’s their own.
+        </p>
+      </div>
+    </section>
+
+    <main>
+      <section class="about-grid">
+        <div class="about-text">
+          <div class="section-subtitle">Our story</div>
+          <h2 class="section-title">Rooted in the neighborhood, focused on your yard.</h2>
+
+          <p>
+            Luke &amp; Will’s Yardwork began as two friends helping out on weekends—mowing lawns,
+            trimming edges, and cleaning up leaves for neighbors who needed an extra hand.
+            Word spread, and before long, those weekend favors grew into a trusted local service.
+          </p>
+
+          <p>
+            Today, we still carry that same <span class="highlight">neighbor‑first mindset</span>.
+            We show up when we say we will, we pay attention to the details, and we leave your
+            yard looking better than we found it—every single time.
+          </p>
+
+          <p>
+            Whether you need a one‑time cleanup or ongoing care, our goal is simple:
+            make your outdoor space something you’re proud of, without the stress of doing it all yourself.
+          </p>
+
+          <div>
+            <div class="section-subtitle">What we care about</div>
+            <div class="pill-list">
+              <span class="pill">Consistent, reliable service</span>
+              <span class="pill">Respect for your property</span>
+              <span class="pill">Honest, fair pricing</span>
+              <span class="pill">Clean, healthy lawns</span>
+              <span class="pill">Friendly communication</span>
+            </div>
+          </div>
+        </div>
+
+        <aside class="card">
+          <h3>Why neighbors choose Luke &amp; Will</h3>
+          <ul>
+            <li><strong>Dependable:</strong> We keep our word on schedules and show up ready to work.</li>
+            <li><strong>Detail‑oriented:</strong> Edges, walkways, and finishing touches matter to us.</li>
+            <li><strong>Local:</strong> We live where we work, so your curb appeal is our curb appeal too.</li>
+            <li><strong>Flexible:</strong> From quick touch‑ups to full seasonal cleanups, we adapt to your yard.</li>
+          </ul>
+
+          <div class="duo">
+            <div class="person">
+              <h4>Luke</h4>
+              <span>Yard care &amp; equipment</span>
+              <p>
+                Luke keeps the gear sharp and the lines cleaner. He’s all about efficiency,
+                safety, and making sure every pass of the mower counts.
+              </p>
+            </div>
+            <div class="person">
+              <h4>Will</h4>
+              <span>Details &amp; customer care</span>
+              <p>
+                Will focuses on the finishing touches and communication—clear expectations,
+                quick responses, and yards that look photo‑ready when they’re done.
+              </p>
+            </div>
+          </div>
+        </aside>
+      </section>
+
+      <section class="cta-strip">
+        <p>
+          Ready to see what Luke &amp; Will’s Yardwork can do for your lawn?
+          Tell us about your yard, and we’ll recommend a plan that fits your space, schedule, and budget.
+        </p>
+        <button type="button">Request a free estimate</button>
+      </section>
+    </main>
+
+    <footer>
+      &copy; <span id="year"></span> Luke &amp; Will's Yardwork • Proudly serving our local community
+    </footer>
+  </div>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
