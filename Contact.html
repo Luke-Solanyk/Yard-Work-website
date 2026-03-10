@@ -6,6 +6,17 @@
     <title>Request Service | Luke & William’s</title>
     <!-- Importing Roboto from Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    
+    <!-- 
+      GOOGLE MAPS API KEY INSTRUCTIONS:
+      The 'InvalidKeyMapError' happens because 'YOUR_API_KEY_HERE' is a placeholder.
+      To enable address suggestions:
+      1. Go to https://console.cloud.google.com/
+      2. Enable "Places API" and "Maps JavaScript API"
+      3. Generate a real API Key and replace 'YOUR_API_KEY_HERE' below.
+    -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY_HERE&libraries=places" async defer></script>
+    
     <style>
         :root {
             --navy: #1a2b48;
@@ -89,6 +100,7 @@
 
         input[type="text"],
         input[type="tel"],
+        input[type="email"],
         textarea {
             width: 100%;
             padding: 12px 15px;
@@ -174,6 +186,15 @@
         .back-link:hover {
             text-decoration: underline;
         }
+
+        .pac-container {
+            border-radius: 8px;
+            margin-top: 5px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            border: 1px solid #e1e8ed;
+            font-family: 'Roboto', sans-serif;
+            z-index: 9999;
+        }
     </style>
 </head>
 <body>
@@ -195,13 +216,20 @@
             </div>
 
             <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="email" placeholder="john@example.com" required>
+            </div>
+
+            <div class="form-group">
                 <label for="phone">Phone Number</label>
                 <input type="tel" id="phone" name="phone" placeholder="(970) 000-0000" required>
             </div>
 
             <div class="form-group">
-                <label for="address">House Number & Street</label>
-                <input type="text" id="address" name="address" placeholder="123 Example Ave" required>
+                <label for="address">Property Address</label>
+                <input type="text" id="address" name="address" placeholder="Start typing your address..." required>
+                <!-- Hidden field to store verified address if Autocomplete works -->
+                <input type="hidden" id="verified_address" name="verified_address">
             </div>
 
             <div class="form-group">
@@ -224,15 +252,80 @@
 </footer>
 
 <script>
+    let isAutocompleteLoaded = false;
+
+    // This callback is triggered when Google Maps loads successfully
+    function initAutocomplete() {
+        const addressInput = document.getElementById('address');
+        
+        if (typeof google === 'undefined' || !google.maps || !google.maps.places) {
+            console.warn("Google Maps library not available. Manual address entry enabled.");
+            return;
+        }
+
+        const options = {
+            componentRestrictions: { country: "us" },
+            fields: ["formatted_address"],
+            types: ["address"],
+        };
+
+        try {
+            const autocomplete = new google.maps.places.Autocomplete(addressInput, options);
+            
+            // Listen for successful library load and set flag
+            isAutocompleteLoaded = true;
+
+            autocomplete.addListener('place_changed', () => {
+                const place = autocomplete.getPlace();
+                if (place.formatted_address) {
+                    document.getElementById('verified_address').value = place.formatted_address;
+                    addressInput.value = place.formatted_address;
+                }
+            });
+        } catch (e) {
+            console.error("Autocomplete failed to initialize:", e);
+        }
+    }
+
+    // Google Maps uses an authentication check that can fire after window.onload
+    // We check for 'google' availability frequently for a few seconds if not yet loaded
+    let checkCount = 0;
+    const checkGoogleInterval = setInterval(() => {
+        if (typeof google !== 'undefined' && google.maps && google.maps.places) {
+            initAutocomplete();
+            clearInterval(checkGoogleInterval);
+        }
+        if (++checkCount > 20) clearInterval(checkGoogleInterval); // Stop after 4 seconds
+    }, 200);
+
     const form = document.getElementById('contactForm');
     const submitBtn = document.getElementById('submitBtn');
     const messageDiv = document.getElementById('responseMessage');
 
-    // Your live Google Apps Script URL
-    const scriptURL = 'https://script.google.com/macros/s/AKfycbySLZmrqJXpIRjEAy16BfWE4149khlVa1dKoRjzGoYrv9EjsVFMWAHughoQRMgwfeg6bw/exec';
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbz8AT2CzbcqV8H75BT0CVuWu3UT-7quK-qdbgdqB6D5bKRh-x1bjyp8bjP8RUjNqwZTzQ/exec';
 
     form.addEventListener('submit', e => {
         e.preventDefault();
+        
+        const addressInput = document.getElementById('address');
+        const verified = document.getElementById('verified_address').value;
+        const currentInput = addressInput.value;
+
+        // AUTH ERROR PROTECTION: 
+        // If an InvalidKeyMapError occurs, 'google.maps.places' might exist but the dropdown won't work.
+        // We only enforce 'verified' selection if the autocomplete successfully populated the hidden field once.
+        if (isAutocompleteLoaded && verified && verified !== currentInput) {
+            // User picked one but then edited it to something invalid
+            messageDiv.textContent = 'Please select a valid address from the dropdown list.';
+            messageDiv.className = 'message error';
+            addressInput.focus();
+            return;
+        }
+        
+        // If autocomplete is broken or user entered manually without the library loading properly
+        if (!verified) {
+            document.getElementById('verified_address').value = currentInput;
+        }
         
         submitBtn.disabled = true;
         submitBtn.textContent = 'Sending...';
@@ -240,8 +333,6 @@
         messageDiv.textContent = '';
 
         const formData = new FormData(form);
-        
-        // Convert FormData to URLSearchParams for compatibility with Google Apps Script
         const params = new URLSearchParams();
         for (const pair of formData) {
             params.append(pair[0], pair[1]);
@@ -250,7 +341,7 @@
         fetch(scriptURL, { 
             method: 'POST', 
             body: params,
-            mode: 'no-cors' // This prevents CORS errors during the cross-domain post
+            mode: 'no-cors' 
         })
         .then(() => {
             submitBtn.disabled = false;
@@ -258,6 +349,7 @@
             messageDiv.textContent = 'Success! Your request has been sent.';
             messageDiv.classList.add('success');
             form.reset();
+            document.getElementById('verified_address').value = '';
         })
         .catch(error => {
             submitBtn.disabled = false;
