@@ -228,8 +228,8 @@
     const submitBtn = document.getElementById('submitBtn');
     const messageDiv = document.getElementById('responseMessage');
 
-    // PASTE YOUR GOOGLE APPS SCRIPT WEB APP URL HERE
-    const scriptURL = 'YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE';
+    // Your live Google Apps Script URL
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbySLZmrqJXpIRjEAy16BfWE4149khlVa1dKoRjzGoYrv9EjsVFMWAHughoQRMgwfeg6bw/exec';
 
     form.addEventListener('submit', e => {
         e.preventDefault();
@@ -241,7 +241,7 @@
 
         const formData = new FormData(form);
         
-        // Convert FormData to URLSearchParams for Google Apps Script
+        // Convert FormData to URLSearchParams for compatibility with Google Apps Script
         const params = new URLSearchParams();
         for (const pair of formData) {
             params.append(pair[0], pair[1]);
@@ -249,9 +249,10 @@
 
         fetch(scriptURL, { 
             method: 'POST', 
-            body: params 
+            body: params,
+            mode: 'no-cors' // This prevents CORS errors during the cross-domain post
         })
-        .then(response => {
+        .then(() => {
             submitBtn.disabled = false;
             submitBtn.textContent = 'Send Request';
             messageDiv.textContent = 'Success! Your request has been sent.';
