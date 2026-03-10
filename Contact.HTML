@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Request Service | Luke & William’s</title>
+    <!-- Importing Roboto from Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --navy: #1a2b48;
+            --green: #4caf50;
+            --light-bg: #f4f7f6;
+            --white: #ffffff;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--light-bg);
+            color: var(--navy);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        header {
+            background-color: var(--white);
+            text-align: center;
+            padding: 2rem 1rem;
+            border-bottom: 6px solid var(--navy);
+        }
+
+        .brand-name {
+            font-weight: 700;
+            font-size: 2rem;
+            margin: 0;
+            text-transform: uppercase;
+        }
+
+        .tagline {
+            font-weight: 300;
+            font-size: 1.1rem;
+            color: var(--green);
+            letter-spacing: 1px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 3rem auto;
+            padding: 0 1.5rem;
+            flex-grow: 1;
+        }
+
+        .form-card {
+            background: var(--white);
+            padding: 2.5rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+
+        h1 {
+            font-weight: 700;
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+            text-align: center;
+        }
+
+        .subtitle {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        label {
+            display: block;
+            font-weight: 700;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+            letter-spacing: 0.5px;
+        }
+
+        input[type="text"],
+        input[type="tel"],
+        textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e1e8ed;
+            border-radius: 8px;
+            font-family: 'Roboto', sans-serif;
+            font-size: 1rem;
+            box-sizing: border-box;
+            transition: border-color 0.3s ease;
+        }
+
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: var(--green);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .submit-btn {
+            width: 100%;
+            background-color: var(--green);
+            color: white;
+            border: none;
+            padding: 15px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.2s ease, background-color 0.3s ease;
+            margin-top: 1rem;
+        }
+
+        .submit-btn:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+
+        .submit-btn:hover:not(:disabled) {
+            background-color: #3d8b40;
+            transform: translateY(-2px);
+        }
+
+        .message {
+            margin-top: 1.5rem;
+            padding: 1rem;
+            border-radius: 8px;
+            display: none;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .message.success {
+            display: block;
+            background-color: #d4edda;
+            color: #155724;
+        }
+
+        .message.error {
+            display: block;
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            font-size: 0.8rem;
+            opacity: 0.6;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 1.5rem;
+            color: var(--navy);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 400;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="brand-name">Luke & William’s</div>
+    <div class="tagline">Yard Work + Snow Plowing</div>
+</header>
+
+<div class="container">
+    <div class="form-card">
+        <h1>Request Service</h1>
+        <p class="subtitle">Enter your details and we will get back to you!</p>
+
+        <form id="contactForm">
+            <div class="form-group">
+                <label for="name">Full Name</label>
+                <input type="text" id="name" name="name" placeholder="Enter your name" required>
+            </div>
+
+            <div class="form-group">
+                <label for="phone">Phone Number</label>
+                <input type="tel" id="phone" name="phone" placeholder="(970) 000-0000" required>
+            </div>
+
+            <div class="form-group">
+                <label for="address">House Number & Street</label>
+                <input type="text" id="address" name="address" placeholder="123 Example Ave" required>
+            </div>
+
+            <div class="form-group">
+                <label for="details">What do you want accomplished?</label>
+                <textarea id="details" name="details" placeholder="Tell us what you need done and when..." required></textarea>
+            </div>
+
+            <button type="submit" id="submitBtn" class="submit-btn">Send Request</button>
+            <div id="responseMessage" class="message"></div>
+        </form>
+
+        <div style="text-align: center;">
+            <a href="index.html" class="back-link">← Back to Home Page</a>
+        </div>
+    </div>
+</div>
+
+<footer>
+    © 2024 Luke & William’s Yard Work + Snow Plowing
+</footer>
+
+<script>
+    const form = document.getElementById('contactForm');
+    const submitBtn = document.getElementById('submitBtn');
+    const messageDiv = document.getElementById('responseMessage');
+
+    // PASTE YOUR GOOGLE APPS SCRIPT WEB APP URL HERE
+    const scriptURL = 'YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE';
+
+    form.addEventListener('submit', e => {
+        e.preventDefault();
+        
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Sending...';
+        messageDiv.className = 'message';
+        messageDiv.textContent = '';
+
+        const formData = new FormData(form);
+        
+        // Convert FormData to URLSearchParams for Google Apps Script
+        const params = new URLSearchParams();
+        for (const pair of formData) {
+            params.append(pair[0], pair[1]);
+        }
+
+        fetch(scriptURL, { 
+            method: 'POST', 
+            body: params 
+        })
+        .then(response => {
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'Send Request';
+            messageDiv.textContent = 'Success! Your request has been sent.';
+            messageDiv.classList.add('success');
+            form.reset();
+        })
+        .catch(error => {
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'Send Request';
+            messageDiv.textContent = 'Oops! Something went wrong. Please try again.';
+            messageDiv.classList.add('error');
+            console.error('Error!', error.message);
+        });
+    });
+</script>
+
+</body>
+</html>
