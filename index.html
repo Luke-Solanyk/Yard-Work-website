@@ -13,7 +13,7 @@
             --green: #4caf50;
             --light-bg: #f4f7f6;
             --white: #ffffff;
-            --overlay: rgba(26, 43, 72, 0.75);
+            --overlay: rgba(26, 43, 72, 0.6); /* Slightly adjusted transparency for your custom image */
             --nav-height: 70px;
         }
 
@@ -85,8 +85,9 @@
         /* --- Hero Banner Styles --- */
         .hero {
             position: relative;
-            height: 400px;
-            background-image: url ('Images/Main page image.png');
+            height: 450px;
+            /* Updated to use your GitHub image direct raw link */
+            background-image: url('https://raw.githubusercontent.com/Luke-Solanyk/Yard-Work-website/main/Images/Main%20page%20image.png');
             background-size: cover;
             background-position: center;
             display: flex;
@@ -273,7 +274,7 @@
         @media (max-width: 600px) {
             nav { height: auto; padding: 1rem; flex-direction: column; gap: 10px; }
             .logo-text { font-size: 2.2rem; }
-            .hero { height: 300px; }
+            .hero { height: 350px; }
         }
     </style>
 </head>
@@ -363,9 +364,8 @@
 </div>
 
 <script>
-    // Form Submit Logic
     const form = document.getElementById('contactForm');
-    const scriptURL = 'https://script.google.com/macros/s/AKfycbz8AT2CzbcqV8H75BT0CVuWu3UT-7quK-qdbgdqB6D5bKRh-x1bjyp8bjP8RUjNqwZTzQ/exec';
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbzYd8t9co20W1hzJ9GMqUwLFRSpwUQI1vdIk94ars_etNZSEdUzPoYCD4V-j4H9a5PI4g/exec';
 
     form.addEventListener('submit', e => {
         e.preventDefault();
@@ -379,9 +379,16 @@
         
         const formData = new FormData(form);
         const params = new URLSearchParams();
-        for (const pair of formData) params.append(pair[0], pair[1]);
+        
+        for (const pair of formData) {
+            params.append(pair[0], pair[1]);
+        }
 
-        fetch(scriptURL, { method: 'POST', body: params, mode: 'no-cors' })
+        fetch(scriptURL, { 
+            method: 'POST', 
+            body: params, 
+            mode: 'no-cors' 
+        })
         .then(() => {
             submitBtn.disabled = false;
             submitBtn.textContent = 'Send Request';
@@ -389,7 +396,8 @@
             messageDiv.className = 'message success';
             form.reset();
         })
-        .catch(() => {
+        .catch((err) => {
+            console.error('Submission error:', err);
             submitBtn.disabled = false;
             submitBtn.textContent = 'Send Request';
             messageDiv.textContent = 'Error! Please try again.';
