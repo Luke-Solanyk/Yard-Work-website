@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Luke & Williams | Yard Work & Snow Plowing</title>
+    <!-- Importing Roboto from Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    
     <style>
         :root {
             --navy: #1a2b48;
@@ -14,16 +17,20 @@
             --nav-height: 70px;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Roboto', sans-serif;
             margin: 0;
             padding: 0;
             background-color: var(--light-bg);
-            color: #333;
+            color: var(--navy);
             line-height: 1.6;
         }
 
-        /* Navigation Styles */
+        /* --- Navigation --- */
         nav {
             background-color: var(--white);
             height: var(--nav-height);
@@ -43,11 +50,12 @@
             text-decoration: none;
             font-size: 1.2rem;
             letter-spacing: 1px;
+            text-transform: uppercase;
         }
 
         .nav-links {
             display: flex;
-            gap: 2rem;
+            gap: 1.5rem;
             list-style: none;
             margin: 0;
             padding: 0;
@@ -56,10 +64,10 @@
         .nav-links a {
             text-decoration: none;
             color: var(--navy);
-            font-weight: 600;
+            font-weight: 700;
             transition: color 0.3s;
             text-transform: uppercase;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
         }
 
         .nav-links a:hover {
@@ -69,15 +77,16 @@
         .nav-cta {
             background-color: var(--green);
             color: white !important;
-            padding: 8px 20px;
+            padding: 8px 18px;
             border-radius: 5px;
+            transition: background 0.3s ease !important;
         }
 
-        /* Hero Banner Styles */
+        /* --- Hero Banner Styles --- */
         .hero {
             position: relative;
             height: 400px;
-            background-image: url('https://images.unsplash.com/photo-1558905619-1715424fd7a5?auto=format&fit=crop&q=80&w=2000'); /* Fallback image */
+            background-image: url('https://images.unsplash.com/photo-1558905619-1715424fd7a5?auto=format&fit=crop&q=80&w=2000');
             background-size: cover;
             background-position: center;
             display: flex;
@@ -112,15 +121,16 @@
             text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
         }
 
-        .subtitle {
+        .hero-subtitle {
             color: var(--green);
-            font-weight: bold;
+            font-weight: 700;
             font-size: 1.5rem;
             margin-top: 0.5rem;
             letter-spacing: 2px;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+            text-transform: uppercase;
         }
 
+        /* --- Content Layout --- */
         .container {
             max-width: 850px;
             margin: -50px auto 3rem auto;
@@ -131,10 +141,10 @@
 
         .card {
             background: var(--white);
-            padding: 2rem;
-            border-radius: 12px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-            margin-bottom: 2rem;
+            padding: 2.5rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            margin-bottom: 2.5rem;
         }
 
         h2 {
@@ -143,6 +153,7 @@
             padding-left: 15px;
             margin-top: 0;
             font-size: 1.8rem;
+            font-weight: 700;
         }
 
         .grid {
@@ -151,22 +162,22 @@
             gap: 2rem;
         }
 
-        ul {
+        .service-list {
             list-style-type: none;
             padding: 0;
         }
 
-        ul li {
-            margin-bottom: 10px;
+        .service-list li {
+            margin-bottom: 12px;
             display: flex;
             align-items: flex-start;
         }
 
-        ul li::before {
+        .service-list li::before {
             content: "✓";
             color: var(--green);
             font-weight: bold;
-            margin-right: 10px;
+            margin-right: 12px;
             font-size: 1.2rem;
         }
 
@@ -177,31 +188,8 @@
             text-align: center;
             font-size: 1.4rem;
             border-radius: 8px;
-            font-weight: bold;
+            font-weight: 700;
             margin-bottom: 1.5rem;
-        }
-
-        .contact-box {
-            background-color: var(--navy);
-            color: white;
-            padding: 3rem 2rem;
-            text-align: center;
-            border-radius: 12px;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
-        }
-
-        .phone {
-            font-size: 2.2rem;
-            display: block;
-            margin: 1.5rem 0;
-            color: var(--green);
-            text-decoration: none;
-            font-weight: bold;
-            transition: transform 0.2s;
-        }
-        
-        .phone:hover {
-            transform: scale(1.05);
         }
 
         .hours-list {
@@ -209,26 +197,94 @@
             padding: 1.5rem;
             border-radius: 8px;
             text-align: center;
-            border: 1px solid #ddd;
+            border: 1px solid #e1e8ed;
         }
 
+        /* --- Form Styles --- */
+        .form-group {
+            margin-bottom: 1.5rem;
+            text-align: left;
+        }
+
+        label {
+            display: block;
+            font-weight: 700;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+            letter-spacing: 0.5px;
+        }
+
+        input[type="text"],
+        input[type="tel"],
+        input[type="email"],
+        textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e1e8ed;
+            border-radius: 8px;
+            font-family: 'Roboto', sans-serif;
+            font-size: 1rem;
+            box-sizing: border-box;
+            transition: border-color 0.3s ease;
+        }
+
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: var(--green);
+        }
+
+        .submit-btn {
+            width: 100%;
+            background-color: var(--green);
+            color: white;
+            border: none;
+            padding: 15px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.2s ease, background-color 0.3s ease;
+            margin-top: 1rem;
+        }
+
+        .submit-btn:disabled { background-color: #ccc; cursor: not-allowed; }
+
+        .message {
+            margin-top: 1.5rem;
+            padding: 1rem;
+            border-radius: 8px;
+            display: none;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .message.success { display: block; background-color: #d4edda; color: #155724; }
+        .message.error { display: block; background-color: #f8d7da; color: #721c24; }
+
+        footer {
+            text-align: center;
+            padding: 3rem 1rem;
+            color: #777;
+            font-size: 0.85rem;
+        }
+
+        /* --- Responsive --- */
         @media (max-width: 600px) {
-            nav { flex-direction: column; height: auto; padding: 1rem; gap: 1rem; }
-            .nav-links { gap: 1rem; }
-            .hero { height: 300px; }
+            nav { height: auto; padding: 1rem; flex-direction: column; gap: 10px; }
             .logo-text { font-size: 2.2rem; }
-            .subtitle { font-size: 1.1rem; }
-            .phone { font-size: 1.6rem; }
+            .hero { height: 300px; }
         }
     </style>
 </head>
 <body>
 
 <nav>
-    <a href="index.html" class="nav-logo">LUKE & WILLIAMS</a>
+    <a href="#" class="nav-logo">Luke & Williams</a>
     <ul class="nav-links">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="contact.html" class="nav-cta">Contact Us</a></li>
+        <li><a href="#">Home</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#contact" class="nav-cta">Request Service</a></li>
     </ul>
 </nav>
 
@@ -236,18 +292,18 @@
     <div class="hero-overlay"></div>
     <div class="hero-content">
         <h1 class="logo-text">Luke & Williams</h1>
-        <div class="subtitle">YARD WORK + SNOW PLOWING</div>
+        <div class="hero-subtitle">Yard Work + Snow Plowing</div>
     </div>
 </section>
 
 <div class="container">
     
-    <div class="card">
+    <div class="card" id="services">
         <h2>Our Services</h2>
         <div class="grid">
             <div>
                 <h3 style="color: var(--green);">Outdoor Care</h3>
-                <ul>
+                <ul class="service-list">
                     <li>Lawn Mowing & Pastures</li>
                     <li>Leaf & Pine Needle Raking</li>
                     <li>Garden, Walkway, & Driveway Weeding</li>
@@ -256,9 +312,9 @@
             </div>
             <div>
                 <h3 style="color: var(--green);">Winter & Specialized</h3>
-                <ul>
-                    <li>Snow Plowing (Driveways, Patios, Front Walks)</li>
-                    <li>Animal Watching Available 7 Days/Week</li>
+                <ul class="service-list">
+                    <li>Snow Plowing (Driveways & Walks)</li>
+                    <li>Animal Watching (7 Days/Week)</li>
                 </ul>
             </div>
         </div>
@@ -266,27 +322,81 @@
 
     <div class="card">
         <h2>Pricing & Hours</h2>
-        <div class="price-tag">
-            "You decide all the prices."
-        </div>
+        <div class="price-tag">"You decide all the prices."</div>
         <div class="hours-list">
-            <p style="margin-top: 0;"><strong>Monday, Wednesday, Friday, & Saturday:</strong><br>
-            <span style="font-size: 1.2rem; color: var(--navy);">10:00am – 4:00pm</span></p>
-            <hr style="border: 0; border-top: 1px solid #ddd; margin: 1rem 0;">
-            <p style="margin-bottom: 0;"><em>*Animal watching is available all week long.</em></p>
+            <p><strong>Mon, Wed, Fri, & Sat:</strong><br>
+            <span style="font-size: 1.3rem; color: var(--navy);">10:00am – 4:00pm</span></p>
         </div>
     </div>
 
-    <div class="contact-box">
-        <h2 style="color: white; border-left-color: var(--green); display: inline-block;">Contact Us Today</h2>
-        <p style="font-size: 1.1rem; margin-top: 1rem;">Ready to get started? Call us at:</p>
-        <a href="tel:970-980-5188" class="phone">970-980-5188</a>
+    <div class="card" id="contact" style="text-align: center;">
+        <h2>Request Service</h2>
+        <form id="contactForm">
+            <div class="form-group">
+                <label for="name">Full Name</label>
+                <input type="text" id="name" name="name" placeholder="Your Name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="email" placeholder="email@example.com" required>
+            </div>
+            <div class="form-group">
+                <label for="phone">Phone Number</label>
+                <input type="tel" id="phone" name="phone" placeholder="(970) 000-0000" required>
+            </div>
+            <div class="form-group">
+                <label for="address">Property Address</label>
+                <input type="text" id="address" name="address" placeholder="123 Example St, City, ST" required>
+            </div>
+            <div class="form-group">
+                <label for="details">What do you need accomplished?</label>
+                <textarea id="details" name="details" placeholder="Tell us about the job..." required></textarea>
+            </div>
+            <button type="submit" id="submitBtn" class="submit-btn">Send Request</button>
+            <div id="responseMessage" class="message"></div>
+        </form>
     </div>
 
-    <footer style="text-align: center; padding: 2rem; color: #777; font-size: 0.8rem;">
+    <footer>
         &copy; 2025 Luke & Williams Yard Care. All Rights Reserved.
     </footer>
 </div>
+
+<script>
+    // Form Submit Logic
+    const form = document.getElementById('contactForm');
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbz8AT2CzbcqV8H75BT0CVuWu3UT-7quK-qdbgdqB6D5bKRh-x1bjyp8bjP8RUjNqwZTzQ/exec';
+
+    form.addEventListener('submit', e => {
+        e.preventDefault();
+        const submitBtn = document.getElementById('submitBtn');
+        const messageDiv = document.getElementById('responseMessage');
+        
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Sending...';
+        messageDiv.className = 'message';
+        messageDiv.textContent = '';
+        
+        const formData = new FormData(form);
+        const params = new URLSearchParams();
+        for (const pair of formData) params.append(pair[0], pair[1]);
+
+        fetch(scriptURL, { method: 'POST', body: params, mode: 'no-cors' })
+        .then(() => {
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'Send Request';
+            messageDiv.textContent = 'Success! Your request has been sent.';
+            messageDiv.className = 'message success';
+            form.reset();
+        })
+        .catch(() => {
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'Send Request';
+            messageDiv.textContent = 'Error! Please try again.';
+            messageDiv.className = 'message error';
+        });
+    });
+</script>
 
 </body>
 </html>
