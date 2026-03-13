@@ -88,7 +88,7 @@
         /* --- Hero Banner Shared Styles --- */
         .hero {
             position: relative;
-            height: 450px;
+            height: 400px;
             background-image: url('https://raw.githubusercontent.com/Luke-Solanyk/Yard-Work-website/main/Images/Main%20page%20image.png');
             background-size: cover;
             background-position: center;
@@ -144,7 +144,7 @@
 
         /* --- Container --- */
         .container {
-            max-width: 850px;
+            max-width: 950px;
             margin: -50px auto 3rem auto;
             padding: 0 1rem;
             position: relative;
@@ -168,7 +168,7 @@
             font-weight: 700;
         }
 
-        /* --- Home List Styles --- */
+        /* --- Grid Styles --- */
         .grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -194,10 +194,10 @@
             font-size: 1.2rem;
         }
 
-        /* --- Services Page Detailed Layout --- */
+        /* --- Detailed Layout --- */
         .detailed-service {
-            margin-bottom: 3rem;
-            padding-bottom: 2rem;
+            margin-bottom: 2rem;
+            padding-bottom: 1.5rem;
             border-bottom: 1px solid #eee;
         }
         
@@ -207,22 +207,55 @@
 
         .detailed-service h3 {
             color: var(--green);
-            font-size: 1.6rem;
-            margin-bottom: 1rem;
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+            margin-top: 0;
+        }
+
+        /* --- Pricing Specifics --- */
+        .pricing-table-container {
+            overflow-x: auto;
+        }
+
+        .pricing-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+            min-width: 600px;
+        }
+
+        .pricing-table th, .pricing-table td {
+            text-align: left;
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .pricing-table th {
+            color: var(--navy);
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            letter-spacing: 1px;
+            background-color: #f8fafb;
+        }
+
+        .price-col {
+            font-weight: 700;
+            color: var(--green);
+            white-space: nowrap;
+        }
+
+        .category-label {
+            display: inline-block;
+            background: #e1f5fe;
+            color: #0288d1;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
         }
 
         /* --- Common Elements --- */
-        .price-tag {
-            background-color: var(--green);
-            color: white;
-            padding: 1.5rem;
-            text-align: center;
-            font-size: 1.4rem;
-            border-radius: 8px;
-            font-weight: 700;
-            margin-bottom: 1.5rem;
-        }
-
         .hours-list {
             background: #f8fafb;
             padding: 1.5rem;
@@ -246,10 +279,7 @@
             letter-spacing: 0.5px;
         }
 
-        input[type="text"],
-        input[type="tel"],
-        input[type="email"],
-        textarea {
+        input, textarea {
             width: 100%;
             padding: 12px 15px;
             border: 2px solid #e1e8ed;
@@ -257,7 +287,6 @@
             font-family: 'Roboto', sans-serif;
             font-size: 1rem;
             box-sizing: border-box;
-            transition: border-color 0.3s ease;
         }
 
         .submit-btn {
@@ -270,8 +299,7 @@
             font-weight: 700;
             border-radius: 8px;
             cursor: pointer;
-            transition: transform 0.2s ease, background-color 0.3s ease;
-            margin-top: 1rem;
+            transition: transform 0.2s ease;
         }
 
         .message {
@@ -295,18 +323,19 @@
         @media (max-width: 600px) {
             nav { height: auto; padding: 1rem; flex-direction: column; gap: 10px; }
             .logo-text { font-size: 2.2rem; }
-            .hero { height: 350px; }
+            .hero { height: 300px; }
         }
     </style>
 </head>
 <body>
 
 <nav>
-    <a onclick="showPage('home')" class="nav-logo">Luke & Williams</a>
+    <a href="javascript:void(0)" onclick="showPage('home')" class="nav-logo">Luke & Williams</a>
     <ul class="nav-links">
-        <li><a onclick="showPage('home')">Home</a></li>
-        <li><a onclick="showPage('services')">Services</a></li>
-        <li><a onclick="scrollToContact()" class="nav-cta">Request Service</a></li>
+        <li><a href="javascript:void(0)" onclick="showPage('home')">Home</a></li>
+        <li><a href="javascript:void(0)" onclick="showPage('services')">Services</a></li>
+        <li><a href="javascript:void(0)" onclick="showPage('pricing')">Pricing</a></li>
+        <li><a href="javascript:void(0)" onclick="scrollToContact()" class="nav-cta">Request Service</a></li>
     </ul>
 </nav>
 
@@ -316,35 +345,78 @@
         <div class="hero-overlay"></div>
         <div class="hero-content">
             <h1 class="logo-text">Luke & Williams</h1>
-            <div class="hero-subtitle">Yard Work + Snow Plowing</div>
+            <div class="hero-subtitle">Professional Yard Care & Plowing</div>
         </div>
     </section>
 
     <div class="container">
         <div class="card">
-            <h2>Our Services</h2>
+            <h2>Our Core Services</h2>
             <div class="grid">
                 <div>
-                    <h3 style="color: var(--green);">Outdoor Care</h3>
+                    <h3 style="color: var(--green);">Mowing & Yard Work</h3>
                     <ul class="service-list">
-                        <li>Lawn Mowing</li>
-                        <li>Raking</li>
-                        <li>Weeding</li>
-                        <li>Watering</li>
+                        <li>House Lawns & Pastures</li>
+                        <li>General Yard Care (Raking/Debris)</li>
+                        <li>Garden Care & Weeding</li>
+                        <li>Watering Services</li>
                     </ul>
                 </div>
                 <div>
-                    <h3 style="color: var(--green);">Winter & Specialized</h3>
+                    <h3 style="color: var(--green);">Snow & Animals</h3>
                     <ul class="service-list">
-                        <li>Snow Plowing</li>
-                        <li>Animal Watching</li>
+                        <li>Driveway Plowing (Standard & Big Storms)</li>
+                        <li>Walkway, Porch & Deck Shoveling</li>
+                        <li>Small & Large Animal Care</li>
+                        <li>Farm Bundles (All Animals)</li>
                     </ul>
                 </div>
             </div>
             <div style="text-align: center; margin-top: 1.5rem;">
-                <button onclick="showPage('services')" style="background: none; border: 2px solid var(--green); color: var(--green); padding: 10px 20px; border-radius: 5px; font-weight: 700; cursor: pointer;">Learn More About Our Services</button>
+                <button onclick="showPage('services')" style="background: none; border: 2px solid var(--green); color: var(--green); padding: 10px 20px; border-radius: 5px; font-weight: 700; cursor: pointer;">View Service Details</button>
             </div>
         </div>
+
+        <div class="card">
+            <h2>Hours & Availability</h2>
+            <div class="hours-list">
+                <p><strong>Mon, Wed, Fri, & Sat:</strong><br>
+                <span style="font-size: 1.3rem; color: var(--navy);">10:00am – 4:00pm</span></p>
+                <p><em>Animal watching and Snow Plowing available 7 days a week.</em></p>
+            </div>
+        </div>
+
+        <div class="card" id="contact" style="text-align: center;">
+            <h2>Request Service</h2>
+            <p style="margin-bottom: 2rem; color: #666;">Ready to book? Fill out the form below and we'll get back to you shortly.</p>
+            <form id="contactForm">
+                <div class="form-group">
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" name="name" placeholder="Your Name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" placeholder="email@example.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" name="phone" placeholder="(970) 000-0000" required>
+                </div>
+                <div class="form-group">
+                    <label for="address">Property Address</label>
+                    <input type="text" id="address" name="address" placeholder="123 Example St, City, ST" required>
+                </div>
+                <div class="form-group">
+                    <label for="details">What do you need accomplished?</label>
+                    <textarea id="details" name="details" placeholder="Tell us about the job..." required></textarea>
+                </div>
+                <button type="submit" id="submitBtn" class="submit-btn">Send Request</button>
+                <div id="responseMessage" class="message"></div>
+            </form>
+        </div>
+        <footer>
+            &copy; 2025 Luke & Williams Yard Care. All Rights Reserved.
+        </footer>
     </div>
 </div>
 
@@ -353,94 +425,159 @@
     <section class="hero">
         <div class="hero-overlay"></div>
         <div class="hero-content">
-            <h1 class="logo-text">Services</h1>
+            <h1 class="logo-text">Detailed Offerings</h1>
         </div>
     </section>
 
     <div class="container">
         <div class="card">
-            <h2>Detailed Offerings</h2>
+            <h2>Our Specialized Care</h2>
             
             <div class="detailed-service">
-                <h3>Lawn Mowing</h3>
-                <p>We provide professional mowing for both standard residential lawns and larger properties. We utilize a <strong>riding mower</strong> to efficiently handle pastures and expansive lawns, and a <strong>push mower</strong> for smaller yards and tight spaces. Our service includes precision trimming around edges and obstacles to give your property a clean, manicured look.</p>
+                <h3>Mowing Services</h3>
+                <p><strong>House Lawns:</strong> Our standard lawn service includes thorough weed-eating and blowing off surfaces for a clean finish.</p>
+                <p><strong>Pastures & Fields:</strong> We handle larger areas and roadside frontage with our riding equipment.</p>
             </div>
 
             <div class="detailed-service">
-                <h3>Raking</h3>
-                <p>Don't let fallen debris suffocate your grass. We offer thorough raking and removal of leaves and pine needles, ensuring your lawn stays healthy and clear throughout the changing seasons.</p>
+                <h3>General Yard Work</h3>
+                <p><strong>Cleanup:</strong> Comprehensive raking, rock removal, and debris clearing to keep your land pristine.</p>
+                <p><strong>Weeding:</strong> Specialized attention to fence lines, gravel areas, and side yards.</p>
+                <p><strong>Garden Care:</strong> Expert maintenance for flower beds and vegetable gardens.</p>
+                <p><strong>Watering:</strong> Daily watering for gardens, pots, or individual trees.</p>
             </div>
 
             <div class="detailed-service">
-                <h3>Weeding</h3>
-                <p>We tackle stubborn weeds in gardens, walkways, and driveways. We pay close attention to detail to ensure that even the smallest weeds are removed from the cracks and soil, keeping your outdoor spaces looking pristine.</p>
+                <h3>Snow Plowing & Shoveling</h3>
+                <p>We use shovels and plows (no blowers) to ensure a quiet and effective clearing.</p>
+                <p><strong>Driveways:</strong> Available for standard snowfalls and "Big Storm" events (2+ feet).</p>
+                <p><strong>Decks & Walks:</strong> Hand-shoveling for porches, walks, and decks to keep your access points safe.</p>
             </div>
 
             <div class="detailed-service">
-                <h3>Watering</h3>
-                <p>Keeping your plants and lawn hydrated is essential for a vibrant property. We offer reliable watering services for your garden, lawn, and flower beds to ensure everything stays green and healthy.</p>
+                <h3>Animal Care (7 Days/Week)</h3>
+                <p><strong>Small Animals:</strong> Daily care for cats, dogs, and other indoor pets.</p>
+                <p><strong>Large Animals:</strong> Experienced handling of cows, horses, goats, and more.</p>
+                <p><strong>Farm Bundle:</strong> A comprehensive flat-rate service covering all animals on your property.</p>
             </div>
-
-            <div class="detailed-service">
-                <h3>Snow Plowing</h3>
-                <p>When the winter weather hits, we're ready. We provide reliable snow removal for driveways and walkways, helping you keep your property accessible and safe for your family and vehicles.</p>
+            
+            <div style="text-align: center; margin-top: 2rem;">
+                <button onclick="showPage('pricing')" class="submit-btn" style="max-width: 300px; background-color: var(--navy);">View Our Price List</button>
             </div>
-
-            <div class="detailed-service">
-                <h3>Animal Watching</h3>
-                <p>Need someone reliable to check on your pets or livestock? We offer animal watching services 7 days a week, providing feeding, watering, and general care so you can have peace of mind while you're away.</p>
-            </div>
-
         </div>
+
+        <footer>
+            &copy; 2025 Luke & Williams Yard Care. All Rights Reserved.
+        </footer>
     </div>
 </div>
 
-<!-- COMMON BOTTOM SECTIONS -->
-<div class="container" style="margin-top: 0;">
-    <div class="card">
-        <h2>Pricing & Hours</h2>
-        <div class="price-tag">"You decide all the prices."</div>
-        <div class="hours-list">
-            <p><strong>Mon, Wed, Fri, & Sat:</strong><br>
-            <span style="font-size: 1.3rem; color: var(--navy);">10:00am – 4:00pm</span></p>
+<!-- PRICING PAGE VIEW -->
+<div id="pricingPage" class="page-view">
+    <section class="hero">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1 class="logo-text">Pricing</h1>
         </div>
-    </div>
+    </section>
 
-    <div class="card" id="contact" style="text-align: center;">
-        <h2>Request Service</h2>
-        <form id="contactForm">
-            <div class="form-group">
-                <label for="name">Full Name</label>
-                <input type="text" id="name" name="name" placeholder="Your Name" required>
+    <div class="container">
+        <div class="card">
+            <h2>Service Rates</h2>
+            <div class="pricing-table-container">
+                <table class="pricing-table">
+                    <thead>
+                        <tr>
+                            <th>Service</th>
+                            <th>Details</th>
+                            <th class="price-col">Price / Unit</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- MOWING -->
+                        <tr>
+                            <td><span class="category-label">Mowing</span> House Lawn</td>
+                            <td>Includes weed-eating and blowing</td>
+                            <td class="price-col">$40.00 Flat Rate</td>
+                        </tr>
+                        <tr>
+                            <td><span class="category-label">Mowing</span> Pasture / Field</td>
+                            <td>Includes roadside frontage</td>
+                            <td class="price-col">$35.00 Per Acre</td>
+                        </tr>
+                        <!-- YARD WORK -->
+                        <tr>
+                            <td><span class="category-label">Yard Work</span> General Care</td>
+                            <td>Raking, rocks, debris</td>
+                            <td class="price-col">$20.00 Per Hour</td>
+                        </tr>
+                        <tr>
+                            <td><span class="category-label">Yard Work</span> Weeding</td>
+                            <td>Fence lines, gravel, side yards</td>
+                            <td class="price-col">$25.00 Per Hour</td>
+                        </tr>
+                        <tr>
+                            <td><span class="category-label">Yard Work</span> Garden Care</td>
+                            <td>Flower beds and vegetable gardens</td>
+                            <td class="price-col">$30.00 Per Hour</td>
+                        </tr>
+                        <tr>
+                            <td><span class="category-label">Yard Work</span> Watering</td>
+                            <td>Gardens, pots, or trees</td>
+                            <td class="price-col">$5.00 Per Day</td>
+                        </tr>
+                        <!-- ANIMALS -->
+                        <tr>
+                            <td><span class="category-label">Animals</span> Small Animals</td>
+                            <td>Cats, Dogs, etc. (Per category)</td>
+                            <td class="price-col">$5.00 Per Day</td>
+                        </tr>
+                        <tr>
+                            <td><span class="category-label">Animals</span> Large Animals</td>
+                            <td>Cows, Horses, Goats, etc. (Per category)</td>
+                            <td class="price-col">$10.00 Per Day</td>
+                        </tr>
+                        <tr>
+                            <td><span class="category-label">Animals</span> Farm Bundle</td>
+                            <td>Covers all animals on property</td>
+                            <td class="price-col">$20.00 Per Day</td>
+                        </tr>
+                        <!-- SNOW -->
+                        <tr>
+                            <td><span class="category-label">Snow</span> Driveway</td>
+                            <td>Standard (Under 2 feet)</td>
+                            <td class="price-col">$40.00 Per Visit</td>
+                        </tr>
+                        <tr>
+                            <td><span class="category-label">Snow</span> Big Storm</td>
+                            <td>2 feet of snow or more</td>
+                            <td class="price-col">$70.00 Per Visit</td>
+                        </tr>
+                        <tr>
+                            <td><span class="category-label">Snow</span> Porch, Walk & Deck</td>
+                            <td>Hand-shoveling front/back</td>
+                            <td class="price-col">$20.00 Flat Rate</td>
+                        </tr>
+                        <tr>
+                            <td><span class="category-label">Snow</span> Deep Deck Add-on</td>
+                            <td>If 2+ feet of snow on decks</td>
+                            <td class="price-col">$35.00 Flat Rate</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
-            <div class="form-group">
-                <label for="email">Email Address</label>
-                <input type="email" id="email" name="email" placeholder="email@example.com" required>
+            <div style="text-align: center; margin-top: 3rem;">
+                <button onclick="scrollToContact()" class="submit-btn" style="max-width: 300px;">Book a Service</button>
             </div>
-            <div class="form-group">
-                <label for="phone">Phone Number</label>
-                <input type="tel" id="phone" name="phone" placeholder="(970) 000-0000" required>
-            </div>
-            <div class="form-group">
-                <label for="address">Property Address</label>
-                <input type="text" id="address" name="address" placeholder="123 Example St, City, ST" required>
-            </div>
-            <div class="form-group">
-                <label for="details">What do you need accomplished?</label>
-                <textarea id="details" name="details" placeholder="Tell us about the job..." required></textarea>
-            </div>
-            <button type="submit" id="submitBtn" class="submit-btn">Send Request</button>
-            <div id="responseMessage" class="message"></div>
-        </form>
-    </div>
+        </div>
 
-    <footer>
-        &copy; 2025 Luke & Williams Yard Care. All Rights Reserved.
-    </footer>
+        <footer>
+            &copy; 2025 Luke & Williams Yard Care. All Rights Reserved.
+        </footer>
+    </div>
 </div>
 
 <script>
-    // Navigation Logic
     function showPage(pageId) {
         document.querySelectorAll('.page-view').forEach(view => {
             view.classList.remove('active');
@@ -450,11 +587,17 @@
     }
 
     function scrollToContact() {
-        document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+        showPage('home');
+        setTimeout(() => {
+            const contactSection = document.getElementById('contact');
+            if(contactSection) {
+                contactSection.scrollIntoView({ behavior: 'smooth' });
+            }
+        }, 100);
     }
 
-    // Form Logic
     const form = document.getElementById('contactForm');
+    // Note: This script URL should be updated to your personal Google Apps Script deployment URL
     const scriptURL = 'https://script.google.com/macros/s/AKfycbzYd8t9co20W1hzJ9GMqUwLFRSpwUQI1vdIk94ars_etNZSEdUzPoYCD4V-j4H9a5PI4g/exec';
 
     form.addEventListener('submit', e => {
@@ -465,7 +608,7 @@
         submitBtn.disabled = true;
         submitBtn.textContent = 'Sending...';
         messageDiv.className = 'message';
-        messageDiv.textContent = '';
+        messageDiv.style.display = 'none';
         
         const formData = new FormData(form);
         const params = new URLSearchParams();
@@ -477,6 +620,7 @@
             submitBtn.textContent = 'Send Request';
             messageDiv.textContent = 'Success! Your request has been sent.';
             messageDiv.className = 'message success';
+            messageDiv.style.display = 'block';
             form.reset();
         })
         .catch((err) => {
@@ -485,6 +629,7 @@
             submitBtn.textContent = 'Send Request';
             messageDiv.textContent = 'Error! Please try again.';
             messageDiv.className = 'message error';
+            messageDiv.style.display = 'block';
         });
     });
 </script>
