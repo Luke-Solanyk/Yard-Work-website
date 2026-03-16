@@ -1,696 +1,674 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Solanyk Brothers | Lawn Care & Snow Removal</title>
-    <!-- Importing Roboto from Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700;900&display=swap" rel="stylesheet">
-    
-    <style>
-        :root {
-            --navy: #1a2b48;
-            --green: #4caf50;
-            --light-bg: #f4f7f6;
-            --white: #ffffff;
-            --overlay: rgba(26, 43, 72, 0.65); 
-            --nav-height: 75px;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Solanyk Brothers | Lawn Care & Snow Removal</title>
+<!-- Importing Roboto from Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
 
-        html {
-            scroll-behavior: smooth;
-        }
+<style>
+:root {
+--navy: #1a2b48;
+--green: #4caf50;
+--light-bg: #f4f7f6;
+--white: #ffffff;
+--overlay: rgba(26, 43, 72, 0.6); 
+--nav-height: 70px;
+}
 
-        body {
-            font-family: 'Roboto', sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: var(--light-bg);
-            color: var(--navy);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
+html {
+scroll-behavior: smooth;
+}
 
-        /* --- Navigation --- */
-        nav {
-            background-color: var(--white);
-            height: var(--nav-height);
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 5%;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
+body {
+font-family: 'Roboto', sans-serif;
+margin: 0;
+padding: 0;
+background-color: var(--light-bg);
+color: var(--navy);
+line-height: 1.6;
+overflow-x: hidden;
+}
 
-        .nav-logo-container {
-            display: flex;
-            align-items: center;
-            text-decoration: none;
-            cursor: pointer;
-        }
+/* --- Navigation --- */
+nav {
+background-color: var(--white);
+height: var(--nav-height);
+display: flex;
+align-items: center;
+justify-content: space-between;
+padding: 0 5%;
+position: sticky;
+top: 0;
+z-index: 1000;
+box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
 
-        .nav-logo-img {
-            height: 60px;
-            width: auto;
-            transition: transform 0.3s ease;
-        }
-        
-        .nav-logo-img:hover {
-            transform: scale(1.05);
-        }
+.nav-logo-container {
+display: flex;
+align-items: center;
+gap: 12px;
+text-decoration: none;
+cursor: pointer;
+}
 
-        .nav-links {
-            display: flex;
-            gap: 1.5rem;
-            list-style: none;
-            margin: 0;
-            padding: 0;
-            align-items: center;
-        }
+.nav-logo-img {
+height: 50px;
+width: auto;
+border-radius: 4px;
+}
 
-        .nav-links a {
-            text-decoration: none;
-            color: var(--navy);
-            font-weight: 700;
-            transition: color 0.3s;
-            text-transform: uppercase;
-            font-size: 0.85rem;
-            letter-spacing: 0.5px;
-            cursor: pointer;
-        }
+.nav-logo-text {
+font-weight: 800;
+color: var(--navy);
+font-size: 1.1rem;
+letter-spacing: 0.5px;
+text-transform: uppercase;
+}
 
-        .nav-links a:hover {
-            color: var(--green);
-        }
+.nav-links {
+display: flex;
+gap: 1.5rem;
+list-style: none;
+margin: 0;
+padding: 0;
+}
 
-        .nav-cta {
-            background-color: var(--green);
-            color: white !important;
-            padding: 9px 20px;
-            border-radius: 5px;
-            transition: background 0.3s ease, transform 0.2s ease !important;
-        }
-        
-        .nav-cta:hover {
-            background-color: #3d8b40 !important;
-            transform: translateY(-1px);
-        }
+.nav-links a {
+text-decoration: none;
+color: var(--navy);
+font-weight: 700;
+transition: color 0.3s;
+text-transform: uppercase;
+font-size: 0.85rem;
+cursor: pointer;
+}
 
-        /* --- Hero Banner --- */
-        .hero {
-            position: relative;
-            height: 550px;
-            background-image: url('https://raw.githubusercontent.com/Luke-Solanyk/Yard-Work-website/main/Images/Main%20page%20image.png');
-            background-size: cover;
-            background-position: center;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            color: white;
-        }
+.nav-links a:hover {
+color: var(--green);
+}
 
-        .hero-sub {
-            height: 350px;
-        }
+.nav-cta {
+background-color: var(--green);
+color: white !important;
+padding: 8px 18px;
+border-radius: 5px;
+transition: background 0.3s ease !important;
+}
 
-        .hero-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: var(--overlay);
-            z-index: 1;
-        }
+/* --- Hero Banner Shared Styles --- */
+.hero {
+position: relative;
+height: 400px;
+background-image: url('https://raw.githubusercontent.com/Luke-Solanyk/Yard-Work-website/main/Images/Main%20page%20image.png');
+background-size: cover;
+background-position: center;
+display: flex;
+align-items: center;
+justify-content: center;
+text-align: center;
+color: white;
+}
 
-        .hero-content {
-            position: relative;
-            z-index: 2;
-            padding: 1rem;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            max-width: 900px;
-        }
+.hero-overlay {
+position: absolute;
+top: 0;
+left: 0;
+right: 0;
+bottom: 0;
+background: var(--overlay);
+z-index: 1;
+}
 
-        .hero-logo {
-            width: 200px;
-            height: auto;
-            margin-bottom: 1rem;
-            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));
-        }
+.hero-content {
+position: relative;
+z-index: 2;
+padding: 1rem;
+display: flex;
+flex-direction: column;
+align-items: center;
+}
 
-        .logo-text {
-            font-size: 3.8rem;
-            margin: 0;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            font-weight: 900;
-            text-shadow: 2px 4px 8px rgba(0,0,0,0.5);
-            line-height: 1;
-        }
+.logo-text {
+font-size: 3.2rem;
+margin: 0;
+text-transform: uppercase;
+letter-spacing: 3px;
+font-weight: 800;
+text-shadow: 2px 2px 4px rgba(0,0,0,0.4);
+line-height: 1.1;
+}
 
-        .hero-subtitle {
-            color: var(--green);
-            font-weight: 700;
-            font-size: 1.5rem;
-            margin-top: 1.2rem;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            text-shadow: 1px 2px 4px rgba(0,0,0,0.5);
-        }
+.hero-subtitle {
+color: var(--green);
+font-weight: 700;
+font-size: 1.4rem;
+margin-top: 1rem;
+letter-spacing: 2px;
+text-transform: uppercase;
+text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+}
 
-        /* --- Page Transitions --- */
-        .page-view {
-            display: none;
-        }
+/* --- Page Transitions --- */
+.page-view {
+display: none;
+}
 
-        .page-view.active {
-            display: block;
-        }
+.page-view.active {
+display: block;
+}
 
-        /* --- Container --- */
-        .container {
-            max-width: 950px;
-            margin: -60px auto 3rem auto;
-            padding: 0 1rem;
-            position: relative;
-            z-index: 10;
-        }
+/* --- Container --- */
+.container {
+max-width: 950px;
+margin: -50px auto 3rem auto;
+padding: 0 1rem;
+position: relative;
+z-index: 10;
+}
 
-        .card {
-            background: var(--white);
-            padding: 2.5rem;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            margin-bottom: 2.5rem;
-        }
+.card {
+background: var(--white);
+padding: 2.5rem;
+border-radius: 15px;
+box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+margin-bottom: 2.5rem;
+}
 
-        h2 {
-            color: var(--navy);
-            border-left: 5px solid var(--green);
-            padding-left: 15px;
-            margin-top: 0;
-            font-size: 1.8rem;
-            font-weight: 800;
-            text-transform: uppercase;
-        }
+h2 {
+color: var(--navy);
+border-left: 5px solid var(--green);
+padding-left: 15px;
+margin-top: 0;
+font-size: 1.8rem;
+font-weight: 700;
+}
 
-        .subtitle-green {
-            color: var(--green);
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            display: block;
-            margin-top: -5px;
-            margin-bottom: 1.5rem;
-            font-size: 1rem;
-        }
+.subtitle-green {
+color: var(--green);
+font-weight: 700;
+text-transform: uppercase;
+letter-spacing: 1px;
+display: block;
+margin-top: -5px;
+margin-bottom: 1.5rem;
+font-size: 1rem;
+}
 
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-        }
+/* --- Grid Styles --- */
+.grid {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+gap: 2rem;
+}
 
-        .service-list {
-            list-style-type: none;
-            padding: 0;
-        }
+.service-list {
+list-style-type: none;
+padding: 0;
+}
 
-        .service-list li {
-            margin-bottom: 12px;
-            display: flex;
-            align-items: flex-start;
-        }
+.service-list li {
+margin-bottom: 12px;
+display: flex;
+align-items: flex-start;
+}
 
-        .service-list li::before {
-            content: "✓";
-            color: var(--green);
-            font-weight: 900;
-            margin-right: 12px;
-            font-size: 1.2rem;
-        }
+.service-list li::before {
+content: "✓";
+color: var(--green);
+font-weight: bold;
+margin-right: 12px;
+font-size: 1.2rem;
+}
 
-        .detailed-service {
-            margin-bottom: 2rem;
-            padding-bottom: 1.5rem;
-            border-bottom: 1px solid #eee;
-        }
-        
-        .detailed-service:last-child {
-            border-bottom: none;
-        }
+/* --- Detailed Layout --- */
+.detailed-service {
+margin-bottom: 2rem;
+padding-bottom: 1.5rem;
+border-bottom: 1px solid #eee;
+}
 
-        .detailed-service h3 {
-            color: var(--green);
-            font-size: 1.4rem;
-            margin-bottom: 0.5rem;
-            margin-top: 0;
-            font-weight: 800;
-        }
+.detailed-service:last-child {
+border-bottom: none;
+}
 
-        .pricing-table-container {
-            overflow-x: auto;
-        }
+.detailed-service h3 {
+color: var(--green);
+font-size: 1.4rem;
+margin-bottom: 0.5rem;
+margin-top: 0;
+}
 
-        .pricing-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 1rem;
-            min-width: 600px;
-        }
+/* --- Pricing Specifics --- */
+.pricing-table-container {
+overflow-x: auto;
+}
 
-        .pricing-table th, .pricing-table td {
-            text-align: left;
-            padding: 15px;
-            border-bottom: 1px solid #eee;
-        }
+.pricing-table {
+width: 100%;
+border-collapse: collapse;
+margin-top: 1rem;
+min-width: 600px;
+}
 
-        .pricing-table th {
-            color: var(--navy);
-            text-transform: uppercase;
-            font-size: 0.75rem;
-            letter-spacing: 1px;
-            background-color: #f8fafb;
-            font-weight: 800;
-        }
+.pricing-table th, .pricing-table td {
+text-align: left;
+padding: 15px;
+border-bottom: 1px solid #eee;
+}
 
-        .price-col {
-            font-weight: 800;
-            color: var(--green);
-            white-space: nowrap;
-        }
+.pricing-table th {
+color: var(--navy);
+text-transform: uppercase;
+font-size: 0.75rem;
+letter-spacing: 1px;
+background-color: #f8fafb;
+}
 
-        .category-label {
-            display: inline-block;
-            background: #e1f5fe;
-            color: #0288d1;
-            padding: 2px 8px;
-            border-radius: 4px;
-            font-size: 0.7rem;
-            font-weight: 800;
-            text-transform: uppercase;
-        }
+.price-col {
+font-weight: 700;
+color: var(--green);
+white-space: nowrap;
+}
 
-        .hours-list {
-            background: #f8fafb;
-            padding: 1.5rem;
-            border-radius: 8px;
-            text-align: center;
-            border: 1px solid #e1e8ed;
-        }
+.category-label {
+display: inline-block;
+background: #e1f5fe;
+color: #0288d1;
+padding: 2px 8px;
+border-radius: 4px;
+font-size: 0.7rem;
+font-weight: 700;
+text-transform: uppercase;
+}
 
-        .form-group {
-            margin-bottom: 1.5rem;
-            text-align: left;
-        }
+/* --- Common Elements --- */
+.hours-list {
+background: #f8fafb;
+padding: 1.5rem;
+border-radius: 8px;
+text-align: center;
+border: 1px solid #e1e8ed;
+}
 
-        label {
-            display: block;
-            font-weight: 800;
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            margin-bottom: 0.5rem;
-            letter-spacing: 0.5px;
-        }
+/* --- Form Styles --- */
+.form-group {
+margin-bottom: 1.5rem;
+text-align: left;
+}
 
-        input, textarea {
-            width: 100%;
-            padding: 12px 15px;
-            border: 2px solid #e1e8ed;
-            border-radius: 8px;
-            font-family: 'Roboto', sans-serif;
-            font-size: 1rem;
-            box-sizing: border-box;
-        }
+label {
+display: block;
+font-weight: 700;
+font-size: 0.85rem;
+text-transform: uppercase;
+margin-bottom: 0.5rem;
+letter-spacing: 0.5px;
+}
 
-        .submit-btn {
-            width: 100%;
-            background-color: var(--green);
-            color: white;
-            border: none;
-            padding: 15px;
-            font-size: 1.1rem;
-            font-weight: 800;
-            border-radius: 8px;
-            cursor: pointer;
-            text-transform: uppercase;
-            transition: transform 0.2s ease;
-        }
+input, textarea {
+width: 100%;
+padding: 12px 15px;
+border: 2px solid #e1e8ed;
+border-radius: 8px;
+font-family: 'Roboto', sans-serif;
+font-size: 1rem;
+box-sizing: border-box;
+}
 
-        .message {
-            margin-top: 1.5rem;
-            padding: 1rem;
-            border-radius: 8px;
-            display: none;
-            text-align: center;
-            font-weight: bold;
-        }
-        .message.success { display: block; background-color: #d4edda; color: #155724; }
-        .message.error { display: block; background-color: #f8d7da; color: #721c24; }
+.submit-btn {
+width: 100%;
+background-color: var(--green);
+color: white;
+border: none;
+padding: 15px;
+font-size: 1.1rem;
+font-weight: 700;
+border-radius: 8px;
+cursor: pointer;
+transition: transform 0.2s ease;
+}
 
-        footer {
-            text-align: center;
-            padding: 3rem 1rem;
-            color: #777;
-            font-size: 0.85rem;
-            font-weight: 500;
-        }
+.message {
+margin-top: 1.5rem;
+padding: 1rem;
+border-radius: 8px;
+display: none;
+text-align: center;
+font-weight: bold;
+}
 
-        @media (max-width: 768px) {
-            nav { height: auto; padding: 1rem; flex-direction: column; gap: 15px; }
-            .logo-text { font-size: 2.5rem; }
-            .hero { height: 450px; }
-            .hero-sub { height: 300px; }
-            .hero-logo { width: 160px; }
-        }
-    </style>
+.message.success { display: block; background-color: #d4edda; color: #155724; }
+
+footer {
+text-align: center;
+padding: 3rem 1rem;
+color: #777;
+font-size: 0.85rem;
+}
+
+@media (max-width: 768px) {
+nav { height: auto; padding: 1rem; flex-direction: column; gap: 15px; }
+.logo-text { font-size: 2.2rem; }
+.hero { height: 350px; }
+.nav-logo-text { font-size: 0.9rem; }
+}
+</style>
 </head>
 <body>
 
 <nav>
-    <div onclick="showPage('home')" class="nav-logo-container">
-        <!-- New Brand Logo Integrated -->
-        <img src="Gemini_Generated_Image_rfuxlqrfuxlqrfux.png" alt="Solanyk Logo" class="nav-logo-img">
-    </div>
-    <ul class="nav-links">
-        <li><a href="javascript:void(0)" onclick="showPage('home')">Home</a></li>
-        <li><a href="javascript:void(0)" onclick="showPage('services')">Services</a></li>
-        <li><a href="javascript:void(0)" onclick="showPage('pricing')">Pricing</a></li>
-        <!-- Updated to say Request Service -->
-        <li><a href="javascript:void(0)" onclick="showPage('request')" class="nav-cta">Request Service</a></li>
-    </ul>
+<div onclick="showPage('home')" class="nav-logo-container">
+<!-- Logo updated to Logo.png -->
+<img src="Logo.png" alt="Solanyk Logo" class="nav-logo-img">
+<span class="nav-logo-text">Solanyk Brothers</span>
+</div>
+<ul class="nav-links">
+<li><a href="javascript:void(0)" onclick="showPage('home')">Home</a></li>
+<li><a href="javascript:void(0)" onclick="showPage('services')">Services</a></li>
+<li><a href="javascript:void(0)" onclick="showPage('pricing')">Pricing</a></li>
+<li><a href="javascript:void(0)" onclick="scrollToContact()" class="nav-cta">Request Service</a></li>
+</ul>
 </nav>
 
 <!-- HOME PAGE VIEW -->
 <div id="homePage" class="page-view active">
-    <section class="hero">
-        <div class="hero-overlay"></div>
-        <div class="hero-content">
-            <!-- New Brand Logo Integrated -->
-            <img src="Gemini_Generated_Image_rfuxlqrfuxlqrfux.png" alt="Solanyk Brothers Logo" class="hero-logo">
-            <h1 class="logo-text">Solanyk Brothers</h1>
-            <div class="hero-subtitle">Lawn Care & Snow Removal</div>
-        </div>
-    </section>
+<section class="hero">
+<div class="hero-overlay"></div>
+<div class="hero-content">
+<h1 class="logo-text">Solanyk Brothers</h1>
+<div class="hero-subtitle">Lawn Care & Snow Removal</div>
+</div>
+</section>
 
-    <div class="container">
-        <div class="card">
-            <h2>Our Core Services</h2>
-            <div class="grid">
-                <div>
-                    <h3 style="color: var(--green);">Mowing & Yard Work</h3>
-                    <ul class="service-list">
-                        <li>House Lawns & Pastures</li>
-                        <li>General Yard Care (Raking/Debris)</li>
-                        <li>Garden Care & Weeding</li>
-                        <li>Watering Services</li>
-                    </ul>
-                </div>
-                <div>
-                    <h3 style="color: var(--green);">Snow & Animals</h3>
-                    <ul class="service-list">
-                        <li>Driveway Plowing (Standard & Big Storms)</li>
-                        <li>Walkway, Porch & Deck Shoveling</li>
-                        <li>Small & Large Animal Care</li>
-                        <li>Farm Bundles (All Animals)</li>
-                    </ul>
-                </div>
-            </div>
-            <div style="text-align: center; margin-top: 1.5rem;">
-                <button onclick="showPage('services')" style="background: none; border: 2px solid var(--green); color: var(--green); padding: 10px 20px; border-radius: 5px; font-weight: 700; cursor: pointer; text-transform: uppercase;">View Service Details</button>
-            </div>
-        </div>
+<div class="container">
+<div class="card">
+<h2>Our Core Services</h2>
+<div class="grid">
+<div>
+<h3 style="color: var(--green);">Mowing & Yard Work</h3>
+<ul class="service-list">
+<li>House Lawns & Pastures</li>
+<li>General Yard Care (Raking/Debris)</li>
+<li>Garden Care & Weeding</li>
+<li>Watering Services</li>
+</ul>
+</div>
+<div>
+<h3 style="color: var(--green);">Snow & Animals</h3>
+<ul class="service-list">
+<li>Driveway Plowing (Standard & Big Storms)</li>
+<li>Walkway, Porch & Deck Shoveling</li>
+<li>Small & Large Animal Care</li>
+<li>Farm Bundles (All Animals)</li>
+</ul>
+</div>
+</div>
+<div style="text-align: center; margin-top: 1.5rem;">
+<button onclick="showPage('services')" style="background: none; border: 2px solid var(--green); color: var(--green); padding: 10px 20px; border-radius: 5px; font-weight: 700; cursor: pointer;">View Service Details</button>
+</div>
+</div>
 
-        <div class="card">
-            <h2>Hours & Availability</h2>
-            <div class="hours-list">
-                <p><strong>Mon, Wed, Fri, & Sat:</strong><br>
-                <span style="font-size: 1.5rem; color: var(--navy); font-weight: 900;">10:00am – 4:00pm</span></p>
-                <p style="color: #666;"><em>Animal watching and Snow Plowing available 7 days a week.</em></p>
-            </div>
-        </div>
-        
-        <footer>
-            &copy; 2025 Solanyk Brothers. All Rights Reserved.
-        </footer>
-    </div>
+<div class="card">
+<h2>Hours & Availability</h2>
+<div class="hours-list">
+<p><strong>Mon, Wed, Fri, & Sat:</strong><br>
+<span style="font-size: 1.3rem; color: var(--navy);">10:00am – 4:00pm</span></p>
+<p><em>Animal watching and Snow Plowing available 7 days a week.</em></p>
+</div>
+</div>
+
+<div class="card" id="contact" style="text-align: center;">
+<h2>Request Service</h2>
+<p style="margin-bottom: 2rem; color: #666;">Ready to book? Fill out the form below and we'll get back to you shortly.</p>
+<form id="contactForm">
+<div class="form-group">
+<label for="name">Full Name</label>
+<input type="text" id="name" name="name" placeholder="Your Name" required>
+</div>
+<div class="form-group">
+<label for="email">Email Address</label>
+<input type="email" id="email" name="email" placeholder="email@example.com" required>
+</div>
+<div class="form-group">
+<label for="phone">Phone Number</label>
+<input type="tel" id="phone" name="phone" placeholder="(970) 000-0000" required>
+</div>
+<div class="form-group">
+<label for="address">Property Address</label>
+<input type="text" id="address" name="address" placeholder="123 Example St, City, ST" required>
+</div>
+<div class="form-group">
+<label for="details">What do you need accomplished?</label>
+<textarea id="details" name="details" placeholder="Tell us about the job..." required></textarea>
+</div>
+<button type="submit" id="submitBtn" class="submit-btn">Send Request</button>
+<div id="responseMessage" class="message"></div>
+</form>
+</div>
+<footer>
+&copy; 2025 Solanyk Brothers. All Rights Reserved.
+</footer>
+</div>
 </div>
 
 <!-- SERVICES PAGE VIEW -->
 <div id="servicesPage" class="page-view">
-    <section class="hero hero-sub">
-        <div class="hero-overlay"></div>
-        <div class="hero-content">
-            <h1 class="logo-text">Services</h1>
-            <div class="hero-subtitle">In Detail</div>
-        </div>
-    </section>
+<section class="hero">
+<div class="hero-overlay"></div>
+<div class="hero-content">
+<h1 class="logo-text">Services</h1>
+<div class="hero-subtitle">In Detail</div>
+</div>
+</section>
 
-    <div class="container">
-        <div class="card">
-            <h2>Our Specialized Care</h2>
-            <span class="subtitle-green">Detailed Offerings</span>
-            
-            <div class="detailed-service">
-                <h3>Mowing Services</h3>
-                <p><strong>House Lawns:</strong> Our standard lawn service includes thorough weed-eating and blowing off surfaces for a clean finish.</p>
-                <p><strong>Pastures & Fields:</strong> We handle larger areas and roadside frontage with our riding equipment.</p>
-            </div>
+<div class="container">
+<div class="card">
+<h2>Our Specialized Care</h2>
+<span class="subtitle-green">In Detail</span>
 
-            <div class="detailed-service">
-                <h3>General Yard Work</h3>
-                <p><strong>Cleanup:</strong> Comprehensive raking, rock removal, and debris clearing to keep your land pristine.</p>
-                <p><strong>Weeding:</strong> Specialized attention to fence lines, gravel areas, and side yards.</p>
-                <p><strong>Garden Care:</strong> Expert maintenance for flower beds and vegetable gardens.</p>
-                <p><strong>Watering:</strong> Daily watering for gardens, pots, or individual trees.</p>
-            </div>
+<div class="detailed-service">
+<h3>Mowing Services</h3>
+<p><strong>House Lawns:</strong> Our standard lawn service includes thorough weed-eating and blowing off surfaces for a clean finish.</p>
+<p><strong>Pastures & Fields:</strong> We handle larger areas and roadside frontage with our riding equipment.</p>
+</div>
 
-            <div class="detailed-service">
-                <h3>Snow Plowing & Shoveling</h3>
-                <p>We use shovels and plows (no blowers) to ensure a quiet and effective clearing.</p>
-                <p><strong>Driveways:</strong> Available for standard snowfalls and "Big Storm" events (2+ feet).</p>
-                <p><strong>Decks & Walks:</strong> Hand-shoveling for porches, walks, and decks to keep your access points safe.</p>
-            </div>
+<div class="detailed-service">
+<h3>General Yard Work</h3>
+<p><strong>Cleanup:</strong> Comprehensive raking, rock removal, and debris clearing to keep your land pristine.</p>
+<p><strong>Weeding:</strong> Specialized attention to fence lines, gravel areas, and side yards.</p>
+<p><strong>Garden Care:</strong> Expert maintenance for flower beds and vegetable gardens.</p>
+<p><strong>Watering:</strong> Daily watering for gardens, pots, or individual trees.</p>
+</div>
 
-            <div class="detailed-service">
-                <h3>Animal Care (7 Days/Week)</h3>
-                <p><strong>Small Animals:</strong> Daily care for cats, dogs, and other indoor pets.</p>
-                <p><strong>Large Animals:</strong> Experienced handling of cows, horses, goats, and more.</p>
-                <p><strong>Farm Bundle:</strong> A comprehensive flat-rate service covering all animals on your property.</p>
-            </div>
-            
-            <div style="text-align: center; margin-top: 2rem;">
-                <button onclick="showPage('pricing')" class="submit-btn" style="max-width: 300px; background-color: var(--navy);">View Our Price List</button>
-            </div>
-        </div>
+<div class="detailed-service">
+<h3>Snow Plowing & Shoveling</h3>
+<p>We use shovels and plows (no blowers) to ensure a quiet and effective clearing.</p>
+<p><strong>Driveways:</strong> Available for standard snowfalls and "Big Storm" events (2+ feet).</p>
+<p><strong>Decks & Walks:</strong> Hand-shoveling for porches, walks, and decks to keep your access points safe.</p>
+</div>
 
-        <footer>
-            &copy; 2025 Solanyk Brothers. All Rights Reserved.
-        </footer>
-    </div>
+<div class="detailed-service">
+<h3>Animal Care (7 Days/Week)</h3>
+<p><strong>Small Animals:</strong> Daily care for cats, dogs, and other indoor pets.</p>
+<p><strong>Large Animals:</strong> Experienced handling of cows, horses, goats, and more.</p>
+<p><strong>Farm Bundle:</strong> A comprehensive flat-rate service covering all animals on your property.</p>
+</div>
+
+<div style="text-align: center; margin-top: 2rem;">
+<button onclick="showPage('pricing')" class="submit-btn" style="max-width: 300px; background-color: var(--navy);">View Our Price List</button>
+</div>
+</div>
+
+<footer>
+&copy; 2025 Solanyk Brothers. All Rights Reserved.
+</footer>
+</div>
 </div>
 
 <!-- PRICING PAGE VIEW -->
 <div id="pricingPage" class="page-view">
-    <section class="hero hero-sub">
-        <div class="hero-overlay"></div>
-        <div class="hero-content">
-            <h1 class="logo-text">Pricing</h1>
-        </div>
-    </section>
+<section class="hero">
+<div class="hero-overlay"></div>
+<div class="hero-content">
+<h1 class="logo-text">Pricing</h1>
+</div>
+</section>
 
-    <div class="container">
-        <div class="card">
-            <h2>Service Rates</h2>
-            <div class="pricing-table-container">
-                <table class="pricing-table">
-                    <thead>
-                        <tr>
-                            <th>Service</th>
-                            <th>Details</th>
-                            <th class="price-col">Price / Unit</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><span class="category-label">Mowing</span> House Lawn</td>
-                            <td>Includes weed-eating and blowing</td>
-                            <td class="price-col">$40.00 Flat Rate</td>
-                        </tr>
-                        <tr>
-                            <td><span class="category-label">Mowing</span> Pasture / Field</td>
-                            <td>Includes roadside frontage</td>
-                            <td class="price-col">$35.00 Per Acre</td>
-                        </tr>
-                        <tr>
-                            <td><span class="category-label">Yard Work</span> General Care</td>
-                            <td>Raking, rocks, debris</td>
-                            <td class="price-col">$20.00 Per Hour</td>
-                        </tr>
-                        <tr>
-                            <td><span class="category-label">Yard Work</span> Weeding</td>
-                            <td>Fence lines, gravel, side yards</td>
-                            <td class="price-col">$25.00 Per Hour</td>
-                        </tr>
-                        <tr>
-                            <td><span class="category-label">Yard Work</span> Garden Care</td>
-                            <td>Flower beds and vegetable gardens</td>
-                            <td class="price-col">$30.00 Per Hour</td>
-                        </tr>
-                        <tr>
-                            <td><span class="category-label">Yard Work</span> Watering</td>
-                            <td>Gardens, pots, or trees</td>
-                            <td class="price-col">$5.00 Per Day</td>
-                        </tr>
-                        <tr>
-                            <td><span class="category-label">Animals</span> Small Animals</td>
-                            <td>Cats, Dogs, etc. (Per category)</td>
-                            <td class="price-col">$5.00 Per Day</td>
-                        </tr>
-                        <tr>
-                            <td><span class="category-label">Animals</span> Large Animals</td>
-                            <td>Cows, Horses, Goats, etc. (Per category)</td>
-                            <td class="price-col">$10.00 Per Day</td>
-                        </tr>
-                        <tr>
-                            <td><span class="category-label">Animals</span> Farm Bundle</td>
-                            <td>Covers all animals on property</td>
-                            <td class="price-col">$20.00 Per Day</td>
-                        </tr>
-                        <tr>
-                            <td><span class="category-label">Snow</span> Driveway</td>
-                            <td>Standard (Under 2 feet)</td>
-                            <td class="price-col">$40.00 Per Visit</td>
-                        </tr>
-                        <tr>
-                            <td><span class="category-label">Snow</span> Big Storm</td>
-                            <td>2 feet of snow or more</td>
-                            <td class="price-col">$70.00 Per Visit</td>
-                        </tr>
-                        <tr>
-                            <td><span class="category-label">Snow</span> Porch, Walk & Deck</td>
-                            <td>Hand-shoveling front/back</td>
-                            <td class="price-col">$20.00 Flat Rate</td>
-                        </tr>
-                        <tr>
-                            <td><span class="category-label">Snow</span> Deep Deck Add-on</td>
-                            <td>If 2+ feet of snow on decks</td>
-                            <td class="price-col">$35.00 Flat Rate</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            <div style="text-align: center; margin-top: 3rem;">
-                <button onclick="showPage('request')" class="submit-btn" style="max-width: 300px;">Request Service</button>
-            </div>
-        </div>
-
-        <footer>
-            &copy; 2025 Solanyk Brothers. All Rights Reserved.
-        </footer>
-    </div>
+<div class="container">
+<div class="card">
+<h2>Service Rates</h2>
+<div class="pricing-table-container">
+<table class="pricing-table">
+<thead>
+<tr>
+<th>Service</th>
+<th>Details</th>
+<th class="price-col">Price / Unit</th>
+</tr>
+</thead>
+<tbody>
+<!-- MOWING -->
+<tr>
+<td><span class="category-label">Mowing</span> House Lawn</td>
+<td>Includes weed-eating and blowing</td>
+<td class="price-col">$40.00 Flat Rate</td>
+</tr>
+<tr>
+<td><span class="category-label">Mowing</span> Pasture / Field</td>
+<td>Includes roadside frontage</td>
+<td class="price-col">$35.00 Per Acre</td>
+</tr>
+<!-- YARD WORK -->
+<tr>
+<td><span class="category-label">Yard Work</span> General Care</td>
+<td>Raking, rocks, debris</td>
+<td class="price-col">$20.00 Per Hour</td>
+</tr>
+<tr>
+<td><span class="category-label">Yard Work</span> Weeding</td>
+<td>Fence lines, gravel, side yards</td>
+<td class="price-col">$25.00 Per Hour</td>
+</tr>
+<tr>
+<td><span class="category-label">Yard Work</span> Garden Care</td>
+<td>Flower beds and vegetable gardens</td>
+<td class="price-col">$30.00 Per Hour</td>
+</tr>
+<tr>
+<td><span class="category-label">Yard Work</span> Watering</td>
+<td>Gardens, pots, or trees</td>
+<td class="price-col">$5.00 Per Day</td>
+</tr>
+<!-- ANIMALS -->
+<tr>
+<td><span class="category-label">Animals</span> Small Animals</td>
+<td>Cats, Dogs, etc. (Per category)</td>
+<td class="price-col">$5.00 Per Day</td>
+</tr>
+<tr>
+<td><span class="category-label">Animals</span> Large Animals</td>
+<td>Cows, Horses, Goats, etc. (Per category)</td>
+<td class="price-col">$10.00 Per Day</td>
+</tr>
+<tr>
+<td><span class="category-label">Animals</span> Farm Bundle</td>
+<td>Covers all animals on property</td>
+<td class="price-col">$20.00 Per Day</td>
+</tr>
+<!-- SNOW -->
+<tr>
+<td><span class="category-label">Snow</span> Driveway</td>
+<td>Standard (Under 2 feet)</td>
+<td class="price-col">$40.00 Per Visit</td>
+</tr>
+<tr>
+<td><span class="category-label">Snow</span> Big Storm</td>
+<td>2 feet of snow or more</td>
+<td class="price-col">$70.00 Per Visit</td>
+</tr>
+<tr>
+<td><span class="category-label">Snow</span> Porch, Walk & Deck</td>
+<td>Hand-shoveling front/back</td>
+<td class="price-col">$20.00 Flat Rate</td>
+</tr>
+<tr>
+<td><span class="category-label">Snow</span> Deep Deck Add-on</td>
+<td>If 2+ feet of snow on decks</td>
+<td class="price-col">$35.00 Flat Rate</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div style="text-align: center; margin-top: 3rem;">
+<button onclick="scrollToContact()" class="submit-btn" style="max-width: 300px;">Book a Service</button>
+</div>
 </div>
 
-<!-- REQUEST SERVICE PAGE VIEW -->
-<div id="requestPage" class="page-view">
-    <section class="hero hero-sub">
-        <div class="hero-overlay"></div>
-        <div class="hero-content">
-            <h1 class="logo-text" style="font-size: 3rem;">Request Service</h1>
-            <div class="hero-subtitle">Booking Inquiry</div>
-        </div>
-    </section>
-
-    <div class="container">
-        <div class="card" style="text-align: center;">
-            <h2>Send a Message</h2>
-            <p style="margin-bottom: 2rem; color: #666;">Fill out the form below and we'll get back to you shortly to confirm your service.</p>
-            <form id="contactForm">
-                <div class="form-group">
-                    <label for="name">Full Name</label>
-                    <input type="text" id="name" name="name" placeholder="Your Name" required>
-                </div>
-                <div class="form-group">
-                    <label for="email">Email Address</label>
-                    <input type="email" id="email" name="email" placeholder="email@example.com" required>
-                </div>
-                <div class="form-group">
-                    <label for="phone">Phone Number</label>
-                    <input type="tel" id="phone" name="phone" placeholder="(970) 000-0000" required>
-                </div>
-                <div class="form-group">
-                    <label for="address">Property Address</label>
-                    <input type="text" id="address" name="address" placeholder="123 Example St, City, ST" required>
-                </div>
-                <div class="form-group">
-                    <label for="details">What do you need accomplished?</label>
-                    <textarea id="details" name="details" placeholder="Tell us about the job..." required></textarea>
-                </div>
-                <button type="submit" id="submitBtn" class="submit-btn">Send Request</button>
-                <div id="responseMessage" class="message"></div>
-            </form>
-        </div>
-
-        <footer>
-            &copy; 2025 Solanyk Brothers. All Rights Reserved.
-        </footer>
-    </div>
+<footer>
+&copy; 2025 Solanyk Brothers. All Rights Reserved.
+</footer>
+</div>
 </div>
 
 <script>
-    function showPage(pageId) {
-        document.querySelectorAll('.page-view').forEach(view => {
-            view.classList.remove('active');
-        });
-        const targetPage = document.getElementById(pageId + 'Page');
-        if (targetPage) {
-            targetPage.classList.add('active');
-        }
-        window.scrollTo(0, 0);
-    }
+function showPage(pageId) {
+document.querySelectorAll('.page-view').forEach(view => {
+view.classList.remove('active');
+});
+document.getElementById(pageId + 'Page').classList.add('active');
+window.scrollTo(0, 0);
+}
 
-    const form = document.getElementById('contactForm');
-    const scriptURL = 'https://script.google.com/macros/s/AKfycbzYd8t9co20W1hzJ9GMqUwLFRSpwUQI1vdIk94ars_etNZSEdUzPoYCD4V-j4H9a5PI4g/exec';
+function scrollToContact() {
+showPage('home');
+setTimeout(() => {
+const contactSection = document.getElementById('contact');
+if(contactSection) {
+contactSection.scrollIntoView({ behavior: 'smooth' });
+}
+}, 100);
+}
 
-    form.addEventListener('submit', e => {
-        e.preventDefault();
-        const submitBtn = document.getElementById('submitBtn');
-        const messageDiv = document.getElementById('responseMessage');
-        
-        submitBtn.disabled = true;
-        submitBtn.textContent = 'Sending...';
-        messageDiv.className = 'message';
-        messageDiv.style.display = 'none';
-        
-        const formData = new FormData(form);
-        const params = new URLSearchParams();
-        for (const pair of formData) { params.append(pair[0], pair[1]); }
+const form = document.getElementById('contactForm');
+const scriptURL = 'https://script.google.com/macros/s/AKfycbzYd8t9co20W1hzJ9GMqUwLFRSpwUQI1vdIk94ars_etNZSEdUzPoYCD4V-j4H9a5PI4g/exec';
 
-        fetch(scriptURL, { method: 'POST', body: params, mode: 'no-cors' })
-        .then(() => {
-            submitBtn.disabled = false;
-            submitBtn.textContent = 'Send Request';
-            messageDiv.textContent = 'Success! Your request has been sent.';
-            messageDiv.className = 'message success';
-            messageDiv.style.display = 'block';
-            form.reset();
-        })
-        .catch((err) => {
-            console.error('Submission error:', err);
-            submitBtn.disabled = false;
-            submitBtn.textContent = 'Send Request';
-            messageDiv.textContent = 'Error! Please try again.';
-            messageDiv.className = 'message error';
-            messageDiv.style.display = 'block';
-        });
-    });
+form.addEventListener('submit', e => {
+e.preventDefault();
+const submitBtn = document.getElementById('submitBtn');
+const messageDiv = document.getElementById('responseMessage');
+
+submitBtn.disabled = true;
+submitBtn.textContent = 'Sending...';
+messageDiv.className = 'message';
+messageDiv.style.display = 'none';
+
+const formData = new FormData(form);
+const params = new URLSearchParams();
+for (const pair of formData) { params.append(pair[0], pair[1]); }
+
+fetch(scriptURL, { method: 'POST', body: params, mode: 'no-cors' })
+.then(() => {
+submitBtn.disabled = false;
+submitBtn.textContent = 'Send Request';
+messageDiv.textContent = 'Success! Your request has been sent.';
+messageDiv.className = 'message success';
+messageDiv.style.display = 'block';
+form.reset();
+})
+.catch((err) => {
+console.error('Submission error:', err);
+submitBtn.disabled = false;
+submitBtn.textContent = 'Send Request';
+messageDiv.textContent = 'Error! Please try again.';
+messageDiv.className = 'message error';
+messageDiv.style.display = 'block';
+});
+});
 </script>
 
 </body>
 </html>
+
