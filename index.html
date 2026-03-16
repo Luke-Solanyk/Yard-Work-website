@@ -1,10 +1,18 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Solanyk Brothers | Lawn Care & Snow Removal</title>
+
+<!-- Favicon Support for All Major Browsers -->
+<!-- Standard Favicon -->
+<link rel="icon" type="image/png" href="Logo.png">
+<!-- Shortcut icon for older versions of IE/Edge -->
+<link rel="shortcut icon" href="Logo.png" type="image/x-icon">
+<!-- Apple Touch Icon for Safari on iOS and pinned tabs -->
+<link rel="apple-touch-icon" href="Logo.png">
+
 <!-- Importing Roboto from Google Fonts -->
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
 
@@ -49,23 +57,14 @@ box-shadow: 0 2px 10px rgba(0,0,0,0.1);
 .nav-logo-container {
 display: flex;
 align-items: center;
-gap: 12px;
 text-decoration: none;
 cursor: pointer;
 }
 
 .nav-logo-img {
-height: 50px;
+height: 55px;
 width: auto;
 border-radius: 4px;
-}
-
-.nav-logo-text {
-font-weight: 800;
-color: var(--navy);
-font-size: 1.1rem;
-letter-spacing: 0.5px;
-text-transform: uppercase;
 }
 
 .nav-links {
@@ -74,6 +73,7 @@ gap: 1.5rem;
 list-style: none;
 margin: 0;
 padding: 0;
+align-items: center;
 }
 
 .nav-links a {
@@ -329,6 +329,7 @@ font-weight: 700;
 border-radius: 8px;
 cursor: pointer;
 transition: transform 0.2s ease;
+text-transform: uppercase;
 }
 
 .message {
@@ -353,7 +354,6 @@ font-size: 0.85rem;
 nav { height: auto; padding: 1rem; flex-direction: column; gap: 15px; }
 .logo-text { font-size: 2.2rem; }
 .hero { height: 350px; }
-.nav-logo-text { font-size: 0.9rem; }
 }
 </style>
 </head>
@@ -361,15 +361,13 @@ nav { height: auto; padding: 1rem; flex-direction: column; gap: 15px; }
 
 <nav>
 <div onclick="showPage('home')" class="nav-logo-container">
-<!-- Logo updated to Logo.png -->
 <img src="Logo.png" alt="Solanyk Logo" class="nav-logo-img">
-<span class="nav-logo-text">Solanyk Brothers</span>
 </div>
 <ul class="nav-links">
 <li><a href="javascript:void(0)" onclick="showPage('home')">Home</a></li>
 <li><a href="javascript:void(0)" onclick="showPage('services')">Services</a></li>
 <li><a href="javascript:void(0)" onclick="showPage('pricing')">Pricing</a></li>
-<li><a href="javascript:void(0)" onclick="scrollToContact()" class="nav-cta">Request Service</a></li>
+<li><a href="javascript:void(0)" onclick="showPage('contact')" class="nav-cta">Request Service</a></li>
 </ul>
 </nav>
 
@@ -420,34 +418,6 @@ nav { height: auto; padding: 1rem; flex-direction: column; gap: 15px; }
 </div>
 </div>
 
-<div class="card" id="contact" style="text-align: center;">
-<h2>Request Service</h2>
-<p style="margin-bottom: 2rem; color: #666;">Ready to book? Fill out the form below and we'll get back to you shortly.</p>
-<form id="contactForm">
-<div class="form-group">
-<label for="name">Full Name</label>
-<input type="text" id="name" name="name" placeholder="Your Name" required>
-</div>
-<div class="form-group">
-<label for="email">Email Address</label>
-<input type="email" id="email" name="email" placeholder="email@example.com" required>
-</div>
-<div class="form-group">
-<label for="phone">Phone Number</label>
-<input type="tel" id="phone" name="phone" placeholder="(970) 000-0000" required>
-</div>
-<div class="form-group">
-<label for="address">Property Address</label>
-<input type="text" id="address" name="address" placeholder="123 Example St, City, ST" required>
-</div>
-<div class="form-group">
-<label for="details">What do you need accomplished?</label>
-<textarea id="details" name="details" placeholder="Tell us about the job..." required></textarea>
-</div>
-<button type="submit" id="submitBtn" class="submit-btn">Send Request</button>
-<div id="responseMessage" class="message"></div>
-</form>
-</div>
 <footer>
 &copy; 2025 Solanyk Brothers. All Rights Reserved.
 </footer>
@@ -603,10 +573,54 @@ nav { height: auto; padding: 1rem; flex-direction: column; gap: 15px; }
 </table>
 </div>
 <div style="text-align: center; margin-top: 3rem;">
-<button onclick="scrollToContact()" class="submit-btn" style="max-width: 300px;">Book a Service</button>
+<button onclick="showPage('contact')" class="submit-btn" style="max-width: 300px;">Book a Service</button>
 </div>
 </div>
 
+<footer>
+&copy; 2025 Solanyk Brothers. All Rights Reserved.
+</footer>
+</div>
+</div>
+
+<!-- REQUEST SERVICE PAGE VIEW -->
+<div id="contactPage" class="page-view">
+<section class="hero">
+<div class="hero-overlay"></div>
+<div class="hero-content">
+<h1 class="logo-text">Request Service</h1>
+</div>
+</section>
+
+<div class="container">
+<div class="card" style="text-align: center;">
+<h2>Submit Your Request</h2>
+<p style="margin-bottom: 2rem; color: #666;">Fill out the form below and we'll get back to you shortly to confirm your service.</p>
+<form id="contactForm">
+<div class="form-group">
+<label for="name">Full Name</label>
+<input type="text" id="name" name="name" placeholder="Your Name" required>
+</div>
+<div class="form-group">
+<label for="email">Email Address</label>
+<input type="email" id="email" name="email" placeholder="email@example.com" required>
+</div>
+<div class="form-group">
+<label for="phone">Phone Number</label>
+<input type="tel" id="phone" name="phone" placeholder="(970) 000-0000" required>
+</div>
+<div class="form-group">
+<label for="address">Property Address</label>
+<input type="text" id="address" name="address" placeholder="123 Example St, City, ST" required>
+</div>
+<div class="form-group">
+<label for="details">What do you need accomplished?</label>
+<textarea id="details" name="details" placeholder="Tell us about the job..." required></textarea>
+</div>
+<button type="submit" id="submitBtn" class="submit-btn">Send Request</button>
+<div id="responseMessage" class="message"></div>
+</form>
+</div>
 <footer>
 &copy; 2025 Solanyk Brothers. All Rights Reserved.
 </footer>
@@ -618,18 +632,11 @@ function showPage(pageId) {
 document.querySelectorAll('.page-view').forEach(view => {
 view.classList.remove('active');
 });
-document.getElementById(pageId + 'Page').classList.add('active');
+const activeView = document.getElementById(pageId + 'Page');
+if (activeView) {
+activeView.classList.add('active');
+}
 window.scrollTo(0, 0);
-}
-
-function scrollToContact() {
-showPage('home');
-setTimeout(() => {
-const contactSection = document.getElementById('contact');
-if(contactSection) {
-contactSection.scrollIntoView({ behavior: 'smooth' });
-}
-}, 100);
 }
 
 const form = document.getElementById('contactForm');
@@ -671,4 +678,3 @@ messageDiv.style.display = 'block';
 
 </body>
 </html>
-
