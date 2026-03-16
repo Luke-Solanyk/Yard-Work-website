@@ -6,7 +6,7 @@
 <title>Solanyk Brothers | Lawn Care & Snow Removal</title>
 
 <!-- Favicon -->
-<link rel="icon" type="image/png" href="Logo.png">
+<link id="dynamic-favicon" rel="icon" type="image/png" href="Logo.png">
 
 <!-- Importing Roboto from Google Fonts -->
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
@@ -56,17 +56,24 @@ text-decoration: none;
 cursor: pointer;
 }
 
-.nav-logo-img {
-height: 70px;
-width: auto;
-border-radius: 4px;
-transition: transform 0.3s ease, filter 0.3s ease;
-filter: drop-shadow(0px 2px 4px rgba(0,0,0,0.15));
+.nav-text-logo {
+display: flex;
+flex-direction: column;
+font-weight: 800;
+text-transform: uppercase;
+line-height: 1.1;
 }
 
-.nav-logo-img:hover {
-transform: scale(1.05);
-filter: drop-shadow(0px 4px 8px rgba(0,0,0,0.25));
+.nav-text-main {
+color: #000000;
+font-size: 1.25rem;
+letter-spacing: 1px;
+}
+
+.nav-text-sub {
+font-size: 0.95rem;
+letter-spacing: 0.5px;
+font-weight: 700;
 }
 
 .nav-links {
@@ -147,9 +154,6 @@ line-height: 1.1;
 height: 140px;
 width: auto;
 margin-bottom: 1rem;
-border-radius: 10px;
-box-shadow: 0 8px 25px rgba(0,0,0,0.3);
-border: 2px solid rgba(255, 255, 255, 0.1);
 }
 
 .hero-subtitle {
@@ -373,7 +377,14 @@ nav { height: auto; padding: 1rem; flex-direction: column; gap: 15px; }
 
 <nav>
 <div onclick="showPage('home')" class="nav-logo-container">
-<img src="Logo.png" alt="Solanyk Logo" class="nav-logo-img">
+<div class="nav-text-logo">
+<span class="nav-text-main">Solanyk Brothers</span>
+<span class="nav-text-sub">
+<span style="color: var(--green);">Lawn Care</span>
+<span style="color: #000000;">&amp;</span>
+<span style="color: #33b5e5;">Snow Removal</span>
+</span>
+</div>
 </div>
 <ul class="nav-links">
 <li><a href="javascript:void(0)" onclick="showPage('home')">Home</a></li>
@@ -425,9 +436,11 @@ nav { height: auto; padding: 1rem; flex-direction: column; gap: 15px; }
 <div class="card">
 <h2>Hours & Availability</h2>
 <div class="hours-list">
-<p><strong>Mon, Wed, Fri, & Sat:</strong><br>
+<p style="margin-bottom: 1.5rem;"><strong>School Year Hours (Mon, Wed, Fri, & Sat):</strong><br>
 <span style="font-size: 1.3rem; color: var(--navy);">10:00am – 4:00pm</span></p>
-<p><em>Animal watching and Snow Plowing available 7 days a week.</em></p>
+<p style="margin-bottom: 1.5rem;"><strong>Summer Hours (Mon – Sat):</strong><br>
+<span style="font-size: 1.3rem; color: var(--navy);">9:00am – 4:00pm</span></p>
+<p><em>Animal watching is available 7 days a week.</em></p>
 </div>
 </div>
 
@@ -686,6 +699,40 @@ messageDiv.textContent = 'Error! Please try again.';
 messageDiv.className = 'message error';
 messageDiv.style.display = 'block';
 });
+});
+
+// --- Fix: Dynamically format the favicon into a perfect circle ---
+window.addEventListener('load', () => {
+const img = new Image();
+img.src = 'Logo.png';
+img.onload = () => {
+const canvas = document.createElement('canvas');
+const size = 64;
+canvas.width = size;
+canvas.height = size;
+const ctx = canvas.getContext('2d');
+
+// Draw a perfect white circle background
+ctx.beginPath();
+ctx.arc(size/2, size/2, size/2, 0, Math.PI * 2);
+ctx.fillStyle = '#ffffff';
+ctx.fill();
+
+// Draw the logo inside, preserving its original shape (no stretching)
+const padding = 12; // Gives a nice border inside the circle
+const drawSize = size - padding;
+const scale = Math.min(drawSize / img.width, drawSize / img.height);
+const x = (size - img.width * scale) / 2;
+const y = (size - img.height * scale) / 2;
+
+ctx.drawImage(img, x, y, img.width * scale, img.height * scale);
+
+// Apply the new perfect circle as the browser tab icon
+const favicon = document.getElementById('dynamic-favicon');
+if (favicon) {
+favicon.href = canvas.toDataURL('image/png');
+}
+};
 });
 </script>
 
