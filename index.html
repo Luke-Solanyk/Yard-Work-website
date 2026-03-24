@@ -59,7 +59,7 @@ cursor: pointer;
 .nav-text-logo {
 display: flex;
 flex-direction: column;
-font-weight: 800;
+font-weight: 700;
 text-transform: uppercase;
 line-height: 1.1;
 }
@@ -118,7 +118,7 @@ display: flex;
 align-items: center;
 justify-content: center;
 text-align: center;
-color: white;
+color: var(--white);
 }
 
 .hero-overlay {
@@ -145,7 +145,7 @@ font-size: 3.2rem;
 margin: 0;
 text-transform: uppercase;
 letter-spacing: 3px;
-font-weight: 800;
+font-weight: 700;
 text-shadow: 2px 2px 4px rgba(0,0,0,0.4);
 line-height: 1.1;
 }
@@ -363,34 +363,62 @@ text-align: center;
 padding: 3rem 1rem;
 color: #777;
 font-size: 0.85rem;
+display: flex;
+flex-direction: column;
+align-items: center;
+gap: 1rem;
+}
+
+.qr-code {
+width: 90px;
+height: 90px;
+border-radius: 8px;
+box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+border: 3px solid var(--white);
 }
 
 @media (max-width: 768px) {
-nav { height: auto; padding: 1rem; flex-direction: column; gap: 15px; }
-.logo-text { font-size: 2.2rem; }
-.hero-logo { height: 100px; }
-.hero { height: 350px; }
+nav { height: auto; padding: 1rem; flex-direction: column; gap: 15px; text-align: center; }
+.nav-text-logo { align-items: center; }
+.nav-links { flex-wrap: wrap; justify-content: center; gap: 1rem; }
+.logo-text { font-size: 2rem; letter-spacing: 2px; }
+.hero-logo { height: 90px; }
+.hero { height: 320px; }
+.hero-subtitle { font-size: 1.1rem; }
+.container { margin-top: -30px; padding: 0 0.5rem; }
+.card { padding: 1.5rem; margin-bottom: 1.5rem; }
+.grid { grid-template-columns: 1fr; gap: 1.5rem; }
+h2 { font-size: 1.5rem; }
+.pricing-table th, .pricing-table td { padding: 10px 8px; font-size: 0.9rem; }
+}
+
+@media (max-width: 480px) {
+.nav-links { flex-direction: column; width: 100%; gap: 0.5rem; }
+.nav-links li { width: 100%; }
+.nav-links a { display: block; padding: 10px; border-radius: 5px; background: #f8fafb; }
+.nav-cta { margin-top: 5px; }
+.pricing-table { min-width: 500px; }
 }
 </style>
 </head>
 <body>
 
 <nav>
-<div onclick="showPage('home')" class="nav-logo-container">
+<div onclick="window.location.hash='home'" class="nav-logo-container">
 <div class="nav-text-logo">
 <span class="nav-text-main">Solanyk Brothers</span>
 <span class="nav-text-sub">
 <span style="color: var(--green);">Lawn Care</span>
 <span style="color: #000000;">&amp;</span>
-<span style="color: #33b5e5;">Snow Removal</span>
+<span style="color: #0077cc;">Snow Removal</span>
 </span>
 </div>
 </div>
 <ul class="nav-links">
-<li><a href="javascript:void(0)" onclick="showPage('home')">Home</a></li>
-<li><a href="javascript:void(0)" onclick="showPage('services')">Services</a></li>
-<li><a href="javascript:void(0)" onclick="showPage('pricing')">Pricing</a></li>
-<li><a href="javascript:void(0)" onclick="showPage('contact')" class="nav-cta">Request Service</a></li>
+<li><a href="#home">Home</a></li>
+<li><a href="#services">Services</a></li>
+<li><a href="#pricing">Pricing</a></li>
+<li><a href="#contact" class="nav-cta">Request Service</a></li>
 </ul>
 </nav>
 
@@ -429,7 +457,7 @@ nav { height: auto; padding: 1rem; flex-direction: column; gap: 15px; }
 </div>
 </div>
 <div style="text-align: center; margin-top: 1.5rem;">
-<button onclick="showPage('services')" style="background: none; border: 2px solid var(--green); color: var(--green); padding: 10px 20px; border-radius: 5px; font-weight: 700; cursor: pointer;">View Service Details</button>
+<button onclick="window.location.hash='services'" style="background: none; border: 2px solid var(--green); color: var(--green); padding: 10px 20px; border-radius: 5px; font-weight: 700; cursor: pointer;">View Service Details</button>
 </div>
 </div>
 
@@ -445,7 +473,11 @@ nav { height: auto; padding: 1rem; flex-direction: column; gap: 15px; }
 </div>
 
 <footer>
-&copy; 2025 Solanyk Brothers. All Rights Reserved.
+<div>
+<img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://luke-solanyk.github.io/Yard-Work-website/" alt="Website QR Code" class="qr-code">
+<div style="margin-top: 5px; font-size: 0.75rem; color: var(--navy); font-weight: bold; text-transform: uppercase;">Scan to Share</div>
+</div>
+&copy; 2026 Solanyk Brothers. All Rights Reserved.
 </footer>
 </div>
 </div>
@@ -494,12 +526,16 @@ nav { height: auto; padding: 1rem; flex-direction: column; gap: 15px; }
 </div>
 
 <div style="text-align: center; margin-top: 2rem;">
-<button onclick="showPage('pricing')" class="submit-btn" style="max-width: 300px; background-color: var(--navy);">View Our Price List</button>
+<button onclick="window.location.hash='pricing'" class="submit-btn" style="max-width: 300px; background-color: var(--navy);">View Our Price List</button>
 </div>
 </div>
 
 <footer>
-&copy; 2025 Solanyk Brothers. All Rights Reserved.
+<div>
+<img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://luke-solanyk.github.io/Yard-Work-website/" alt="Website QR Code" class="qr-code">
+<div style="margin-top: 5px; font-size: 0.75rem; color: var(--navy); font-weight: bold; text-transform: uppercase;">Scan to Share</div>
+</div>
+&copy; 2026 Solanyk Brothers. All Rights Reserved.
 </footer>
 </div>
 </div>
@@ -599,12 +635,16 @@ nav { height: auto; padding: 1rem; flex-direction: column; gap: 15px; }
 </table>
 </div>
 <div style="text-align: center; margin-top: 3rem;">
-<button onclick="showPage('contact')" class="submit-btn" style="max-width: 300px;">Book a Service</button>
+<button onclick="window.location.hash='contact'" class="submit-btn" style="max-width: 300px;">Book a Service</button>
 </div>
 </div>
 
 <footer>
-&copy; 2025 Solanyk Brothers. All Rights Reserved.
+<div>
+<img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://luke-solanyk.github.io/Yard-Work-website/" alt="Website QR Code" class="qr-code">
+<div style="margin-top: 5px; font-size: 0.75rem; color: var(--navy); font-weight: bold; text-transform: uppercase;">Scan to Share</div>
+</div>
+&copy; 2026 Solanyk Brothers. All Rights Reserved.
 </footer>
 </div>
 </div>
@@ -648,22 +688,33 @@ nav { height: auto; padding: 1rem; flex-direction: column; gap: 15px; }
 </form>
 </div>
 <footer>
-&copy; 2025 Solanyk Brothers. All Rights Reserved.
+<div>
+<img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://luke-solanyk.github.io/Yard-Work-website/" alt="Website QR Code" class="qr-code">
+<div style="margin-top: 5px; font-size: 0.75rem; color: var(--navy); font-weight: bold; text-transform: uppercase;">Scan to Share</div>
+</div>
+&copy; 2026 Solanyk Brothers. All Rights Reserved.
 </footer>
 </div>
 </div>
 
 <script>
-function showPage(pageId) {
+function handleRouting() {
+let hash = window.location.hash.substring(1);
+if (!hash) hash = 'home'; // Default to home
+
+const activeView = document.getElementById(hash + 'Page');
+if (activeView) {
 document.querySelectorAll('.page-view').forEach(view => {
 view.classList.remove('active');
 });
-const activeView = document.getElementById(pageId + 'Page');
-if (activeView) {
 activeView.classList.add('active');
-}
 window.scrollTo(0, 0);
 }
+}
+
+// Listen for URL changes and run on initial load
+window.addEventListener('hashchange', handleRouting);
+window.addEventListener('load', handleRouting);
 
 const form = document.getElementById('contactForm');
 const scriptURL = 'https://script.google.com/macros/s/AKfycbzYd8t9co20W1hzJ9GMqUwLFRSpwUQI1vdIk94ars_etNZSEdUzPoYCD4V-j4H9a5PI4g/exec';
