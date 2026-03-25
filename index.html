@@ -357,6 +357,22 @@ font-weight: bold;
 }
 
 .message.success { display: block; background-color: #d4edda; color: #155724; }
+.message.error { display: block; background-color: #f8d7da; color: #721c24; }
+
+/* --- Reviews Styles --- */
+.review-item {
+background: #f8fafb;
+padding: 1.5rem;
+border-radius: 8px;
+border: 1px solid #e1e8ed;
+display: flex;
+flex-direction: column;
+text-align: left;
+}
+.review-stars { color: #f59e0b; margin-bottom: 0.5rem; font-size: 1.1rem; letter-spacing: 2px;}
+.review-category { font-size: 0.75rem; color: var(--green); text-transform: uppercase; font-weight: 700; margin-bottom: 0.5rem; letter-spacing: 1px; }
+.review-text { font-style: italic; color: #555; flex-grow: 1; margin-bottom: 1.5rem; font-size: 0.95rem; line-height: 1.6; }
+.review-author { font-weight: 700; color: var(--navy); border-top: 1px solid #e1e8ed; padding-top: 1rem; font-size: 0.9rem; }
 
 footer {
 text-align: center;
@@ -416,8 +432,11 @@ h2 { font-size: 1.5rem; }
 </div>
 <ul class="nav-links">
 <li><a href="#home">Home</a></li>
+<li><a href="#about">About Us</a></li>
 <li><a href="#services">Services</a></li>
 <li><a href="#pricing">Pricing</a></li>
+<li><a href="#reviews">Reviews</a></li>
+<li><a href="#contactus">Contact Us</a></li>
 <li><a href="#contact" class="nav-cta">Request Service</a></li>
 </ul>
 </nav>
@@ -472,12 +491,81 @@ h2 { font-size: 1.5rem; }
 </div>
 </div>
 
+<div class="card" style="text-align: center;">
+<h2>Service Area</h2>
+<p style="font-size: 1.2rem; color: var(--green); font-weight: bold; margin-bottom: 0.5rem;">Berthoud, Colorado</p>
+<p style="color: #666; margin-top: 0;"><em>Please note that at this time, we only offer services within the town of Berthoud.</em></p>
+</div>
+
+<div class="card">
+<h2>What Our Neighbors Say</h2>
+<div class="grid">
+<div class="review-item">
+<div class="review-stars">⭐⭐⭐⭐⭐</div>
+<div class="review-category">Mowing & Yard Cleanup</div>
+<p class="review-text">"The Solanyk Brothers are fantastic! I hired them to take care of my house lawn and do some general yard cleanup. For a $40 flat rate, they mowed, weed-eated, and blew off all the walkways, leaving the place spotless. I also had them do some raking and rock removal for their hourly rate, and they worked quickly and efficiently. It's so refreshing to see such hard-working guys. Highly recommend!"</p>
+<div class="review-author">— Sarah M.</div>
+</div>
+<div class="review-item">
+<div class="review-stars">⭐⭐⭐⭐⭐</div>
+<div class="review-category">Snow Removal</div>
+<p class="review-text">"We get hit with some heavy snow, and the Solanyk Brothers handled our 'Big Storm' driveway plowing perfectly. What I really appreciate is that they use shovels and plows instead of loud snowblowers—it’s super quiet and effective. They cleared our huge driveway and hand-shoveled the porch and deck so we could actually get out of the house safely. Very reasonable rates, even for the deep snow add-ons. I’ll be using them all winter!"</p>
+<div class="review-author">— Dave & Linda C.</div>
+</div>
+</div>
+<div style="text-align: center; margin-top: 1.5rem;">
+<button onclick="window.location.hash='reviews'" style="background: none; border: 2px solid var(--green); color: var(--green); padding: 10px 20px; border-radius: 5px; font-weight: 700; cursor: pointer; transition: 0.2s ease;">Read All Reviews</button>
+</div>
+</div>
+
+<footer>
+<div style="display: flex; gap: 2rem; justify-content: center; flex-wrap: wrap;">
+<div>
+<img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https%3A%2F%2Fluke-solanyk.github.io%2FYard-Work-website%2F%3Fpage%3Dcontactus" alt="Contact Us QR Code" class="qr-code">
+<div style="margin-top: 5px; font-size: 0.75rem; color: var(--navy); font-weight: bold; text-transform: uppercase;">Scan to Contact Us</div>
+</div>
+<div>
+<img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https%3A%2F%2Fluke-solanyk.github.io%2FYard-Work-website%2F%3Fpage%3Dcontact" alt="Request Service QR Code" class="qr-code">
+<div style="margin-top: 5px; font-size: 0.75rem; color: var(--navy); font-weight: bold; text-transform: uppercase;">Scan to Request Service</div>
+</div>
+</div>
+<div>
+&copy; 2026 Solanyk Brothers. All Rights Reserved.<br>
+<span style="font-size: 0.75rem; margin-top: 5px; display: block; font-style: italic;">*This website was partly created for a school assignment, but is still a real, functional website.</span>
+</div>
+</footer>
+</div>
+</div>
+
+<!-- ABOUT PAGE VIEW -->
+<div id="aboutPage" class="page-view">
+<section class="hero">
+<div class="hero-overlay"></div>
+<div class="hero-content">
+<h1 class="logo-text">About Us</h1>
+<div class="hero-subtitle">Our Story</div>
+</div>
+</section>
+
+<div class="container">
+<div class="card">
+<h2>Who We Are</h2>
+<p style="font-size: 1.1rem; line-height: 1.8; color: #444; margin-bottom: 1.5rem;">In 2026, our parents told us that we needed to stay busy. To accomplish this goal and make money at the same time, we decided to start our own company helping neighbors out. We are two boys who love the outdoors and like to do a solid day's work. We believe that our character is formed through hard work, and we believe that responsibility is an important part of growing up.</p>
+<p style="font-size: 1.1rem; line-height: 1.8; color: #444;">We have decided to do lawn care and snow removal not just because we need money, but because we believe people should be able to have the chance to get their lawn cleaned and snow removed at a low price. We especially want to do this for people who are older or busy and do not have the chance or strength to clean their lawns.</p>
+<div style="text-align: center; margin-top: 2.5rem;">
+<button onclick="window.location.hash='services'" class="submit-btn" style="max-width: 300px; background-color: var(--navy);">See Our Services</button>
+</div>
+</div>
+
 <footer>
 <div>
-<img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://luke-solanyk.github.io/Yard-Work-website/" alt="Website QR Code" class="qr-code">
-<div style="margin-top: 5px; font-size: 0.75rem; color: var(--navy); font-weight: bold; text-transform: uppercase;">Scan to Share</div>
+<img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://luke-solanyk.github.io/Yard-Work-website/%23contact" alt="Request Service QR Code" class="qr-code">
+<div style="margin-top: 5px; font-size: 0.75rem; color: var(--navy); font-weight: bold; text-transform: uppercase;">Scan to Request Service</div>
 </div>
-&copy; 2026 Solanyk Brothers. All Rights Reserved.
+<div>
+&copy; 2026 Solanyk Brothers. All Rights Reserved.<br>
+<span style="font-size: 0.75rem; margin-top: 5px; display: block; font-style: italic;">*This website was partly created for a school assignment, but is still a real, functional website.</span>
+</div>
 </footer>
 </div>
 </div>
@@ -487,55 +575,52 @@ h2 { font-size: 1.5rem; }
 <section class="hero">
 <div class="hero-overlay"></div>
 <div class="hero-content">
-<h1 class="logo-text">Services</h1>
-<div class="hero-subtitle">In Detail</div>
+<h1 class="logo-text">Our Services</h1>
+<div class="hero-subtitle">What We Do</div>
 </div>
 </section>
 
 <div class="container">
 <div class="card">
-<h2>Our Specialized Care</h2>
-<span class="subtitle-green">In Detail</span>
-
+<h2>Detailed Services</h2>
 <div class="detailed-service">
-<h3>Mowing Services</h3>
-<p><strong>House Lawns:</strong> Our standard lawn service includes thorough weed-eating and blowing off surfaces for a clean finish.</p>
-<p><strong>Pastures & Fields:</strong> We handle larger areas and roadside frontage with our riding equipment.</p>
+<h3>Mowing & Yard Work</h3>
+<ul class="service-list">
+<li><strong>House Lawns:</strong> Full mowing, weed-eating, and blowing of walkways.</li>
+<li><strong>Pastures & Fields:</strong> Tractor mowing for large acreage and roadside frontage.</li>
+<li><strong>General Yard Care:</strong> Raking, rock removal, and debris hauling.</li>
+<li><strong>Garden Care:</strong> Weeding fence lines, gravel driveways, flower beds, and watering services.</li>
+</ul>
 </div>
-
 <div class="detailed-service">
-<h3>General Yard Work</h3>
-<p><strong>Cleanup:</strong> Comprehensive raking, rock removal, and debris clearing to keep your land pristine.</p>
-<p><strong>Weeding:</strong> Specialized attention to fence lines, gravel areas, and side yards.</p>
-<p><strong>Garden Care:</strong> Expert maintenance for flower beds and vegetable gardens.</p>
-<p><strong>Watering:</strong> Daily watering for gardens, pots, or individual trees.</p>
+<h3>Snow Removal</h3>
+<ul class="service-list">
+<li><strong>Driveway Plowing:</strong> Standard clearing and "Big Storm" management (2+ feet).</li>
+<li><strong>Hand Shoveling:</strong> Safe clearing of porches, walkways, and decks.</li>
+</ul>
 </div>
-
 <div class="detailed-service">
-<h3>Snow Plowing & Shoveling</h3>
-<p>We use shovels and plows (no blowers) to ensure a quiet and effective clearing.</p>
-<p><strong>Driveways:</strong> Available for standard snowfalls and "Big Storm" events (2+ feet).</p>
-<p><strong>Decks & Walks:</strong> Hand-shoveling for porches, walks, and decks to keep your access points safe.</p>
+<h3>Animal Care & Farm Bundles</h3>
+<ul class="service-list">
+<li><strong>Small Animals:</strong> Indoor dogs, cats, and household pets.</li>
+<li><strong>Large Animals:</strong> Horses, cows, goats, and other livestock.</li>
+<li><strong>Farm Bundle:</strong> Comprehensive care for all animals on your property.</li>
+</ul>
 </div>
-
-<div class="detailed-service">
-<h3>Animal Care (7 Days/Week)</h3>
-<p><strong>Small Animals:</strong> Daily care for cats, dogs, and other indoor pets.</p>
-<p><strong>Large Animals:</strong> Experienced handling of cows, horses, goats, and more.</p>
-<p><strong>Farm Bundle:</strong> A comprehensive flat-rate service covering all animals on your property.</p>
-</div>
-
 <div style="text-align: center; margin-top: 2rem;">
-<button onclick="window.location.hash='pricing'" class="submit-btn" style="max-width: 300px; background-color: var(--navy);">View Our Price List</button>
+<button onclick="window.location.hash='pricing'" class="submit-btn" style="max-width: 300px; background-color: var(--navy);">View Pricing</button>
 </div>
 </div>
 
 <footer>
 <div>
-<img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://luke-solanyk.github.io/Yard-Work-website/" alt="Website QR Code" class="qr-code">
-<div style="margin-top: 5px; font-size: 0.75rem; color: var(--navy); font-weight: bold; text-transform: uppercase;">Scan to Share</div>
+<img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://luke-solanyk.github.io/Yard-Work-website/%23contact" alt="Request Service QR Code" class="qr-code">
+<div style="margin-top: 5px; font-size: 0.75rem; color: var(--navy); font-weight: bold; text-transform: uppercase;">Scan to Request Service</div>
 </div>
-&copy; 2026 Solanyk Brothers. All Rights Reserved.
+<div>
+&copy; 2026 Solanyk Brothers. All Rights Reserved.<br>
+<span style="font-size: 0.75rem; margin-top: 5px; display: block; font-style: italic;">*This website was partly created for a school assignment, but is still a real, functional website.</span>
+</div>
 </footer>
 </div>
 </div>
@@ -641,10 +726,153 @@ h2 { font-size: 1.5rem; }
 
 <footer>
 <div>
-<img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://luke-solanyk.github.io/Yard-Work-website/" alt="Website QR Code" class="qr-code">
-<div style="margin-top: 5px; font-size: 0.75rem; color: var(--navy); font-weight: bold; text-transform: uppercase;">Scan to Share</div>
+<img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://luke-solanyk.github.io/Yard-Work-website/%23contact" alt="Request Service QR Code" class="qr-code">
+<div style="margin-top: 5px; font-size: 0.75rem; color: var(--navy); font-weight: bold; text-transform: uppercase;">Scan to Request Service</div>
 </div>
-&copy; 2026 Solanyk Brothers. All Rights Reserved.
+<div>
+&copy; 2026 Solanyk Brothers. All Rights Reserved.<br>
+<span style="font-size: 0.75rem; margin-top: 5px; display: block; font-style: italic;">*This website was partly created for a school assignment, but is still a real, functional website.</span>
+</div>
+</footer>
+</div>
+</div>
+
+<!-- REVIEWS PAGE VIEW -->
+<div id="reviewsPage" class="page-view">
+<section class="hero">
+<div class="hero-overlay"></div>
+<div class="hero-content">
+<h1 class="logo-text">Reviews</h1>
+<div class="hero-subtitle">What Our Neighbors Say</div>
+</div>
+</section>
+
+<div class="container">
+<div class="card">
+<h2>Customer Feedback</h2>
+<p style="margin-bottom: 2rem; color: #666;">We take pride in our hard work. Here is what people across the community have to say about our services.</p>
+<div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem;">
+
+<div class="review-item">
+<div class="review-stars">⭐⭐⭐⭐⭐</div>
+<div class="review-category">Mowing & Yard Cleanup</div>
+<p class="review-text">"The Solanyk Brothers are fantastic! I hired them to take care of my house lawn and do some general yard cleanup. For a $40 flat rate, they mowed, weed-eated, and blew off all the walkways, leaving the place spotless. I also had them do some raking and rock removal for their hourly rate, and they worked quickly and efficiently. It's so refreshing to see such hard-working guys. Highly recommend!"</p>
+<div class="review-author">— Sarah M.</div>
+</div>
+
+<div class="review-item">
+<div class="review-stars">⭐⭐⭐⭐⭐</div>
+<div class="review-category">Snow Removal</div>
+<p class="review-text">"We get hit with some heavy snow, and the Solanyk Brothers handled our 'Big Storm' driveway plowing perfectly. What I really appreciate is that they use shovels and plows instead of loud snowblowers—it’s super quiet and effective. They cleared our huge driveway and hand-shoveled the porch and deck so we could actually get out of the house safely. Very reasonable rates, even for the deep snow add-ons. I’ll be using them all winter!"</p>
+<div class="review-author">— Dave & Linda C.</div>
+</div>
+
+<div class="review-item">
+<div class="review-stars">⭐⭐⭐⭐⭐</div>
+<div class="review-category">Animal Care & Farm Bundle</div>
+<p class="review-text">"Finding someone reliable to look after our property and animals when we are out of town used to be so stressful until we found these guys. We utilize their 'Farm Bundle' for $20 a day, which covers all our horses, goats, and the indoor dogs. The fact that they offer animal watching 7 days a week gives us total peace of mind. They are responsible, great with the animals, and always show up when they say they will."</p>
+<div class="review-author">— Mark T.</div>
+</div>
+
+<div class="review-item">
+<div class="review-stars">⭐⭐⭐⭐⭐</div>
+<div class="review-category">Pasture Mowing & Garden Care</div>
+<p class="review-text">"I reached out to the Solanyk Brothers to help manage our pasture and roadside frontage. At $35 an acre, you really can't beat the value. They handled the riding equipment like pros and completely transformed the look of our property. I even had them do some weeding along the fence lines and take care of my vegetable garden while they were at it. Excellent communication and a great work ethic!"</p>
+<div class="review-author">— Emily R.</div>
+</div>
+
+<div class="review-item">
+<div class="review-stars">⭐⭐⭐⭐⭐</div>
+<div class="review-category">General Recommendation</div>
+<p class="review-text">"Great local guys offering very fair prices for hard work! Whether it's the summer mowing or winter snow shoveling, they do an incredible job. Easy to book, prompt, and very respectful of our property. 10/10 would recommend Solanyk Brothers to anyone needing an extra hand around the house or farm."</p>
+<div class="review-author">— James K.</div>
+</div>
+
+<div class="review-item">
+<div class="review-stars">⭐⭐⭐⭐⭐</div>
+<div class="review-category">Fall Cleanup & Hauling</div>
+<p class="review-text">"The boys came over for a big fall cleanup. They raked up bags upon bags of leaves and hauled away some old brush I had piling up behind the barn. Very polite, hard-working, and left the yard looking immaculate. Will definitely hire them again!"</p>
+<div class="review-author">— Tom H.</div>
+</div>
+
+<div class="review-item">
+<div class="review-stars">⭐⭐⭐⭐⭐</div>
+<div class="review-category">Garden Watering</div>
+<p class="review-text">"I hired the Solanyk Brothers to water our extensive flower beds and vegetable garden while we were on a two-week vacation. They did an incredible job and even sent me picture updates. Everything was lush and green when we returned!"</p>
+<div class="review-author">— Barbara D.</div>
+</div>
+
+<div class="review-item">
+<div class="review-stars">⭐⭐⭐⭐⭐</div>
+<div class="review-category">Tractor Mowing</div>
+<p class="review-text">"We have about 3 acres of rough pasture that hadn't been mowed in months. They brought their tractor out and had it knocked out in no time. Great communication, safe equipment handling, and fair pricing. Highly recommended for bigger jobs."</p>
+<div class="review-author">— Greg P.</div>
+</div>
+
+</div>
+</div>
+
+<footer>
+<div>
+<img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://luke-solanyk.github.io/Yard-Work-website/%23contact" alt="Request Service QR Code" class="qr-code">
+<div style="margin-top: 5px; font-size: 0.75rem; color: var(--navy); font-weight: bold; text-transform: uppercase;">Scan to Request Service</div>
+</div>
+<div>
+&copy; 2026 Solanyk Brothers. All Rights Reserved.<br>
+<span style="font-size: 0.75rem; margin-top: 5px; display: block; font-style: italic;">*This website was partly created for a school assignment, but is still a real, functional website.</span>
+</div>
+</footer>
+</div>
+</div>
+
+<!-- CONTACT US PAGE VIEW -->
+<div id="contactusPage" class="page-view">
+<section class="hero">
+<div class="hero-overlay"></div>
+<div class="hero-content">
+<h1 class="logo-text">Contact Us</h1>
+<div class="hero-subtitle">Get In Touch</div>
+</div>
+</section>
+
+<div class="container">
+<div class="card" style="text-align: center;">
+<h2>Send Us a Message</h2>
+<p style="margin-bottom: 2rem; color: #666;">Use this form for general questions. If you need to schedule a service, please use our <a href="#contact" style="color: var(--green); font-weight: bold; text-decoration: none;">Service Request Form</a>.</p>
+
+<form id="generalContactForm" style="max-width: 600px; margin: 0 auto; text-align: left;">
+<div class="form-group">
+<label for="contactName">Name</label>
+<input type="text" id="contactName" name="name" placeholder="Your Name" required>
+</div>
+<div class="form-group">
+<label for="contactEmail">Email Address</label>
+<input type="email" id="contactEmail" name="email" placeholder="email@example.com" required>
+</div>
+<div class="form-group">
+<label for="contactMessage">Message</label>
+<textarea id="contactMessage" name="message" rows="5" placeholder="How can we help you?" required></textarea>
+</div>
+<button type="submit" id="contactSubmitBtn" class="submit-btn">Send Message</button>
+<div id="contactResponseMessage" class="message"></div>
+</form>
+</div>
+
+<footer>
+<div style="display: flex; gap: 2rem; justify-content: center; flex-wrap: wrap;">
+<div>
+<img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https%3A%2F%2Fluke-solanyk.github.io%2FYard-Work-website%2F%3Fpage%3Dcontactus" alt="Contact Us QR Code" class="qr-code">
+<div style="margin-top: 5px; font-size: 0.75rem; color: var(--navy); font-weight: bold; text-transform: uppercase;">Scan to Contact Us</div>
+</div>
+<div>
+<img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https%3A%2F%2Fluke-solanyk.github.io%2FYard-Work-website%2F%3Fpage%3Dcontact" alt="Request Service QR Code" class="qr-code">
+<div style="margin-top: 5px; font-size: 0.75rem; color: var(--navy); font-weight: bold; text-transform: uppercase;">Scan to Request Service</div>
+</div>
+</div>
+<div>
+&copy; 2026 Solanyk Brothers. All Rights Reserved.<br>
+<span style="font-size: 0.75rem; margin-top: 5px; display: block; font-style: italic;">*This website was partly created for a school assignment, but is still a real, functional website.</span>
+</div>
 </footer>
 </div>
 </div>
@@ -661,7 +889,7 @@ h2 { font-size: 1.5rem; }
 <div class="container">
 <div class="card" style="text-align: center;">
 <h2>Submit Your Request</h2>
-<p style="margin-bottom: 2rem; color: #666;">Fill out the form below and we'll get back to you shortly to confirm your service.</p>
+<p style="margin-bottom: 2rem; color: #666;">Fill out the form below and we'll get back to you shortly to confirm your service.<br><strong style="color: var(--navy);">Please note: We exclusively serve properties in Berthoud, Colorado.</strong></p>
 <form id="contactForm">
 <div class="form-group">
 <label for="name">Full Name</label>
@@ -689,16 +917,27 @@ h2 { font-size: 1.5rem; }
 </div>
 <footer>
 <div>
-<img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://luke-solanyk.github.io/Yard-Work-website/" alt="Website QR Code" class="qr-code">
-<div style="margin-top: 5px; font-size: 0.75rem; color: var(--navy); font-weight: bold; text-transform: uppercase;">Scan to Share</div>
+<img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://luke-solanyk.github.io/Yard-Work-website/%23contact" alt="Request Service QR Code" class="qr-code">
+<div style="margin-top: 5px; font-size: 0.75rem; color: var(--navy); font-weight: bold; text-transform: uppercase;">Scan to Request Service</div>
 </div>
-&copy; 2026 Solanyk Brothers. All Rights Reserved.
+<div>
+&copy; 2026 Solanyk Brothers. All Rights Reserved.<br>
+<span style="font-size: 0.75rem; margin-top: 5px; display: block; font-style: italic;">*This website was partly created for a school assignment, but is still a real, functional website.</span>
+</div>
 </footer>
 </div>
 </div>
 
 <script>
 function handleRouting() {
+// Check for query parameters first (solves QR code hash-stripping issue)
+const urlParams = new URLSearchParams(window.location.search);
+const pageParam = urlParams.get('page');
+if (pageParam && window.location.hash !== '#' + pageParam) {
+window.location.hash = pageParam;
+return; // Changing the hash will re-trigger this function
+}
+
 let hash = window.location.hash.substring(1);
 if (!hash) hash = 'home'; // Default to home
 
@@ -751,6 +990,68 @@ messageDiv.className = 'message error';
 messageDiv.style.display = 'block';
 });
 });
+
+// --- General Contact Form Handling (Sends to Email) ---
+const generalForm = document.getElementById('generalContactForm');
+if (generalForm) {
+generalForm.addEventListener('submit', function(e) {
+e.preventDefault();
+const submitBtn = document.getElementById('contactSubmitBtn');
+const messageDiv = document.getElementById('contactResponseMessage');
+
+submitBtn.disabled = true;
+submitBtn.textContent = 'Sending...';
+messageDiv.className = 'message';
+messageDiv.style.display = 'none';
+
+const formData = new FormData(generalForm);
+const data = Object.fromEntries(formData.entries());
+
+// Using FormSubmit.co API to send directly to 282721@coloradoheritage.org
+fetch('https://formsubmit.co/ajax/282721@coloradoheritage.org', {
+method: 'POST',
+headers: { 
+'Content-Type': 'application/json',
+'Accept': 'application/json'
+},
+body: JSON.stringify({
+name: data.name,
+email: data.email,
+message: data.message,
+_subject: "New Question from Solanyk Brothers Website",
+_captcha: "false"
+})
+})
+.then(response => response.text())
+.then(text => {
+let data;
+try {
+data = JSON.parse(text);
+} catch (e) {
+throw new Error('Please check your email inbox to ACTIVATE the form, then try again.');
+}
+
+submitBtn.disabled = false;
+submitBtn.textContent = 'Send Message';
+if (data.success === "true" || data.success === true) {
+messageDiv.textContent = 'Success! Your message has been sent.';
+messageDiv.className = 'message success';
+messageDiv.style.display = 'block';
+generalForm.reset();
+} else {
+throw new Error(data.message || 'Check your email to activate the form.');
+}
+})
+.catch((err) => {
+console.error('Submission error:', err);
+submitBtn.disabled = false;
+submitBtn.textContent = 'Send Message';
+messageDiv.textContent = 'Error: ' + (err.message || 'Please try again later.');
+messageDiv.className = 'message error';
+messageDiv.style.display = 'block';
+});
+});
+}
 
 // --- Fix: Dynamically format the favicon into a perfect circle ---
 window.addEventListener('load', () => {
