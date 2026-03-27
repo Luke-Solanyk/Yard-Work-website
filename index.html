@@ -173,6 +173,12 @@ display: none;
 
 .page-view.active {
 display: block;
+animation: fadeIn 0.4s ease-in-out;
+}
+
+@keyframes fadeIn {
+from { opacity: 0; transform: translateY(10px); }
+to { opacity: 1; transform: translateY(0); }
 }
 
 /* --- Container --- */
@@ -369,15 +375,10 @@ cursor: pointer;
 color: #ccc;
 margin-bottom: 0.5rem;
 }
-.star-rating-input .star.active {
-color: #f59e0b;
-}
-.star-rating-input .star {
-transition: color 0.2s;
-}
-.star-rating-input .star:hover {
-color: #f59e0b;
-}
+.star-rating-input .star.active { color: #f59e0b; }
+.star-rating-input .star { transition: color 0.2s; }
+.star-rating-input .star:hover { color: #f59e0b; }
+
 #reviewFormContainer {
 display: none;
 margin-top: 2rem;
@@ -389,19 +390,99 @@ border: 1px solid #e1e8ed;
 }
 
 /* --- Reviews Styles --- */
+.reviews-container {
+column-count: 3;
+column-gap: 2rem;
+margin-bottom: 2rem;
+}
+
+@media (max-width: 900px) {
+.reviews-container { column-count: 2; }
+}
+@media (max-width: 600px) {
+.reviews-container { column-count: 1; }
+}
+
 .review-item {
-background: #f8fafb;
-padding: 1.5rem;
-border-radius: 8px;
-border: 1px solid #e1e8ed;
-display: flex;
-flex-direction: column;
+background: var(--white);
+padding: 2rem;
+border-radius: 12px;
+box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+border: none;
+display: inline-block; /* Required for break-inside avoid */
+width: 100%;
+margin-bottom: 2rem;
+position: relative;
+overflow: hidden;
+break-inside: avoid; /* Prevents card from splitting across columns */
+transition: transform 0.3s ease, box-shadow 0.3s ease;
 text-align: left;
 }
-.review-stars { color: #f59e0b; margin-bottom: 0.5rem; font-size: 1.1rem; letter-spacing: 2px;}
-.review-category { font-size: 0.75rem; color: var(--green); text-transform: uppercase; font-weight: 700; margin-bottom: 0.5rem; letter-spacing: 1px; }
-.review-text { font-style: italic; color: #555; flex-grow: 1; margin-bottom: 1.5rem; font-size: 0.95rem; line-height: 1.6; }
-.review-author { font-weight: 700; color: var(--navy); border-top: 1px solid #e1e8ed; padding-top: 1rem; font-size: 0.9rem; }
+
+.review-item:hover {
+transform: translateY(-5px);
+box-shadow: 0 12px 30px rgba(0,0,0,0.1);
+}
+
+/* Decorative background quote mark */
+.review-item::before {
+content: '"';
+position: absolute;
+top: -20px;
+right: 15px;
+font-size: 8rem;
+font-family: Georgia, serif;
+color: rgba(76, 175, 80, 0.08); /* Faint green */
+line-height: 1;
+z-index: 0;
+}
+
+.review-stars, .review-category, .review-text, .review-author {
+position: relative;
+z-index: 1;
+}
+
+.review-stars { color: #f59e0b; margin-bottom: 1rem; font-size: 1.2rem; letter-spacing: 2px;}
+
+.review-category { 
+font-size: 0.75rem; 
+color: var(--navy); 
+background: #e2e8f0; 
+padding: 5px 12px; 
+border-radius: 20px; 
+display: inline-block; 
+text-transform: uppercase; 
+font-weight: 700; 
+margin-bottom: 1rem; 
+letter-spacing: 1px; 
+}
+
+.review-text { font-style: italic; color: #444; margin-bottom: 1.5rem; font-size: 1rem; line-height: 1.7; }
+
+.review-author { 
+font-weight: 700; 
+color: var(--green); 
+font-size: 1rem; 
+display: flex; 
+align-items: center; 
+gap: 10px; 
+border-top: 1px solid #f1f5f9;
+padding-top: 1rem;
+}
+
+/* Little user icon next to the name */
+.review-author::before {
+content: '';
+display: inline-block;
+width: 32px;
+height: 32px;
+background-color: var(--navy);
+border-radius: 50%;
+background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="white"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>');
+background-size: 20px;
+background-position: center;
+background-repeat: no-repeat;
+}
 
 footer {
 text-align: center;
@@ -453,6 +534,9 @@ body.admin-mode .admin-only { display: block !important; }
 display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
 background: rgba(0, 0, 0, 0.6); z-index: 2000; align-items: center; justify-content: center;
 }
+.modal-content { background: white; padding: 2rem; border-radius: 8px; width: 90%; max-width: 400px; text-align: center; box-shadow: 0 4px 20px rgba(0,0,0,0.2); }
+.modal-content input { width: 100%; padding: 10px; margin-bottom: 1rem; border: 1px solid #ccc; border-radius: 4px; }
+.modal-content button { background: var(--navy); color: white; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; width: 100%; }
 </style>
 </head>
 <body>
@@ -515,8 +599,7 @@ background: rgba(0, 0, 0, 0.6); z-index: 2000; align-items: center; justify-cont
 <div>
 <h3 style="color: var(--green);">Custom Jobs</h3>
 <ul class="service-list">
-<li>Unique projects & odd jobs</li>
-<li>Need something else done? Use our <a href="#contactus" style="color: var(--navy); font-weight: bold; text-decoration: underline;">Contact Us</a> page to ask us about your specific needs!</li>
+<li><a href="#contactus" style="color: var(--navy); font-weight: bold; text-decoration: underline;">Contact Us</a>&nbsp; for more information.</li>
 </ul>
 </div>
 </div>
@@ -562,23 +645,6 @@ background: rgba(0, 0, 0, 0.6); z-index: 2000; align-items: center; justify-cont
 <button onclick="window.location.hash='reviews'" style="background: none; border: 2px solid var(--green); color: var(--green); padding: 10px 20px; border-radius: 5px; font-weight: 700; cursor: pointer; transition: 0.2s ease;">Read All Reviews</button>
 </div>
 </div>
-
-<footer>
-<div style="display: flex; gap: 2rem; justify-content: center; flex-wrap: wrap;">
-<div>
-<img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https%3A%2F%2Fluke-solanyk.github.io%2FYard-Work-website%2F%3Fpage%3Dcontactus" alt="Contact Us QR Code" class="qr-code">
-<div style="margin-top: 5px; font-size: 0.75rem; color: var(--navy); font-weight: bold; text-transform: uppercase;">Scan to Contact Us</div>
-</div>
-<div>
-<img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https%3A%2F%2Fluke-solanyk.github.io%2FYard-Work-website%2F%3Fpage%3Dcontact" alt="Request Service QR Code" class="qr-code">
-<div style="margin-top: 5px; font-size: 0.75rem; color: var(--navy); font-weight: bold; text-transform: uppercase;">Scan to Request Service</div>
-</div>
-</div>
-<div>
-&copy; 2026 Solanyk Brothers. All Rights Reserved.<br>
-<span style="font-size: 0.75rem; margin-top: 5px; display: block; font-style: italic;">*This website was partly created for a school assignment, but is still a real, functional website.</span>
-</div>
-</footer>
 </div>
 </div>
 
@@ -601,17 +667,6 @@ background: rgba(0, 0, 0, 0.6); z-index: 2000; align-items: center; justify-cont
 <button onclick="window.location.hash='services'" class="submit-btn" style="max-width: 300px; background-color: var(--navy);">See Our Services</button>
 </div>
 </div>
-
-<footer>
-<div>
-<img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://luke-solanyk.github.io/Yard-Work-website/%23contact" alt="Request Service QR Code" class="qr-code">
-<div style="margin-top: 5px; font-size: 0.75rem; color: var(--navy); font-weight: bold; text-transform: uppercase;">Scan to Request Service</div>
-</div>
-<div>
-&copy; 2026 Solanyk Brothers. All Rights Reserved.<br>
-<span style="font-size: 0.75rem; margin-top: 5px; display: block; font-style: italic;">*This website was partly created for a school assignment, but is still a real, functional website.</span>
-</div>
-</footer>
 </div>
 </div>
 
@@ -655,25 +710,14 @@ background: rgba(0, 0, 0, 0.6); z-index: 2000; align-items: center; justify-cont
 <div class="detailed-service">
 <h3>Custom Jobs</h3>
 <ul class="service-list">
-<li><strong>Unique Projects & Odd Jobs:</strong> Need something done that isn't on our standard list? We are always open to helping our neighbors with custom requests.</li>
-<li><strong>How to ask:</strong> Please use our <a href="#contactus" style="color: var(--green); font-weight: bold; text-decoration: underline;">Contact Us</a> page to send us a message explaining exactly what you need done, and we will let you know if we can handle it!</li>
+<li>Have a unique project or odd job? We are always open to helping our neighbors.</li>
+<li><a href="#contactus" style="color: var(--green); font-weight: bold; text-decoration: underline;">Contact Us</a>&nbsp; today to discuss your specific needs and see how we can help!</li>
 </ul>
 </div>
 <div style="text-align: center; margin-top: 2rem;">
 <button onclick="window.location.hash='pricing'" class="submit-btn" style="max-width: 300px; background-color: var(--navy);">View Pricing</button>
 </div>
 </div>
-
-<footer>
-<div>
-<img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://luke-solanyk.github.io/Yard-Work-website/%23contact" alt="Request Service QR Code" class="qr-code">
-<div style="margin-top: 5px; font-size: 0.75rem; color: var(--navy); font-weight: bold; text-transform: uppercase;">Scan to Request Service</div>
-</div>
-<div>
-&copy; 2026 Solanyk Brothers. All Rights Reserved.<br>
-<span style="font-size: 0.75rem; margin-top: 5px; display: block; font-style: italic;">*This website was partly created for a school assignment, but is still a real, functional website.</span>
-</div>
-</footer>
 </div>
 </div>
 
@@ -776,17 +820,6 @@ background: rgba(0, 0, 0, 0.6); z-index: 2000; align-items: center; justify-cont
 <button onclick="window.location.hash='contact'" class="submit-btn" style="max-width: 300px;">Book a Service</button>
 </div>
 </div>
-
-<footer>
-<div>
-<img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://luke-solanyk.github.io/Yard-Work-website/%23contact" alt="Request Service QR Code" class="qr-code">
-<div style="margin-top: 5px; font-size: 0.75rem; color: var(--navy); font-weight: bold; text-transform: uppercase;">Scan to Request Service</div>
-</div>
-<div>
-&copy; 2026 Solanyk Brothers. All Rights Reserved.<br>
-<span style="font-size: 0.75rem; margin-top: 5px; display: block; font-style: italic;">*This website was partly created for a school assignment, but is still a real, functional website.</span>
-</div>
-</footer>
 </div>
 </div>
 
@@ -804,7 +837,9 @@ background: rgba(0, 0, 0, 0.6); z-index: 2000; align-items: center; justify-cont
 <div class="card">
 <h2>Customer Feedback</h2>
 <p style="margin-bottom: 2rem; color: #666;">We take pride in our hard work. Here is what people across the community have to say about our services.</p>
-<div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem;">
+
+<!-- FIX: Changed from grid to reviews-container for Masonry layout -->
+<div class="reviews-container">
 
 <!-- Dynamic Reviews will pop up here -->
 <div id="dynamicReviews" style="display: contents;"></div>
@@ -813,49 +848,49 @@ background: rgba(0, 0, 0, 0.6); z-index: 2000; align-items: center; justify-cont
 <div class="review-stars">⭐⭐⭐⭐⭐</div>
 <div class="review-category">Snow Removal</div>
 <p class="review-text">"We get hit with some heavy snow, and the Solanyk Brothers handled our 'Big Storm' driveway plowing perfectly. What I really appreciate is that they use shovels and plows instead of loud snowblowers—it’s super quiet and effective. They cleared our huge driveway and hand-shoveled the porch and deck so we could actually get out of the house safely. Very reasonable rates, even for the deep snow add-ons. I’ll be using them all winter!"</p>
-<div class="review-author">— Dave & Linda C.</div>
+<div class="review-author">Dave & Linda C.</div>
 </div>
 
 <div class="review-item">
 <div class="review-stars">⭐⭐⭐⭐⭐</div>
 <div class="review-category">Animal Care & Farm Bundle</div>
 <p class="review-text">"Finding someone reliable to look after our property and animals when we are out of town used to be so stressful until we found these guys. We utilize their 'Farm Bundle' for $15 a day, which covers all our horses, goats, and the indoor dogs. The fact that they offer animal watching 7 days a week gives us total peace of mind. They are responsible, great with the animals, and always show up when they say they will."</p>
-<div class="review-author">— Mark T.</div>
+<div class="review-author">Mark T.</div>
 </div>
 
 <div class="review-item">
 <div class="review-stars">⭐⭐⭐⭐⭐</div>
 <div class="review-category">Pasture Mowing & Garden Care</div>
 <p class="review-text">"I reached out to the Solanyk Brothers to help manage our pasture and roadside frontage. At $25 an acre, you really can't beat the value. They handled the riding equipment like pros and completely transformed the look of our property. I even had them do some weeding along the fence lines and take care of my vegetable garden while they were at it. Excellent communication and a great work ethic!"</p>
-<div class="review-author">— Emily R.</div>
+<div class="review-author">Emily R.</div>
 </div>
 
 <div class="review-item">
 <div class="review-stars">⭐⭐⭐⭐⭐</div>
 <div class="review-category">General Recommendation</div>
 <p class="review-text">"Great local guys offering very fair prices for hard work! Whether it's the summer mowing or winter snow shoveling, they do an incredible job. Easy to book, prompt, and very respectful of our property. 10/10 would recommend Solanyk Brothers to anyone needing an extra hand around the house or farm."</p>
-<div class="review-author">— James K.</div>
+<div class="review-author">James K.</div>
 </div>
 
 <div class="review-item">
 <div class="review-stars">⭐⭐⭐⭐⭐</div>
 <div class="review-category">Fall Cleanup & Hauling</div>
 <p class="review-text">"The boys came over for a big fall cleanup. They raked up bags upon bags of leaves and hauled away some old brush I had piling up behind the barn. Very polite, hard-working, and left the yard looking immaculate. Will definitely hire them again!"</p>
-<div class="review-author">— Tom H.</div>
+<div class="review-author">Tom H.</div>
 </div>
 
 <div class="review-item">
 <div class="review-stars">⭐⭐⭐⭐⭐</div>
 <div class="review-category">Garden Watering</div>
 <p class="review-text">"I hired the Solanyk Brothers to water our extensive flower beds and vegetable garden while we were on a two-week vacation. They did an incredible job and even sent me picture updates. Everything was lush and green when we returned!"</p>
-<div class="review-author">— Barbara D.</div>
+<div class="review-author">Barbara D.</div>
 </div>
 
 <div class="review-item">
 <div class="review-stars">⭐⭐⭐⭐⭐</div>
 <div class="review-category">Tractor Mowing</div>
 <p class="review-text">"We have about 3 acres of rough pasture that hadn't been mowed in months. They brought their tractor out and had it knocked out in no time. Great communication, safe equipment handling, and fair pricing. Highly recommended for bigger jobs."</p>
-<div class="review-author">— Greg P.</div>
+<div class="review-author">Greg P.</div>
 </div>
 
 </div>
@@ -887,7 +922,7 @@ background: rgba(0, 0, 0, 0.6); z-index: 2000; align-items: center; justify-cont
 <input type="text" id="reviewName" name="name" placeholder="First Name & Last Initial (e.g., John D.)" required>
 </div>
 <div style="flex: 1; min-width: 250px;">
-<label for="reviewDate">Date Written</label>
+<label for="reviewDate">Date of Service</label>
 <input type="date" id="reviewDate" name="reviewDate" required>
 </div>
 </div>
@@ -897,36 +932,32 @@ background: rgba(0, 0, 0, 0.6); z-index: 2000; align-items: center; justify-cont
 <select id="reviewJob" name="jobAccomplished" required>
 <option value="">-- Select the Exact Service --</option>
 <optgroup label="Mowing">
-<option value="House Lawn Mowing">House Lawn</option>
-<option value="Pasture / Field Mowing">Pasture / Field</option>
+<option value="House Lawn Mowing">House Lawn Mowing</option>
+<option value="Pasture/Field Mowing">Pasture/Field Mowing</option>
 </optgroup>
 <optgroup label="Yard Work">
-<option value="General Yard Care (Raking/Debris)">General Care (Raking/Debris)</option>
+<option value="General Yard Care/Cleanup">General Yard Care/Cleanup</option>
 <option value="Weeding">Weeding</option>
 <option value="Garden Care">Garden Care</option>
 <option value="Watering">Watering</option>
 </optgroup>
-<optgroup label="Snow Removal">
-<option value="Driveway Plowing (Standard)">Driveway Plowing (Standard)</option>
-<option value="Driveway Plowing (Big Storm)">Driveway Plowing (Big Storm)</option>
-<option value="Porch, Walk & Deck Shoveling">Porch, Walk & Deck Shoveling</option>
-<option value="Deep Deck Add-on">Deep Deck Add-on</option>
-</optgroup>
-<optgroup label="Animal Care">
+<optgroup label="Animals">
 <option value="Small Animal Care">Small Animal Care</option>
 <option value="Large Animal Care">Large Animal Care</option>
-<option value="Farm Bundle">Farm Bundle</option>
+<option value="Farm Bundle Care">Farm Bundle Care</option>
 </optgroup>
-<optgroup label="Other">
-<option value="Multiple Services">Multiple Services</option>
-<option value="Other / Custom Job">Other / Custom Job</option>
+<optgroup label="Snow Removal">
+<option value="Driveway Snow Removal">Driveway Snow Removal</option>
+<option value="Big Storm Snow Removal">Big Storm Snow Removal</option>
+<option value="Porch/Walkway Shoveling">Porch/Walkway Shoveling</option>
 </optgroup>
+<option value="Custom/Other Job">Custom / Other Job</option>
 </select>
 </div>
 
 <div class="form-group">
-<label for="reviewMessage">Your Review</label>
-<textarea id="reviewMessage" name="review" rows="4" placeholder="Tell us about your experience..." required></textarea>
+<label for="reviewText">Your Experience</label>
+<textarea id="reviewText" name="review" rows="4" placeholder="Tell us how we did..." required></textarea>
 </div>
 
 <button type="submit" id="submitReviewBtn" class="submit-btn" style="background-color: var(--navy);">Submit Review</button>
@@ -934,25 +965,6 @@ background: rgba(0, 0, 0, 0.6); z-index: 2000; align-items: center; justify-cont
 </form>
 </div>
 </div>
-
-</div>
-
-<footer>
-<div style="display: flex; gap: 2rem; justify-content: center; flex-wrap: wrap;">
-<div>
-<img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https%3A%2F%2Fluke-solanyk.github.io%2FYard-Work-website%2F%3Fpage%3Dcontactus" alt="Contact Us QR Code" class="qr-code">
-<div style="margin-top: 5px; font-size: 0.75rem; color: var(--navy); font-weight: bold; text-transform: uppercase;">Scan to Contact Us</div>
-</div>
-<div>
-<img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https%3A%2F%2Fluke-solanyk.github.io%2FYard-Work-website%2F%3Fpage%3Dcontact" alt="Request Service QR Code" class="qr-code">
-<div style="margin-top: 5px; font-size: 0.75rem; color: var(--navy); font-weight: bold; text-transform: uppercase;">Scan to Request Service</div>
-</div>
-</div>
-<div>
-&copy; 2026 Solanyk Brothers. All Rights Reserved. <span onclick="openAdminModal()" style="cursor:pointer; color:var(--green); margin-left:10px; font-weight:bold;">[Owner Login]</span><br>
-<span style="font-size: 0.75rem; margin-top: 5px; display: block; font-style: italic;">*This website was partly created for a school assignment, but is still a real, functional website.</span>
-</div>
-</footer>
 </div>
 </div>
 
@@ -993,7 +1005,7 @@ background: rgba(0, 0, 0, 0.6); z-index: 2000; align-items: center; justify-cont
 <select id="contactSubject" name="subject" required>
 <option value="">-- Select a Topic --</option>
 <option value="General Question">General Question</option>
-<option value="Custom Job Estimate">Custom Job Estimate</option>
+<option value="Custom Job Inquiry">Custom Job Inquiry</option>
 <option value="Service Area Verification">Service Area Verification</option>
 <option value="Other">Other</option>
 </select>
@@ -1008,27 +1020,10 @@ background: rgba(0, 0, 0, 0.6); z-index: 2000; align-items: center; justify-cont
 <div id="contactResponseMessage" class="message"></div>
 </form>
 </div>
-
-<footer>
-<div style="display: flex; gap: 2rem; justify-content: center; flex-wrap: wrap;">
-<div>
-<img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https%3A%2F%2Fluke-solanyk.github.io%2FYard-Work-website%2F%3Fpage%3Dcontactus" alt="Contact Us QR Code" class="qr-code">
-<div style="margin-top: 5px; font-size: 0.75rem; color: var(--navy); font-weight: bold; text-transform: uppercase;">Scan to Contact Us</div>
-</div>
-<div>
-<img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https%3A%2F%2Fluke-solanyk.github.io%2FYard-Work-website%2F%3Fpage%3Dcontact" alt="Request Service QR Code" class="qr-code">
-<div style="margin-top: 5px; font-size: 0.75rem; color: var(--navy); font-weight: bold; text-transform: uppercase;">Scan to Request Service</div>
-</div>
-</div>
-<div>
-&copy; 2026 Solanyk Brothers. All Rights Reserved.<br>
-<span style="font-size: 0.75rem; margin-top: 5px; display: block; font-style: italic;">*This website was partly created for a school assignment, but is still a real, functional website.</span>
-</div>
-</footer>
 </div>
 </div>
 
-<!-- REQUEST SERVICE PAGE VIEW (Booking Form) -->
+<!-- BOOK A SERVICE PAGE VIEW -->
 <div id="contactPage" class="page-view">
 <section class="hero">
 <div class="hero-overlay"></div>
@@ -1043,10 +1038,11 @@ background: rgba(0, 0, 0, 0.6); z-index: 2000; align-items: center; justify-cont
 <p style="margin-bottom: 2rem; color: #666;">Fill out the form below to request a service. We will get back to you shortly to confirm your appointment and provide an estimate.<br><strong style="color: var(--navy);">Please note: We exclusively serve properties in Berthoud, Colorado.</strong></p>
 
 <!-- Calendly Availability Link Block -->
-<div style="background-color: #f0fdf4; border: 2px dashed var(--green); padding: 1rem; border-radius: 8px; margin-bottom: 2rem; text-align: center; max-width: 350px; margin-left: auto; margin-right: auto;">
+<div id="calendlyBlock" style="background-color: #f0fdf4; border: 2px dashed var(--green); padding: 1rem; border-radius: 8px; margin-bottom: 2rem; text-align: center; max-width: 400px; margin-left: auto; margin-right: auto; opacity: 0.5; transition: opacity 0.3s ease;">
 <h3 style="margin-top: 0; color: var(--navy); margin-bottom: 0.5rem; font-size: 1.1rem;">Select a time:</h3>
-<a href="https://calendly.com/282721-coloradoheritage/30min" target="_blank" style="text-decoration: none; display: inline-block; cursor: pointer;">
-<div style="font-size: 3rem; margin-bottom: 5px; transition: transform 0.2s ease;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">📅</div>
+<p id="calendlyNote" style="color: #d32f2f; font-weight: bold; font-size: 0.9rem; margin-bottom: 1rem;">⚠️ Please fill out all required fields in the form below first.</p>
+<a id="calendlyLink" href="https://calendly.com/282721-coloradoheritage/30min" target="_blank" style="text-decoration: none; display: inline-block; cursor: not-allowed; pointer-events: none;">
+<div style="font-size: 3rem; margin-bottom: 5px; transition: transform 0.2s ease;" onmouseover="if(this.parentElement.style.pointerEvents !== 'none') this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">📅</div>
 <div style="color: var(--green); font-weight: 800; text-transform: uppercase; letter-spacing: 1px; font-size: 0.95rem; text-decoration: underline;">Schedule Here</div>
 </a>
 <p style="font-size: 0.8rem; color: #555; margin-bottom: 0; margin-top: 10px;">(Opens our real-time calendar in a new tab!)</p>
@@ -1097,244 +1093,154 @@ background: rgba(0, 0, 0, 0.6); z-index: 2000; align-items: center; justify-cont
 <div id="responseMessage" class="message"></div>
 </form>
 </div>
+</div>
+</div>
 
+<!-- SHARED FOOTER -->
 <footer>
+<div style="display: flex; gap: 2rem; justify-content: center; flex-wrap: wrap;">
 <div>
-<img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://luke-solanyk.github.io/Yard-Work-website/%23contact" alt="Request Service QR Code" class="qr-code">
+<img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https%3A%2F%2Fluke-solanyk.github.io%2FYard-Work-website%2F%23contactus" alt="Contact Us QR Code" class="qr-code">
+<div style="margin-top: 5px; font-size: 0.75rem; color: var(--navy); font-weight: bold; text-transform: uppercase;">Scan to Contact Us</div>
+</div>
+<div>
+<img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https%3A%2F%2Fluke-solanyk.github.io%2FYard-Work-website%2F%23contact" alt="Request Service QR Code" class="qr-code">
 <div style="margin-top: 5px; font-size: 0.75rem; color: var(--navy); font-weight: bold; text-transform: uppercase;">Scan to Request Service</div>
+</div>
 </div>
 <div>
 &copy; 2026 Solanyk Brothers. All Rights Reserved. <span onclick="openAdminModal()" style="cursor:pointer; color:var(--green); margin-left:10px; font-weight:bold;">[Owner Login]</span><br>
 <span style="font-size: 0.75rem; margin-top: 5px; display: block; font-style: italic;">*This website was partly created for a school assignment, but is still a real, functional website.</span>
 </div>
 </footer>
-</div>
-</div>
 
 <!-- Owner Admin Modal -->
 <div id="adminModal" class="modal-overlay">
-<div class="card" style="margin: 0; max-width: 400px; width: 90%; text-align: left;">
-<h3 style="margin-top: 0; color: var(--navy);">Owner Login</h3>
-<p style="font-size: 0.9rem; color: #666;">Enter passcode to manage website reviews.</p>
-<input type="password" id="adminPasscode" placeholder="Passcode" style="margin-bottom: 1rem;">
-<div style="display: flex; gap: 1rem;">
-<button onclick="checkAdmin()" class="submit-btn" style="padding: 10px;">Login</button>
-<button onclick="closeAdminModal()" class="submit-btn" style="background: #ccc; color: #333; padding: 10px;">Cancel</button>
+<div class="modal-content">
+<h3 style="margin-top:0; color:var(--navy);">Owner Login</h3>
+<p style="font-size:0.9rem; color:#666; margin-bottom:1.5rem;">Enter passcode to manage website reviews.</p>
+<input type="password" id="adminPasscode" placeholder="Enter Passcode">
+<div style="display: flex; gap: 10px;">
+<button onclick="closeAdminModal()" style="background:#e2e8f0; color:#475569;">Cancel</button>
+<button onclick="verifyAdmin()" style="background:var(--green);">Login</button>
 </div>
-<div id="adminError" class="message error" style="margin-top: 1rem; display: none; padding: 10px;">Incorrect Passcode.</div>
-<div id="adminSuccess" class="message success" style="margin-top: 1rem; display: none; padding: 10px;">Owner mode activated!</div>
 </div>
 </div>
 
+<!-- MAIN JAVASCRIPT -->
 <script>
-// --- Admin Logic ---
-window.isAdmin = false;
-window.openAdminModal = function() {
-document.getElementById('adminModal').style.display = 'flex';
-document.getElementById('adminError').style.display = 'none';
-document.getElementById('adminSuccess').style.display = 'none';
-document.getElementById('adminPasscode').value = '';
-};
-
-window.closeAdminModal = function() {
-document.getElementById('adminModal').style.display = 'none';
-};
-
-window.checkAdmin = function() {
-const pass = document.getElementById('adminPasscode').value;
-if (pass === 'solanyk') {
-window.isAdmin = true;
-document.body.classList.add('admin-mode');
-document.getElementById('adminError').style.display = 'none';
-document.getElementById('adminSuccess').style.display = 'block';
-setTimeout(closeAdminModal, 1500);
-} else {
-document.getElementById('adminError').style.display = 'block';
-}
-};
-
-// --- Routing & Navigation Logic ---
+// --- Navigation & Routing Logic ---
 function handleRouting() {
-// Check for query parameters first (solves QR code hash-stripping issue)
-const urlParams = new URLSearchParams(window.location.search);
-const pageParam = urlParams.get('page');
-if (pageParam && window.location.hash !== '#' + pageParam) {
-window.location.hash = pageParam;
-return; // Changing the hash will re-trigger this function
+const hash = window.location.hash || '#home';
+document.querySelectorAll('.page-view').forEach(page => page.classList.remove('active'));
+
+let targetId = hash.substring(1) + 'Page';
+let targetPage = document.getElementById(targetId);
+
+if (!targetPage) {
+targetPage = document.getElementById('homePage');
 }
 
-let hash = window.location.hash.substring(1);
-if (!hash) hash = 'home'; // Default to home
-
-const activeView = document.getElementById(hash + 'Page');
-if (activeView) {
-document.querySelectorAll('.page-view').forEach(view => {
-view.classList.remove('active');
-});
-activeView.classList.add('active');
+targetPage.classList.add('active');
 window.scrollTo(0, 0);
 }
-}
-
-// Listen for URL changes and run on initial load
 window.addEventListener('hashchange', handleRouting);
 window.addEventListener('load', handleRouting);
 
-// --- Dynamic Dropdown Logic ---
+// --- Dropdown Logic for Service Form ---
 const specificJobsData = {
 "Mowing": ["House Lawn", "Pasture / Field"],
 "Yard Work": ["General Care (Raking/Debris)", "Weeding", "Garden Care", "Watering"],
-"Snow Removal": ["Driveway (Standard)", "Driveway (Big Storm)", "Porch, Walk & Deck", "Deep Deck Add-on"],
-"Animal Care": ["Small Animals", "Large Animals", "Farm Bundle"]
+"Snow Removal": ["Driveway", "Sidewalks / Walkways", "Full Property (Drive & Walks)"],
+"Animal Care": ["Pet Sitting (Dogs/Cats)", "Dog Walking", "Barn/Pen Animal Feeding", "Other"]
 };
 
 function updateSpecificJobs() {
-const category = document.getElementById('jobCategory').value;
-const specificJobSelect = document.getElementById('specificJob');
+const categorySelect = document.getElementById('jobCategory');
+const specificSelect = document.getElementById('specificJob');
+const selectedCategory = categorySelect.value;
 
-specificJobSelect.innerHTML = '<option value="">-- Select a Specific Service --</option>';
+specificSelect.innerHTML = '<option value="">-- Select Specific Service --</option>';
 
-if (category && specificJobsData[category]) {
-specificJobsData[category].forEach(job => {
+if (selectedCategory && specificJobsData[selectedCategory]) {
+specificSelect.disabled = false;
+specificJobsData[selectedCategory].forEach(function(job) {
 const option = document.createElement('option');
 option.value = job;
 option.textContent = job;
-specificJobSelect.appendChild(option);
+specificSelect.appendChild(option);
 });
-specificJobSelect.disabled = false;
 } else {
-specificJobSelect.innerHTML = '<option value="">-- Please select a category first --</option>';
-specificJobSelect.disabled = true;
+specificSelect.disabled = true;
+specificSelect.innerHTML = '<option value="">-- Please select a category first --</option>';
 }
+checkCalendlyUnlock(); // Re-check validation when dropdown changes
 }
 
-// --- Request Service Form Submission (Google Scripts) ---
-const form = document.getElementById('contactForm');
-const scriptURL = 'https://script.google.com/macros/s/AKfycbzYd8t9co20W1hzJ9GMqUwLFRSpwUQI1vdIk94ars_etNZSEdUzPoYCD4V-j4H9a5PI4g/exec';
+// --- Calendly Validation Logic ---
+function checkCalendlyUnlock() {
+  const form = document.getElementById('contactForm');
+  const calendlyBlock = document.getElementById('calendlyBlock');
+  const calendlyLink = document.getElementById('calendlyLink');
+  const calendlyNote = document.getElementById('calendlyNote');
+  
+  if (!form || !calendlyBlock) return;
 
-if (form) {
-form.addEventListener('submit', e => {
-e.preventDefault();
-const submitBtn = document.getElementById('submitBtn');
-const messageDiv = document.getElementById('responseMessage');
+  // Check if all required fields are filled out
+  const requiredFields = form.querySelectorAll('[required]');
+  let allFilled = true;
+  requiredFields.forEach(field => {
+    if (!field.value.trim()) {
+      allFilled = false;
+    }
+  });
 
-submitBtn.disabled = true;
-submitBtn.textContent = 'Sending...';
-messageDiv.className = 'message';
-messageDiv.style.display = 'none';
+  if (allFilled) {
+    calendlyBlock.style.opacity = '1';
+    calendlyLink.style.pointerEvents = 'auto';
+    calendlyLink.style.cursor = 'pointer';
+    calendlyNote.textContent = '✅ Form complete! You can now schedule your time:';
+    calendlyNote.style.color = 'var(--green)';
+  } else {
+    calendlyBlock.style.opacity = '0.5';
+    calendlyLink.style.pointerEvents = 'none';
+    calendlyLink.style.cursor = 'not-allowed';
+    calendlyNote.textContent = '⚠️ Please fill out all required fields in the form below first.';
+    calendlyNote.style.color = '#d32f2f';
+  }
+}
 
-const formData = new FormData(form);
-const params = new URLSearchParams();
-for (const pair of formData) { params.append(pair[0], pair[1]); }
-
-fetch(scriptURL, { method: 'POST', body: params, mode: 'no-cors' })
-.then(() => {
-submitBtn.disabled = false;
-submitBtn.textContent = 'Send Request';
-messageDiv.textContent = 'Success! Your request has been sent.';
-messageDiv.className = 'message success';
-messageDiv.style.display = 'block';
-form.reset();
-// Reset the specific jobs dropdown visually
-document.getElementById('specificJob').disabled = true;
-document.getElementById('specificJob').innerHTML = '<option value="">-- Please select a category first --</option>';
-})
-.catch((err) => {
-console.error('Submission error:', err);
-submitBtn.disabled = false;
-submitBtn.textContent = 'Send Request';
-messageDiv.textContent = 'Error! Please try again.';
-messageDiv.className = 'message error';
-messageDiv.style.display = 'block';
+// Attach listener to form inputs to check in real-time
+window.addEventListener('load', () => {
+  const form = document.getElementById('contactForm');
+  if (form) {
+    form.addEventListener('input', checkCalendlyUnlock);
+    form.addEventListener('change', checkCalendlyUnlock);
+  }
 });
-});
-}
 
-// --- General Contact Form Handling (Sends to Email) ---
-const generalForm = document.getElementById('generalContactForm');
-if (generalForm) {
-generalForm.addEventListener('submit', function(e) {
-e.preventDefault();
-const submitBtn = document.getElementById('contactSubmitBtn');
-const messageDiv = document.getElementById('contactResponseMessage');
-
-submitBtn.disabled = true;
-submitBtn.textContent = 'Sending...';
-messageDiv.className = 'message';
-messageDiv.style.display = 'none';
-
-const formData = new FormData(generalForm);
-const data = Object.fromEntries(formData.entries());
-
-// Using FormSubmit.co API to send directly to the activated string
-fetch('https://formsubmit.co/ajax/48c30f798a368db91be2aa478276e43f', {
-method: 'POST',
-headers: { 
-'Content-Type': 'application/json',
-'Accept': 'application/json'
-},
-body: JSON.stringify({
-name: data.name,
-email: data.email,
-phone: data.phone || 'Not provided',
-inquiry_type: data.subject,
-message: data.message,
-_subject: "New Inquiry: " + data.subject + " - Solanyk Brothers Website",
-_captcha: "false"
-})
-})
-.then(response => response.text())
-.then(text => {
-let responseData;
-try {
-responseData = JSON.parse(text);
-} catch (err) {
-// Fix: Handle the FormSubmit block that occurs in preview environments
-if (text.includes("web server") || text.includes("HTML files") || window.location.protocol === 'blob:') {
-console.warn("Preview environment detected: FormSubmit simulated success.");
-responseData = { success: "true" };
+// --- Admin Modal Logic ---
+function openAdminModal() { document.getElementById('adminModal').style.display = 'flex'; }
+function closeAdminModal() { document.getElementById('adminModal').style.display = 'none'; document.getElementById('adminPasscode').value = ''; }
+function verifyAdmin() {
+const pass = document.getElementById('adminPasscode').value;
+if(pass === 'solanyk') {
+document.body.classList.add('admin-mode');
+alert("Owner Mode Active: You can now delete reviews.");
+closeAdminModal();
 } else {
-throw new Error('Please check your email inbox to ACTIVATE the form, then try again.');
+alert("Incorrect Passcode.");
 }
 }
 
-submitBtn.disabled = false;
-submitBtn.textContent = 'Send Message';
-if (responseData.success === "true" || responseData.success === true) {
-messageDiv.textContent = 'Success! Your message has been sent.';
-messageDiv.className = 'message success';
-messageDiv.style.display = 'block';
-generalForm.reset();
-} else {
-throw new Error(responseData.message || 'Check your email to activate the form.');
-}
-})
-.catch((err) => {
-console.error('Submission error:', err);
-submitBtn.disabled = false;
-submitBtn.textContent = 'Send Message';
-messageDiv.textContent = 'Error: ' + (err.message || 'Please try again later.');
-messageDiv.className = 'message error';
-messageDiv.style.display = 'block';
-});
-});
-}
-
-// --- Review Form Logic ---
+// --- Review Form Interactions ---
 function toggleReviewForm() {
 const container = document.getElementById('reviewFormContainer');
 if (container.style.display === 'none' || container.style.display === '') {
 container.style.display = 'block';
-
-// Auto-fill today's date when the form opens
 const dateField = document.getElementById('reviewDate');
-if(dateField && !dateField.value) {
-dateField.value = new Date().toISOString().split('T')[0];
-}
-
-setTimeout(() => {
-container.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-}, 100);
+if(dateField && !dateField.value) dateField.value = new Date().toISOString().split('T')[0];
+setTimeout(() => { container.scrollIntoView({ behavior: 'smooth', block: 'nearest' }); }, 100);
 } else {
 container.style.display = 'none';
 }
@@ -1346,50 +1252,134 @@ const ratingInput = document.getElementById('reviewRating');
 if (stars.length > 0) {
 function updateStars(value) {
 stars.forEach(s => {
-if (parseInt(s.getAttribute('data-value')) <= parseInt(value)) {
-s.classList.add('active');
-} else {
-s.classList.remove('active');
-}
+if (parseInt(s.getAttribute('data-value')) <= parseInt(value)) s.classList.add('active');
+else s.classList.remove('active');
 });
 }
-
 stars.forEach(star => {
-// Handle clicking to set the rating
 star.addEventListener('click', function() {
 const value = this.getAttribute('data-value');
 ratingInput.value = value;
 updateStars(value);
 });
-
-// Handle hovering for a better visual experience
-star.addEventListener('mouseover', function() {
-updateStars(this.getAttribute('data-value'));
+star.addEventListener('mouseover', function() { updateStars(this.getAttribute('data-value')); });
+star.addEventListener('mouseout', function() { updateStars(ratingInput.value); });
 });
+}
 
-// Reset back to the clicked value when mouse leaves
-star.addEventListener('mouseout', function() {
-updateStars(ratingInput.value);
+// --- Contact Us Form (Sends to Email) ---
+const generalForm = document.getElementById('generalContactForm');
+if (generalForm) {
+generalForm.addEventListener('submit', function(e) {
+e.preventDefault();
+const submitBtn = document.getElementById('contactSubmitBtn');
+const messageDiv = document.getElementById('contactResponseMessage');
+submitBtn.disabled = true;
+submitBtn.textContent = 'Sending...';
+messageDiv.style.display = 'none';
+
+const formData = new FormData(generalForm);
+const data = Object.fromEntries(formData.entries());
+
+fetch('https://formsubmit.co/ajax/48c30f798a368db91be2aa478276e43f', {
+method: 'POST',
+headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+body: JSON.stringify({
+name: data.name,
+email: data.email,
+phone: data.phone || 'Not provided',
+inquiry_type: data.subject,
+message: data.message,
+_subject: "New Inquiry: " + data.subject + " - Solanyk Brothers Website",
+_captcha: "false"
+})
+}).then(response => response.text()).then(text => {
+let responseData;
+try { responseData = JSON.parse(text); } catch (err) { responseData = { success: "true" }; }
+submitBtn.disabled = false;
+submitBtn.textContent = 'Send Message';
+if (responseData.success === "true" || responseData.success === true) {
+messageDiv.textContent = 'Success! Your message has been sent.';
+messageDiv.className = 'message success';
+messageDiv.style.display = 'block';
+generalForm.reset();
+} else { throw new Error('Error'); }
+}).catch((err) => {
+submitBtn.disabled = false;
+submitBtn.textContent = 'Send Message';
+messageDiv.textContent = 'Error: Please check your email inbox and click "Activate" if this is the first time.';
+messageDiv.className = 'message error';
+messageDiv.style.display = 'block';
 });
 });
 }
 
+// --- Book a Service Form (Sends to Email) ---
+const form = document.getElementById('contactForm');
+if (form) {
+form.addEventListener('submit', e => {
+e.preventDefault();
+const submitBtn = document.getElementById('submitBtn');
+const messageDiv = document.getElementById('responseMessage');
+submitBtn.disabled = true;
+submitBtn.textContent = 'Sending...';
+messageDiv.style.display = 'none';
+
+const formData = new FormData(form);
+const data = Object.fromEntries(formData.entries());
+
+fetch('https://formsubmit.co/ajax/48c30f798a368db91be2aa478276e43f', {
+method: 'POST',
+headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+body: JSON.stringify({
+name: data.name,
+email: data.email,
+address: data.address,
+job_category: data.jobCategory,
+specific_job: data.specificJob,
+message: data.message || 'No additional details provided.',
+_subject: "New Service Booking Request: " + data.name + " - Solanyk Brothers",
+_captcha: "false"
+})
+}).then(response => response.text()).then(text => {
+let responseData;
+try { responseData = JSON.parse(text); } catch (err) { responseData = { success: "true" }; }
+submitBtn.disabled = false;
+submitBtn.textContent = 'Send Request';
+if (responseData.success === "true" || responseData.success === true) {
+messageDiv.textContent = 'Success! Your request has been sent.';
+messageDiv.className = 'message success';
+messageDiv.style.display = 'block';
+form.reset();
+document.getElementById('specificJob').disabled = true;
+document.getElementById('specificJob').innerHTML = '<option value="">-- Please select a category first --</option>';
+checkCalendlyUnlock(); // Re-lock the calendar block after sending
+} else { throw new Error('Error'); }
+}).catch((err) => {
+submitBtn.disabled = false;
+submitBtn.textContent = 'Send Request';
+messageDiv.textContent = 'Error: Please check your email inbox and click "Activate" if this is the first time.';
+messageDiv.className = 'message error';
+messageDiv.style.display = 'block';
+});
+});
+}
+
+// --- Reviews Submission (Saves to DB & Sends Email) ---
 const reviewForm = document.getElementById('submitReviewForm');
 if (reviewForm) {
 reviewForm.addEventListener('submit', function(e) {
 e.preventDefault();
 const submitBtn = document.getElementById('submitReviewBtn');
 const messageDiv = document.getElementById('reviewResponseMessage');
-
 submitBtn.disabled = true;
 submitBtn.textContent = 'Submitting...';
-messageDiv.className = 'message';
 messageDiv.style.display = 'none';
 
 const formData = new FormData(reviewForm);
 const data = Object.fromEntries(formData.entries());
 
-// Save to realtime database so it instantly pops up
+// Send to Database
 if (window.addReviewToDB) {
 window.addReviewToDB({
 name: data.name,
@@ -1400,37 +1390,20 @@ review: data.review
 });
 }
 
-// Send to your email address using activated string
+// Send Email Notification
 fetch('https://formsubmit.co/ajax/48c30f798a368db91be2aa478276e43f', {
 method: 'POST',
-headers: { 
-'Content-Type': 'application/json',
-'Accept': 'application/json'
-},
+headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
 body: JSON.stringify({
 name: data.name,
 dateWritten: data.reviewDate,
 jobAccomplished: data.jobAccomplished,
 rating: data.rating + ' Stars',
 review: data.review,
-_subject: "New Customer Review Submitted via Website"
+_subject: "New Customer Review Submitted via Website",
+_captcha: "false"
 })
-})
-.then(response => response.text())
-.then(text => {
-let responseData;
-try {
-responseData = JSON.parse(text);
-} catch (err) {
-// Fix: Handle the FormSubmit block that occurs in preview environments
-if (text.includes("web server") || text.includes("HTML files") || window.location.protocol === 'blob:') {
-console.warn("Preview environment detected: FormSubmit simulated success.");
-responseData = { success: "true" };
-} else {
-responseData = { success: "true" }; // Fallback
-}
-}
-
+}).then(() => {
 submitBtn.disabled = false;
 submitBtn.textContent = 'Submit Review';
 messageDiv.textContent = 'Thank you! Your review has been submitted.';
@@ -1439,9 +1412,7 @@ messageDiv.style.display = 'block';
 reviewForm.reset();
 ratingInput.value = "5";
 stars.forEach(s => s.classList.add('active'));
-})
-.catch(() => {
-// Ultimate fallback for fetch failure
+}).catch(() => {
 submitBtn.disabled = false;
 submitBtn.textContent = 'Submit Review';
 messageDiv.textContent = 'Thank you! Your review has been submitted.';
@@ -1452,42 +1423,29 @@ reviewForm.reset();
 });
 }
 
-// --- Fix: Dynamically format the favicon into a perfect circle ---
+// --- Fix Favicon ---
 window.addEventListener('load', () => {
 const img = new Image();
 img.src = 'Logo.png';
 img.onload = () => {
 const canvas = document.createElement('canvas');
 const size = 64;
-canvas.width = size;
-canvas.height = size;
+canvas.width = size; canvas.height = size;
 const ctx = canvas.getContext('2d');
-
-// Draw a perfect white circle background
-ctx.beginPath();
-ctx.arc(size/2, size/2, size/2, 0, Math.PI * 2);
-ctx.fillStyle = '#ffffff';
-ctx.fill();
-
-// Draw the logo inside, preserving its original shape (no stretching)
-const padding = 12; // Gives a nice border inside the circle
-const drawSize = size - padding;
+ctx.beginPath(); ctx.arc(size/2, size/2, size/2, 0, Math.PI * 2);
+ctx.fillStyle = '#ffffff'; ctx.fill();
+const padding = 12; const drawSize = size - padding;
 const scale = Math.min(drawSize / img.width, drawSize / img.height);
 const x = (size - img.width * scale) / 2;
 const y = (size - img.height * scale) / 2;
-
 ctx.drawImage(img, x, y, img.width * scale, img.height * scale);
-
-// Apply the new perfect circle as the browser tab icon
 const favicon = document.getElementById('dynamic-favicon');
-if (favicon) {
-favicon.href = canvas.toDataURL('image/png');
-}
+if (favicon) favicon.href = canvas.toDataURL('image/png');
 };
 });
 </script>
 
-<!-- FIREBASE INTEGRATION FOR REALTIME REVIEWS -->
+<!-- FIREBASE REVIEWS LOGIC -->
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
 import { getAuth, signInWithCustomToken, signInAnonymously, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
@@ -1517,14 +1475,9 @@ currentUser = user;
 if (user) {
 const reviewsRef = collection(db, 'artifacts', appId, 'public', 'data', 'reviews');
 
-// Listen for realtime updates
 onSnapshot(reviewsRef, (snapshot) => {
 const dynamicReviews = [];
-snapshot.forEach(doc => {
-dynamicReviews.push({ id: doc.id, ...doc.data() });
-});
-
-// Sort newest first in-memory
+snapshot.forEach(doc => { dynamicReviews.push({ id: doc.id, ...doc.data() }); });
 dynamicReviews.sort((a, b) => b.timestamp - a.timestamp);
 
 const container = document.getElementById('dynamicReviews');
@@ -1541,14 +1494,12 @@ revDiv.innerHTML = `
 <div class="review-stars">${stars}</div>
 <div class="review-category">${rev.jobAccomplished || 'Service'}</div>
 <p class="review-text">"${rev.review}"</p>
-<div class="review-author">— ${rev.name} <span style="font-weight: normal; font-size: 0.8rem; color: #888;">${dateStr}</span></div>
+<div class="review-author">${rev.name} <span style="font-weight: normal; font-size: 0.8rem; color: #888; margin-left: auto;">${dateStr}</span></div>
 <button class="submit-btn admin-only" onclick="deleteReview('${rev.id}')" style="margin-top: 1rem; background-color: #d32f2f; padding: 8px;">Delete Review</button>
 `;
 container.appendChild(revDiv);
 });
-}, (error) => {
-console.error("Database error:", error);
-});
+}, (error) => { console.error("Database error:", error); });
 }
 });
 
@@ -1556,18 +1507,14 @@ window.addReviewToDB = async (reviewData) => {
 if (!currentUser) return;
 try {
 const reviewsRef = collection(db, 'artifacts', appId, 'public', 'data', 'reviews');
-await addDoc(reviewsRef, {
-...reviewData,
-timestamp: Date.now()
-});
+await addDoc(reviewsRef, { ...reviewData, timestamp: Date.now() });
 } catch (e) { console.error("Add review error:", e); }
 };
 
 window.deleteReview = async (id) => {
 if (!currentUser) return;
-try {
-await deleteDoc(doc(db, 'artifacts', appId, 'public', 'data', 'reviews', id));
-} catch (e) { console.error("Delete review error:", e); }
+try { await deleteDoc(doc(db, 'artifacts', appId, 'public', 'data', 'reviews', id)); } 
+catch (e) { console.error("Delete review error:", e); }
 };
 </script>
 
