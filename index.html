@@ -544,14 +544,14 @@ background: rgba(0, 0, 0, 0.6); z-index: 2000; align-items: center; justify-cont
 <li><a href="#contactus">Contact Us</a></li>
 <li><a href="#contact" class="nav-cta">Book a Service</a></li>
 </ul>
-</nav>
+</nav> 
 
 <!-- HOME PAGE VIEW -->
 <div id="homePage" class="page-view active">
 <section class="hero">
 <div class="hero-overlay"></div>
 <div class="hero-content">
-<img src="Logo.png" alt="Solanyk Brothers Logo" class="hero-logo">
+<img src="Logo.png" alt="Solanyk Brothers Logo" class="hero-logo" onerror="this.style.display='none'">
 <h1 class="logo-text">Solanyk Brothers</h1>
 <div class="hero-subtitle">Lawn Care & Snow Removal</div>
 </div>
@@ -1305,62 +1305,79 @@ messageDiv.style.display = 'block';
 });
 }
 
-// --- Reviews Submission (Saves to DB & Sends Email) ---
+// --- Reviews Submission (Optimistic UI Update) ---
 const reviewForm = document.getElementById('submitReviewForm');
 if (reviewForm) {
-reviewForm.addEventListener('submit', function(e) {
-e.preventDefault();
-const submitBtn = document.getElementById('submitReviewBtn');
-const messageDiv = document.getElementById('reviewResponseMessage');
-submitBtn.disabled = true;
-submitBtn.textContent = 'Submitting...';
-messageDiv.style.display = 'none';
+  reviewForm.addEventListener('submit', function(e) {
+    e.preventDefault();
+    const submitBtn = document.getElementById('submitReviewBtn');
+    const messageDiv = document.getElementById('reviewResponseMessage');
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Submitting...';
+    messageDiv.style.display = 'none';
 
-const formData = new FormData(reviewForm);
-const data = Object.fromEntries(formData.entries());
+    const formData = new FormData(reviewForm);
+    const data = Object.fromEntries(formData.entries());
+    const ratingNum = parseInt(data.rating, 10);
 
-// Send to Database
-if (window.addReviewToDB) {
-window.addReviewToDB({
-name: data.name,
-dateWritten: data.reviewDate,
-jobAccomplished: data.jobAccomplished,
-rating: parseInt(data.rating),
-review: data.review
-});
-}
+    // --- INSTANT OPTIMISTIC UI UPDATE ---
+    const dynamicReviewsContainer = document.getElementById('dynamicReviews');
+    if (dynamicReviewsContainer) {
+      const starsString = '⭐'.repeat(ratingNum);
+      const dateStr = data.reviewDate ? `(${data.reviewDate})` : '';
+      
+      const newReviewHTML = `
+        <div class="review-item" style="animation: fadeIn 0.5s;">
+          <div class="review-stars">${starsString}</div>
+          <div class="review-category">${data.jobAccomplished || 'Service'}</div>
+          <p class="review-text">"${data.review}"</p>
+          <div class="review-author">${data.name} <span style="font-weight: normal; font-size: 0.8rem; color: #888; margin-left: auto;">${dateStr}</span></div>
+        </div>
+      `;
+      // Insert it right at the top
+      dynamicReviewsContainer.insertAdjacentHTML('afterbegin', newReviewHTML);
+    }
+    
+    // Visually reset the form instantly
+    messageDiv.textContent = 'Thank you! Your review has been submitted.';
+    messageDiv.className = 'message success';
+    messageDiv.style.display = 'block';
+    reviewForm.reset();
+    document.getElementById('reviewRating').value = "5";
+    document.querySelectorAll('#starContainer .star').forEach(s => s.classList.add('active'));
+    setTimeout(() => { messageDiv.style.display = 'none'; }, 4000);
 
-// Send Email Notification
-fetch('https://formsubmit.co/ajax/48c30f798a368db91be2aa478276e43f', {
-method: 'POST',
-headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-body: JSON.stringify({
-name: data.name,
-dateWritten: data.reviewDate,
-jobAccomplished: data.jobAccomplished,
-rating: data.rating + ' Stars',
-review: data.review,
-_subject: "New Customer Review Submitted via Website",
-_captcha: "false"
-})
-}).then(() => {
-submitBtn.disabled = false;
-submitBtn.textContent = 'Submit Review';
-messageDiv.textContent = 'Thank you! Your review has been submitted.';
-messageDiv.className = 'message success';
-messageDiv.style.display = 'block';
-reviewForm.reset();
-ratingInput.value = "5";
-stars.forEach(s => s.classList.add('active'));
-}).catch(() => {
-submitBtn.disabled = false;
-submitBtn.textContent = 'Submit Review';
-messageDiv.textContent = 'Thank you! Your review has been submitted.';
-messageDiv.className = 'message success';
-messageDiv.style.display = 'block';
-reviewForm.reset();
-});
-});
+    // --- BACKGROUND NETWORK REQUESTS ---
+    // 1. Send to Database
+    if (window.addReviewToDB) {
+      window.addReviewToDB({
+        name: data.name,
+        dateWritten: data.reviewDate,
+        jobAccomplished: data.jobAccomplished,
+        rating: ratingNum,
+        review: data.review
+      });
+    }
+
+    // 2. Send Email Notification
+    fetch('https://formsubmit.co/ajax/48c30f798a368db91be2aa478276e43f', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({
+        name: data.name,
+        dateWritten: data.reviewDate,
+        jobAccomplished: data.jobAccomplished,
+        rating: data.rating + ' Stars',
+        review: data.review,
+        _subject: "New Customer Review Submitted via Website",
+        _captcha: "false"
+      })
+    }).finally(() => {
+        // Just re-enable the button when done
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Submit Review';
+    });
+  });
 }
 
 // --- Fix Favicon ---
