@@ -11,6 +11,9 @@
 <!-- Importing Roboto from Google Fonts -->
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
 
+<!-- Calendly Widget Script -->
+<script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
+
 <style>
 :root {
 --navy: #1a2b48;
@@ -365,6 +368,7 @@ font-weight: bold;
 
 .message.success { display: block; background-color: #d4edda; color: #155724; }
 .message.error { display: block; background-color: #f8d7da; color: #721c24; }
+.message.error a { color: #721c24; font-weight: bold; text-decoration: underline; }
 
 /* --- Star Rating Interactive --- */
 .star-rating-input {
@@ -544,14 +548,14 @@ background: rgba(0, 0, 0, 0.6); z-index: 2000; align-items: center; justify-cont
 <li><a href="#contactus">Contact Us</a></li>
 <li><a href="#contact" class="nav-cta">Book a Service</a></li>
 </ul>
-</nav> 
+</nav>
 
 <!-- HOME PAGE VIEW -->
 <div id="homePage" class="page-view active">
 <section class="hero">
 <div class="hero-overlay"></div>
 <div class="hero-content">
-<img src="Logo.png" alt="Solanyk Brothers Logo" class="hero-logo" onerror="this.style.display='none'">
+<img src="Logo.png" alt="Solanyk Brothers Logo" class="hero-logo">
 <h1 class="logo-text">Solanyk Brothers</h1>
 <div class="hero-subtitle">Lawn Care & Snow Removal</div>
 </div>
@@ -605,7 +609,7 @@ background: rgba(0, 0, 0, 0.6); z-index: 2000; align-items: center; justify-cont
 <div class="card" style="text-align: center;">
 <h2>Service Area</h2>
 <p style="font-size: 1.2rem; color: var(--green); font-weight: bold; margin-bottom: 0.5rem;">Berthoud, Colorado</p>
-<p style="color: #666; margin-top: 0;"><em>Please note that at this time, we only offer services within the town of Berthoud.</em></p>
+<p style="color: #666; margin-top: 0;"><em>While our primary service area is Berthoud, we are open to helping neighboring properties! If you are outside of Berthoud, please <a href="#contactus" style="color: var(--navy); font-weight: bold; text-decoration: underline;">Contact Us</a> to see if we can accommodate you.</em></p>
 </div>
 
 <div class="card">
@@ -964,7 +968,7 @@ background: rgba(0, 0, 0, 0.6); z-index: 2000; align-items: center; justify-cont
 <div class="container">
 <div class="card" style="text-align: center;">
 <h2>Have a Question?</h2>
-<p style="margin-bottom: 2rem; color: #666;">Whether you have a question about our services, pricing, or a custom job, we are here to help! Fill out the form below and we will get back to you as soon as possible.</p>
+<p style="margin-bottom: 2rem; color: #666;">Whether you have a question about our services, pricing, or a custom job, we are here to help! Fill out the form below and we will get back to you as soon as possible. <br><strong style="color: var(--navy);">Outside of Berthoud?</strong> Select "Service Area Verification" below to see if we can make an exception for your property.</p>
 
 <form id="generalContactForm">
 <div style="display: flex; gap: 1rem; margin-bottom: 1.5rem; flex-wrap: wrap; text-align: left;">
@@ -1018,23 +1022,12 @@ background: rgba(0, 0, 0, 0.6); z-index: 2000; align-items: center; justify-cont
 <div class="container">
 <div class="card">
 <h2>Book Your Service</h2>
-<p style="margin-bottom: 2rem; color: #666;">Fill out the form below to request a service. We will get back to you shortly to confirm your appointment and provide an estimate.<br><strong style="color: var(--navy);">Please note: We exclusively serve properties in Berthoud, Colorado.</strong></p>
-
-<!-- Calendly Availability Link Block -->
-<div id="calendlyBlock" style="background-color: #f0fdf4; border: 2px dashed var(--green); padding: 1rem; border-radius: 8px; margin-bottom: 2rem; text-align: center; max-width: 400px; margin-left: auto; margin-right: auto; transition: opacity 0.3s ease;">
-<h3 style="margin-top: 0; color: var(--navy); margin-bottom: 0.5rem; font-size: 1.1rem;">Select a time:</h3>
-<p id="calendlyNote" style="color: var(--navy); font-size: 0.9rem; margin-bottom: 1rem;">Pick a convenient time for your service below.</p>
-<a id="calendlyLink" href="https://calendly.com/282721-coloradoheritage/30min" target="_blank" style="text-decoration: none; display: inline-block; cursor: pointer; pointer-events: auto;">
-<div style="font-size: 3rem; margin-bottom: 5px; transition: transform 0.2s ease;" onmouseover="if(this.parentElement.style.pointerEvents !== 'none') this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">📅</div>
-<div style="color: var(--green); font-weight: 800; text-transform: uppercase; letter-spacing: 1px; font-size: 0.95rem; text-decoration: underline;">Schedule Here</div>
-</a>
-<p style="font-size: 0.8rem; color: #555; margin-bottom: 0; margin-top: 10px;">(Opens our real-time calendar in a new tab!)</p>
-</div>
+<p id="bookingInstructions" style="margin-bottom: 2rem; color: #666;"><strong>Step 1:</strong> Fill out the form below to request a service. Once submitted, you will be able to select your exact appointment time.<br><strong style="color: var(--navy);">Please note: Our online booking is reserved for Berthoud properties. If you are outside of Berthoud, please <a href="#contactus" style="color: var(--green); text-decoration: underline;">contact us</a> first!</strong></p>
 
 <form id="contactForm">
 <div style="display: flex; gap: 1rem; margin-bottom: 1.5rem; flex-wrap: wrap;">
 <div style="flex: 1; min-width: 250px;">
-<label for="name">Your Name</label>
+<label for="name">Your Name (First & Last)</label>
 <input type="text" id="name" name="name" placeholder="John Doe" required>
 </div>
 <div style="flex: 1; min-width: 250px;">
@@ -1043,9 +1036,15 @@ background: rgba(0, 0, 0, 0.6); z-index: 2000; align-items: center; justify-cont
 </div>
 </div>
 
-<div class="form-group">
-<label for="address">Property Address (Berthoud Only)</label>
-<input type="text" id="address" name="address" placeholder="123 Main St, Berthoud, CO" required>
+<div style="display: flex; gap: 1rem; margin-bottom: 1.5rem; flex-wrap: wrap;">
+<div style="flex: 2; min-width: 250px;">
+<label for="address">Street Address</label>
+<input type="text" id="address" name="address" placeholder="123 Main St" required>
+</div>
+<div style="flex: 1; min-width: 150px;">
+<label for="city">City</label>
+<input type="text" id="city" name="city" placeholder="Berthoud" required>
+</div>
 </div>
 
 <div style="display: flex; gap: 1rem; margin-bottom: 1.5rem; flex-wrap: wrap;">
@@ -1072,9 +1071,20 @@ background: rgba(0, 0, 0, 0.6); z-index: 2000; align-items: center; justify-cont
 <textarea id="message" name="message" rows="4" placeholder="Let us know if you have any specific requirements..."></textarea>
 </div>
 
-<button type="submit" id="submitBtn" class="submit-btn">Send Request</button>
+<button type="submit" id="submitBtn" class="submit-btn">Send Request & Continue to Calendar</button>
 <div id="responseMessage" class="message"></div>
 </form>
+
+<!-- Calendly Embed Container (Hidden until form is submitted) -->
+<div id="calendlyEmbedContainer" style="display: none; margin-top: 1rem;">
+<button type="button" onclick="goBackToStep1()" style="background: none; border: none; color: var(--navy); font-weight: bold; cursor: pointer; display: flex; align-items: center; gap: 5px; margin-bottom: 1.5rem; font-size: 1rem; padding: 0;">
+<span style="font-size: 1.4rem;">&larr;</span> Back to Step 1
+</button>
+<h3 style="color: var(--green); text-align: center; margin-bottom: 1rem; font-size: 1.5rem; margin-top: 0;">Step 2: Choose Your Time</h3>
+<p style="text-align: center; color: #666; margin-bottom: 2rem;">Your request has been saved. Please select a time below to complete your booking.</p>
+<div id="calendlyWidget" style="min-width:320px;height:700px;"></div>
+</div>
+
 </div>
 </div>
 </div>
@@ -1164,7 +1174,9 @@ function openAdminModal() { document.getElementById('adminModal').style.display 
 function closeAdminModal() { document.getElementById('adminModal').style.display = 'none'; document.getElementById('adminPasscode').value = ''; }
 function verifyAdmin() {
 const pass = document.getElementById('adminPasscode').value;
-if(pass === 'solanyk') {
+
+// Converts what you type to lowercase and removes accidental spaces so it always works
+if(pass.trim().toLowerCase() === 'solanyk') {
 document.body.classList.add('admin-mode');
 alert("Owner Mode Active: You can now delete reviews.");
 closeAdminModal();
@@ -1172,6 +1184,13 @@ closeAdminModal();
 alert("Incorrect Passcode.");
 }
 }
+
+// --- Back Button Functionality ---
+window.goBackToStep1 = function() {
+document.getElementById('calendlyEmbedContainer').style.display = 'none';
+document.getElementById('contactForm').style.display = 'block';
+document.getElementById('bookingInstructions').style.display = 'block';
+};
 
 // --- Review Form Interactions ---
 function toggleReviewForm() {
@@ -1221,7 +1240,7 @@ messageDiv.style.display = 'none';
 const formData = new FormData(generalForm);
 const data = Object.fromEntries(formData.entries());
 
-fetch('https://formsubmit.co/ajax/48c30f798a368db91be2aa478276e43f', {
+fetch('https://formsubmit.co/ajax/282721@coloradoheritage.org', {
 method: 'POST',
 headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
 body: JSON.stringify({
@@ -1261,112 +1280,138 @@ form.addEventListener('submit', e => {
 e.preventDefault();
 const submitBtn = document.getElementById('submitBtn');
 const messageDiv = document.getElementById('responseMessage');
+
+// 1. Validate First and Last Name
+const formData = new FormData(form);
+const data = Object.fromEntries(formData.entries());
+const nameWords = data.name.trim().split(/\s+/);
+
+if (nameWords.length < 2) {
+messageDiv.innerHTML = 'Please enter both your First and Last name.';
+messageDiv.className = 'message error';
+messageDiv.style.display = 'block';
+return;
+}
+
+// 2. Validate City (Must be "Berthoud")
+const cityLower = data.city ? data.city.toLowerCase().trim() : '';
+if (!cityLower.includes('berthoud')) {
+messageDiv.innerHTML = 'Our online calendar is currently reserved for properties within <strong>Berthoud</strong>. If you are outside of Berthoud, please <a href="#contactus" onclick="document.getElementById(\'contactusPage\').scrollIntoView();" style="color: var(--navy); font-weight: bold; text-decoration: underline;">Contact Us</a> directly to see if we can accommodate you!';
+messageDiv.className = 'message error';
+messageDiv.style.display = 'block';
+return;
+}
+
 submitBtn.disabled = true;
 submitBtn.textContent = 'Sending...';
 messageDiv.style.display = 'none';
 
-const formData = new FormData(form);
-const data = Object.fromEntries(formData.entries());
+// Helper function to safely show calendar
+const transitionToCalendar = () => {
+form.style.display = 'none';
+document.getElementById('bookingInstructions').style.display = 'none';
+const embedContainer = document.getElementById('calendlyEmbedContainer');
+embedContainer.style.display = 'block';
+if (window.Calendly) {
+    window.Calendly.initInlineWidget({
+        url: 'https://calendly.com/282721-coloradoheritage/30min',
+        parentElement: document.getElementById('calendlyWidget'),
+        prefill: { name: data.name, email: data.email }
+    });
+    embedContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+} else {
+    document.getElementById('calendlyWidget').innerHTML = '<p style="text-align:center;">Please <a href="https://calendly.com/282721-coloradoheritage/30min" target="_blank" style="color:var(--green); font-weight:bold; text-decoration:underline;">click here</a> to open the calendar.</p>';
+}
+};
 
-fetch('https://formsubmit.co/ajax/48c30f798a368db91be2aa478276e43f', {
+fetch('https://formsubmit.co/ajax/282721@coloradoheritage.org', {
 method: 'POST',
 headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
 body: JSON.stringify({
 name: data.name,
 email: data.email,
-address: data.address,
+address: data.address + ', ' + data.city,
 job_category: data.jobCategory,
 specific_job: data.specificJob,
 message: data.message || 'No additional details provided.',
 _subject: "New Service Booking Request: " + data.name + " - Solanyk Brothers",
 _captcha: "false"
 })
-}).then(response => response.text()).then(text => {
-let responseData;
-try { responseData = JSON.parse(text); } catch (err) { responseData = { success: "true" }; }
+}).then(response => response.json()).then(responseData => {
 submitBtn.disabled = false;
-submitBtn.textContent = 'Send Request';
-if (responseData.success === "true" || responseData.success === true) {
-messageDiv.textContent = 'Success! Your request has been sent.';
-messageDiv.className = 'message success';
-messageDiv.style.display = 'block';
-form.reset();
-document.getElementById('specificJob').disabled = true;
-document.getElementById('specificJob').innerHTML = '<option value="">-- Please select a category first --</option>';
+submitBtn.textContent = 'Send Request & Continue to Calendar';
 
-} else { throw new Error('Error'); }
+if (responseData.success === "true" || responseData.success === true) {
+    transitionToCalendar(); // Success! Email sent, now move to calendar.
+} else {
+    throw new Error(responseData.message || "Error");
+}
 }).catch((err) => {
 submitBtn.disabled = false;
-submitBtn.textContent = 'Send Request';
-messageDiv.textContent = 'Error: Please check your email inbox and click "Activate" if this is the first time.';
+submitBtn.textContent = 'Send Request & Continue to Calendar';
+messageDiv.innerHTML = '<strong>Hold on!</strong> FormSubmit needs to verify this new form layout. Please check your email (282721@coloradoheritage.org), click <strong>"Activate Form"</strong>, and then try sending this again!';
 messageDiv.className = 'message error';
 messageDiv.style.display = 'block';
 });
 });
 }
 
-// --- Reviews Submission (Optimistic UI Update) ---
+// --- Reviews Submission (Saves to DB & Sends Email) ---
 const reviewForm = document.getElementById('submitReviewForm');
 if (reviewForm) {
-  reviewForm.addEventListener('submit', function(e) {
-    e.preventDefault();
-    const submitBtn = document.getElementById('submitReviewBtn');
-    const messageDiv = document.getElementById('reviewResponseMessage');
-    submitBtn.disabled = true;
-    submitBtn.textContent = 'Submitting...';
-    messageDiv.style.display = 'none';
+reviewForm.addEventListener('submit', function(e) {
+e.preventDefault();
+const submitBtn = document.getElementById('submitReviewBtn');
+const messageDiv = document.getElementById('reviewResponseMessage');
+submitBtn.disabled = true;
+submitBtn.textContent = 'Submitting...';
+messageDiv.style.display = 'none';
 
-    const formData = new FormData(reviewForm);
-    const data = Object.fromEntries(formData.entries());
-    const ratingNum = parseInt(data.rating, 10);
+const formData = new FormData(reviewForm);
+const data = Object.fromEntries(formData.entries());
 
-    // --- INSTANT OPTIMISTIC UI UPDATE ---
-    const dynamicReviewsContainer = document.getElementById('dynamicReviews');
-    if (dynamicReviewsContainer) {
-      const starsString = '⭐'.repeat(ratingNum);
-      const dateStr = data.reviewDate ? `(${data.reviewDate})` : '';
-      
-      const newReviewHTML = `
-        <div class="review-item" style="animation: fadeIn 0.5s;">
-          <div class="review-stars">${starsString}</div>
-          <div class="review-category">${data.jobAccomplished || 'Service'}</div>
-          <p class="review-text">"${data.review}"</p>
-          <div class="review-author">${data.name} <span style="font-weight: normal; font-size: 0.8rem; color: #888; margin-left: auto;">${dateStr}</span></div>
-        </div>
-      `;
-      // Insert it right at the top
-      dynamicReviewsContainer.insertAdjacentHTML('afterbegin', newReviewHTML);
-    }
-    
-    // Visually reset the form instantly
-    messageDiv.textContent = 'Thank you! Your review has been submitted.';
-    messageDiv.className = 'message success';
-    messageDiv.style.display = 'block';
-    reviewForm.reset();
-    document.getElementById('reviewRating').value = "5";
-    document.querySelectorAll('#starContainer .star').forEach(s => s.classList.add('active'));
-    setTimeout(() => { messageDiv.style.display = 'none'; }, 4000);
+// Send to Database
+if (window.addReviewToDB) {
+window.addReviewToDB({
+name: data.name,
+dateWritten: data.reviewDate,
+jobAccomplished: data.jobAccomplished,
+rating: parseInt(data.rating),
+review: data.review
+});
+}
 
-    // --- BACKGROUND NETWORK REQUESTS ---
-    // Send Email Notification
-    fetch('https://formsubmit.co/ajax/48c30f798a368db91be2aa478276e43f', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-      body: JSON.stringify({
-        name: data.name,
-        dateWritten: data.reviewDate,
-        jobAccomplished: data.jobAccomplished,
-        rating: data.rating + ' Stars',
-        review: data.review,
-        _subject: "New Customer Review Submitted via Website",
-        _captcha: "false"
-      })
-    }).finally(() => {
-        // Just re-enable the button when done
-        submitBtn.disabled = false;
-        submitBtn.textContent = 'Submit Review';
-    });
-  });
+// Send Email Notification
+fetch('https://formsubmit.co/ajax/282721@coloradoheritage.org', {
+method: 'POST',
+headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+body: JSON.stringify({
+name: data.name,
+dateWritten: data.reviewDate,
+jobAccomplished: data.jobAccomplished,
+rating: data.rating + ' Stars',
+review: data.review,
+_subject: "New Customer Review Submitted via Website",
+_captcha: "false"
+})
+}).then(() => {
+submitBtn.disabled = false;
+submitBtn.textContent = 'Submit Review';
+messageDiv.textContent = 'Thank you! Your review has been submitted.';
+messageDiv.className = 'message success';
+messageDiv.style.display = 'block';
+reviewForm.reset();
+ratingInput.value = "5";
+stars.forEach(s => s.classList.add('active'));
+}).catch(() => {
+submitBtn.disabled = false;
+submitBtn.textContent = 'Submit Review';
+messageDiv.textContent = 'Thank you! Your review has been submitted.';
+messageDiv.className = 'message success';
+messageDiv.style.display = 'block';
+reviewForm.reset();
+});
+});
 }
 
 // --- Fix Favicon ---
@@ -1389,6 +1434,79 @@ const favicon = document.getElementById('dynamic-favicon');
 if (favicon) favicon.href = canvas.toDataURL('image/png');
 };
 });
+</script>
+
+<!-- FIREBASE REVIEWS LOGIC -->
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+import { getAuth, signInWithCustomToken, signInAnonymously, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+import { getFirestore, collection, addDoc, onSnapshot, deleteDoc, doc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : {};
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
+const appId = typeof __app_id !== 'undefined' ? __app_id : 'solanyk-yard-work';
+
+let currentUser = null;
+
+const initAuth = async () => {
+try {
+if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
+await signInWithCustomToken(auth, __initial_auth_token);
+} else {
+await signInAnonymously(auth);
+}
+} catch (e) { console.error("Auth error", e); }
+};
+initAuth();
+
+onAuthStateChanged(auth, (user) => {
+currentUser = user;
+if (user) {
+const reviewsRef = collection(db, 'artifacts', appId, 'public', 'data', 'reviews');
+
+onSnapshot(reviewsRef, (snapshot) => {
+const dynamicReviews = [];
+snapshot.forEach(doc => { dynamicReviews.push({ id: doc.id, ...doc.data() }); });
+dynamicReviews.sort((a, b) => b.timestamp - a.timestamp);
+
+const container = document.getElementById('dynamicReviews');
+if (!container) return;
+container.innerHTML = '';
+
+dynamicReviews.forEach(rev => {
+const stars = '⭐'.repeat(rev.rating || 5);
+const dateStr = rev.dateWritten ? `(${rev.dateWritten})` : '';
+
+const revDiv = document.createElement('div');
+revDiv.className = 'review-item';
+revDiv.innerHTML = `
+<div class="review-stars">${stars}</div>
+<div class="review-category">${rev.jobAccomplished || 'Service'}</div>
+<p class="review-text">"${rev.review}"</p>
+<div class="review-author">${rev.name} <span style="font-weight: normal; font-size: 0.8rem; color: #888; margin-left: auto;">${dateStr}</span></div>
+<button class="submit-btn admin-only" onclick="deleteReview('${rev.id}')" style="margin-top: 1rem; background-color: #d32f2f; padding: 8px;">Delete Review</button>
+`;
+container.appendChild(revDiv);
+});
+}, (error) => { console.error("Database error:", error); });
+}
+});
+
+window.addReviewToDB = async (reviewData) => {
+if (!currentUser) return;
+try {
+const reviewsRef = collection(db, 'artifacts', appId, 'public', 'data', 'reviews');
+await addDoc(reviewsRef, { ...reviewData, timestamp: Date.now() });
+} catch (e) { console.error("Add review error:", e); }
+};
+
+window.deleteReview = async (id) => {
+if (!currentUser) return;
+try { await deleteDoc(doc(db, 'artifacts', appId, 'public', 'data', 'reviews', id)); } 
+catch (e) { console.error("Delete review error:", e); }
+};
 </script>
 
 </body>
