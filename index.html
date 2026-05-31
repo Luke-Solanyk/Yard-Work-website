@@ -11,9 +11,6 @@
 <!-- Importing Roboto from Google Fonts -->
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
 
-<!-- Calendly Widget Script -->
-<script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
-
 <style>
 :root {
 --navy: #1a2b48;
@@ -368,7 +365,6 @@ font-weight: bold;
 
 .message.success { display: block; background-color: #d4edda; color: #155724; }
 .message.error { display: block; background-color: #f8d7da; color: #721c24; }
-.message.error a { color: #721c24; font-weight: bold; text-decoration: underline; }
 
 /* --- Star Rating Interactive --- */
 .star-rating-input {
@@ -493,12 +489,13 @@ border: 3px solid var(--white);
 @media (max-width: 768px) {
 nav { height: auto; padding: 1rem; flex-direction: column; gap: 15px; text-align: center; }
 .nav-text-logo { align-items: center; }
-.nav-links { flex-wrap: wrap; justify-content: center; gap: 1rem; }
-.logo-text { font-size: 2rem; letter-spacing: 2px; }
-.hero-logo { height: 90px; }
-.hero { height: 320px; }
-.hero-subtitle { font-size: 1.1rem; }
-.container { margin-top: -30px; padding: 0 0.5rem; }
+.nav-links { flex-wrap: wrap; justify-content: center; gap: 0.5rem; }
+.nav-links a { padding: 8px 12px; font-size: 0.85rem; border-radius: 5px; }
+.logo-text { font-size: 2.2rem; letter-spacing: 1px; }
+.hero-logo { height: 100px; }
+.hero { height: 350px; }
+.hero-subtitle { font-size: 1.2rem; }
+.container { margin-top: -30px; padding: 0 1rem; }
 .card { padding: 1.5rem; margin-bottom: 1.5rem; }
 .grid { grid-template-columns: 1fr; gap: 1.5rem; }
 h2 { font-size: 1.5rem; }
@@ -506,11 +503,21 @@ h2 { font-size: 1.5rem; }
 }
 
 @media (max-width: 480px) {
+.logo-text { font-size: 1.8rem; }
+.hero { height: 280px; }
 .nav-links { flex-direction: column; width: 100%; gap: 0.5rem; }
 .nav-links li { width: 100%; }
-.nav-links a { display: block; padding: 10px; border-radius: 5px; background: #f8fafb; }
+.nav-links a { display: block; padding: 12px; border-radius: 8px; background: #f8fafb; border: 1px solid #e1e8ed; }
 .nav-cta { margin-top: 5px; }
-.pricing-table { min-width: 500px; }
+input, textarea, select { font-size: 16px; /* Prevents auto-zoom on iOS */ }
+
+/* Mobile Pricing Table Cards */
+.pricing-table-container { overflow-x: hidden; }
+.pricing-table, .pricing-table tbody, .pricing-table tr, .pricing-table td { display: block; width: 100%; box-sizing: border-box; }
+.pricing-table thead { display: none; }
+.pricing-table tr { margin-bottom: 1rem; border: 1px solid #e1e8ed; border-radius: 8px; padding: 10px; background: #fafcff; }
+.pricing-table td { text-align: center; border-bottom: none; padding: 5px 10px; }
+.price-col { font-size: 1.1rem; margin-top: 5px; border-top: 1px dashed #e1e8ed; padding-top: 10px !important; }
 }
 
 /* --- Admin & Modal Styles --- */
@@ -548,14 +555,14 @@ background: rgba(0, 0, 0, 0.6); z-index: 2000; align-items: center; justify-cont
 <li><a href="#contactus">Contact Us</a></li>
 <li><a href="#contact" class="nav-cta">Book a Service</a></li>
 </ul>
-</nav>
+</nav> 
 
 <!-- HOME PAGE VIEW -->
 <div id="homePage" class="page-view active">
 <section class="hero">
 <div class="hero-overlay"></div>
 <div class="hero-content">
-<img src="Logo.png" alt="Solanyk Brothers Logo" class="hero-logo">
+<img src="Logo.png" alt="Solanyk Brothers Logo" class="hero-logo" onerror="this.style.display='none'">
 <h1 class="logo-text">Solanyk Brothers</h1>
 <div class="hero-subtitle">Lawn Care & Snow Removal</div>
 </div>
@@ -609,7 +616,7 @@ background: rgba(0, 0, 0, 0.6); z-index: 2000; align-items: center; justify-cont
 <div class="card" style="text-align: center;">
 <h2>Service Area</h2>
 <p style="font-size: 1.2rem; color: var(--green); font-weight: bold; margin-bottom: 0.5rem;">Berthoud, Colorado</p>
-<p style="color: #666; margin-top: 0;"><em>While our primary service area is Berthoud, we are open to helping neighboring properties! If you are outside of Berthoud, please <a href="#contactus" style="color: var(--navy); font-weight: bold; text-decoration: underline;">Contact Us</a> to see if we can accommodate you.</em></p>
+<p style="color: #666; margin-top: 0;"><em>Please note that at this time, we only offer services within the town of Berthoud.</em></p>
 </div>
 
 <div class="card">
@@ -968,7 +975,7 @@ background: rgba(0, 0, 0, 0.6); z-index: 2000; align-items: center; justify-cont
 <div class="container">
 <div class="card" style="text-align: center;">
 <h2>Have a Question?</h2>
-<p style="margin-bottom: 2rem; color: #666;">Whether you have a question about our services, pricing, or a custom job, we are here to help! Fill out the form below and we will get back to you as soon as possible. <br><strong style="color: var(--navy);">Outside of Berthoud?</strong> Select "Service Area Verification" below to see if we can make an exception for your property.</p>
+<p style="margin-bottom: 2rem; color: #666;">Whether you have a question about our services, pricing, or a custom job, we are here to help! Fill out the form below and we will get back to you as soon as possible.</p>
 
 <form id="generalContactForm">
 <div style="display: flex; gap: 1rem; margin-bottom: 1.5rem; flex-wrap: wrap; text-align: left;">
@@ -1022,12 +1029,12 @@ background: rgba(0, 0, 0, 0.6); z-index: 2000; align-items: center; justify-cont
 <div class="container">
 <div class="card">
 <h2>Book Your Service</h2>
-<p id="bookingInstructions" style="margin-bottom: 2rem; color: #666;"><strong>Step 1:</strong> Fill out the form below to request a service. Once submitted, you will be able to select your exact appointment time.<br><strong style="color: var(--navy);">Please note: Our online booking is reserved for Berthoud properties. If you are outside of Berthoud, please <a href="#contactus" style="color: var(--green); text-decoration: underline;">contact us</a> first!</strong></p>
+<p style="margin-bottom: 2rem; color: #666;">Fill out the form below to request a service. We will get back to you shortly to confirm your appointment and provide an estimate.<br><strong style="color: var(--navy);">Please note: We exclusively serve properties in Berthoud, Colorado.</strong></p>
 
 <form id="contactForm">
 <div style="display: flex; gap: 1rem; margin-bottom: 1.5rem; flex-wrap: wrap;">
 <div style="flex: 1; min-width: 250px;">
-<label for="name">Your Name (First & Last)</label>
+<label for="name">Your Name</label>
 <input type="text" id="name" name="name" placeholder="John Doe" required>
 </div>
 <div style="flex: 1; min-width: 250px;">
@@ -1036,15 +1043,9 @@ background: rgba(0, 0, 0, 0.6); z-index: 2000; align-items: center; justify-cont
 </div>
 </div>
 
-<div style="display: flex; gap: 1rem; margin-bottom: 1.5rem; flex-wrap: wrap;">
-<div style="flex: 2; min-width: 250px;">
-<label for="address">Street Address</label>
-<input type="text" id="address" name="address" placeholder="123 Main St" required>
-</div>
-<div style="flex: 1; min-width: 150px;">
-<label for="city">City</label>
-<input type="text" id="city" name="city" placeholder="Berthoud" required>
-</div>
+<div class="form-group">
+<label for="address">Property Address (Berthoud Only)</label>
+<input type="text" id="address" name="address" placeholder="123 Main St, Berthoud, CO" required>
 </div>
 
 <div style="display: flex; gap: 1rem; margin-bottom: 1.5rem; flex-wrap: wrap;">
@@ -1071,20 +1072,9 @@ background: rgba(0, 0, 0, 0.6); z-index: 2000; align-items: center; justify-cont
 <textarea id="message" name="message" rows="4" placeholder="Let us know if you have any specific requirements..."></textarea>
 </div>
 
-<button type="submit" id="submitBtn" class="submit-btn">Send Request & Continue to Calendar</button>
+<button type="submit" id="submitBtn" class="submit-btn">Send Request</button>
 <div id="responseMessage" class="message"></div>
 </form>
-
-<!-- Calendly Embed Container (Hidden until form is submitted) -->
-<div id="calendlyEmbedContainer" style="display: none; margin-top: 1rem;">
-<button type="button" onclick="goBackToStep1()" style="background: none; border: none; color: var(--navy); font-weight: bold; cursor: pointer; display: flex; align-items: center; gap: 5px; margin-bottom: 1.5rem; font-size: 1rem; padding: 0;">
-<span style="font-size: 1.4rem;">&larr;</span> Back to Step 1
-</button>
-<h3 style="color: var(--green); text-align: center; margin-bottom: 1rem; font-size: 1.5rem; margin-top: 0;">Step 2: Choose Your Time</h3>
-<p style="text-align: center; color: #666; margin-bottom: 2rem;">Your request has been saved. Please select a time below to complete your booking.</p>
-<div id="calendlyWidget" style="min-width:320px;height:700px;"></div>
-</div>
-
 </div>
 </div>
 </div>
@@ -1174,9 +1164,7 @@ function openAdminModal() { document.getElementById('adminModal').style.display 
 function closeAdminModal() { document.getElementById('adminModal').style.display = 'none'; document.getElementById('adminPasscode').value = ''; }
 function verifyAdmin() {
 const pass = document.getElementById('adminPasscode').value;
-
-// Converts what you type to lowercase and removes accidental spaces so it always works
-if(pass.trim().toLowerCase() === 'solanyk') {
+if(pass === 'solanyk') {
 document.body.classList.add('admin-mode');
 alert("Owner Mode Active: You can now delete reviews.");
 closeAdminModal();
@@ -1184,13 +1172,6 @@ closeAdminModal();
 alert("Incorrect Passcode.");
 }
 }
-
-// --- Back Button Functionality ---
-window.goBackToStep1 = function() {
-document.getElementById('calendlyEmbedContainer').style.display = 'none';
-document.getElementById('contactForm').style.display = 'block';
-document.getElementById('bookingInstructions').style.display = 'block';
-};
 
 // --- Review Form Interactions ---
 function toggleReviewForm() {
@@ -1240,7 +1221,7 @@ messageDiv.style.display = 'none';
 const formData = new FormData(generalForm);
 const data = Object.fromEntries(formData.entries());
 
-fetch('https://formsubmit.co/ajax/282721@coloradoheritage.org', {
+fetch('https://formsubmit.co/ajax/48c30f798a368db91be2aa478276e43f', {
 method: 'POST',
 headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
 body: JSON.stringify({
@@ -1280,138 +1261,123 @@ form.addEventListener('submit', e => {
 e.preventDefault();
 const submitBtn = document.getElementById('submitBtn');
 const messageDiv = document.getElementById('responseMessage');
-
-// 1. Validate First and Last Name
-const formData = new FormData(form);
-const data = Object.fromEntries(formData.entries());
-const nameWords = data.name.trim().split(/\s+/);
-
-if (nameWords.length < 2) {
-messageDiv.innerHTML = 'Please enter both your First and Last name.';
-messageDiv.className = 'message error';
-messageDiv.style.display = 'block';
-return;
-}
-
-// 2. Validate City (Must be "Berthoud")
-const cityLower = data.city ? data.city.toLowerCase().trim() : '';
-if (!cityLower.includes('berthoud')) {
-messageDiv.innerHTML = 'Our online calendar is currently reserved for properties within <strong>Berthoud</strong>. If you are outside of Berthoud, please <a href="#contactus" onclick="document.getElementById(\'contactusPage\').scrollIntoView();" style="color: var(--navy); font-weight: bold; text-decoration: underline;">Contact Us</a> directly to see if we can accommodate you!';
-messageDiv.className = 'message error';
-messageDiv.style.display = 'block';
-return;
-}
-
 submitBtn.disabled = true;
 submitBtn.textContent = 'Sending...';
 messageDiv.style.display = 'none';
 
-// Helper function to safely show calendar
-const transitionToCalendar = () => {
-form.style.display = 'none';
-document.getElementById('bookingInstructions').style.display = 'none';
-const embedContainer = document.getElementById('calendlyEmbedContainer');
-embedContainer.style.display = 'block';
-if (window.Calendly) {
-    window.Calendly.initInlineWidget({
-        url: 'https://calendly.com/282721-coloradoheritage/30min',
-        parentElement: document.getElementById('calendlyWidget'),
-        prefill: { name: data.name, email: data.email }
-    });
-    embedContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
-} else {
-    document.getElementById('calendlyWidget').innerHTML = '<p style="text-align:center;">Please <a href="https://calendly.com/282721-coloradoheritage/30min" target="_blank" style="color:var(--green); font-weight:bold; text-decoration:underline;">click here</a> to open the calendar.</p>';
-}
-};
+const formData = new FormData(form);
+const data = Object.fromEntries(formData.entries());
 
-fetch('https://formsubmit.co/ajax/282721@coloradoheritage.org', {
+fetch('https://formsubmit.co/ajax/48c30f798a368db91be2aa478276e43f', {
 method: 'POST',
 headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
 body: JSON.stringify({
 name: data.name,
 email: data.email,
-address: data.address + ', ' + data.city,
+address: data.address,
 job_category: data.jobCategory,
 specific_job: data.specificJob,
 message: data.message || 'No additional details provided.',
 _subject: "New Service Booking Request: " + data.name + " - Solanyk Brothers",
 _captcha: "false"
 })
-}).then(response => response.json()).then(responseData => {
+}).then(response => response.text()).then(text => {
+let responseData;
+try { responseData = JSON.parse(text); } catch (err) { responseData = { success: "true" }; }
 submitBtn.disabled = false;
-submitBtn.textContent = 'Send Request & Continue to Calendar';
-
+submitBtn.textContent = 'Send Request';
 if (responseData.success === "true" || responseData.success === true) {
-    transitionToCalendar(); // Success! Email sent, now move to calendar.
-} else {
-    throw new Error(responseData.message || "Error");
-}
+messageDiv.textContent = 'Success! Your request has been sent.';
+messageDiv.className = 'message success';
+messageDiv.style.display = 'block';
+form.reset();
+document.getElementById('specificJob').disabled = true;
+document.getElementById('specificJob').innerHTML = '<option value="">-- Please select a category first --</option>';
+
+} else { throw new Error('Error'); }
 }).catch((err) => {
 submitBtn.disabled = false;
-submitBtn.textContent = 'Send Request & Continue to Calendar';
-messageDiv.innerHTML = '<strong>Hold on!</strong> FormSubmit needs to verify this new form layout. Please check your email (282721@coloradoheritage.org), click <strong>"Activate Form"</strong>, and then try sending this again!';
+submitBtn.textContent = 'Send Request';
+messageDiv.textContent = 'Error: Please check your email inbox and click "Activate" if this is the first time.';
 messageDiv.className = 'message error';
 messageDiv.style.display = 'block';
 });
 });
 }
 
-// --- Reviews Submission (Saves to DB & Sends Email) ---
+// --- Reviews Submission (Optimistic UI Update) ---
 const reviewForm = document.getElementById('submitReviewForm');
 if (reviewForm) {
-reviewForm.addEventListener('submit', function(e) {
-e.preventDefault();
-const submitBtn = document.getElementById('submitReviewBtn');
-const messageDiv = document.getElementById('reviewResponseMessage');
-submitBtn.disabled = true;
-submitBtn.textContent = 'Submitting...';
-messageDiv.style.display = 'none';
+  reviewForm.addEventListener('submit', function(e) {
+    e.preventDefault();
+    const submitBtn = document.getElementById('submitReviewBtn');
+    const messageDiv = document.getElementById('reviewResponseMessage');
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Submitting...';
+    messageDiv.style.display = 'none';
 
-const formData = new FormData(reviewForm);
-const data = Object.fromEntries(formData.entries());
+    const formData = new FormData(reviewForm);
+    const data = Object.fromEntries(formData.entries());
+    const ratingNum = parseInt(data.rating, 10);
 
-// Send to Database
-if (window.addReviewToDB) {
-window.addReviewToDB({
-name: data.name,
-dateWritten: data.reviewDate,
-jobAccomplished: data.jobAccomplished,
-rating: parseInt(data.rating),
-review: data.review
-});
-}
+    // --- INSTANT OPTIMISTIC UI UPDATE ---
+    const dynamicReviewsContainer = document.getElementById('dynamicReviews');
+    if (dynamicReviewsContainer) {
+      const starsString = '⭐'.repeat(ratingNum);
+      const dateStr = data.reviewDate ? `(${data.reviewDate})` : '';
+      
+      const newReviewHTML = `
+        <div class="review-item" style="animation: fadeIn 0.5s;">
+          <div class="review-stars">${starsString}</div>
+          <div class="review-category">${data.jobAccomplished || 'Service'}</div>
+          <p class="review-text">"${data.review}"</p>
+          <div class="review-author">${data.name} <span style="font-weight: normal; font-size: 0.8rem; color: #888; margin-left: auto;">${dateStr}</span></div>
+        </div>
+      `;
+      // Insert it right at the top
+      dynamicReviewsContainer.insertAdjacentHTML('afterbegin', newReviewHTML);
+    }
+    
+    // Visually reset the form instantly
+    messageDiv.textContent = 'Thank you! Your review has been submitted.';
+    messageDiv.className = 'message success';
+    messageDiv.style.display = 'block';
+    reviewForm.reset();
+    document.getElementById('reviewRating').value = "5";
+    document.querySelectorAll('#starContainer .star').forEach(s => s.classList.add('active'));
+    setTimeout(() => { messageDiv.style.display = 'none'; }, 4000);
 
-// Send Email Notification
-fetch('https://formsubmit.co/ajax/282721@coloradoheritage.org', {
-method: 'POST',
-headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-body: JSON.stringify({
-name: data.name,
-dateWritten: data.reviewDate,
-jobAccomplished: data.jobAccomplished,
-rating: data.rating + ' Stars',
-review: data.review,
-_subject: "New Customer Review Submitted via Website",
-_captcha: "false"
-})
-}).then(() => {
-submitBtn.disabled = false;
-submitBtn.textContent = 'Submit Review';
-messageDiv.textContent = 'Thank you! Your review has been submitted.';
-messageDiv.className = 'message success';
-messageDiv.style.display = 'block';
-reviewForm.reset();
-ratingInput.value = "5";
-stars.forEach(s => s.classList.add('active'));
-}).catch(() => {
-submitBtn.disabled = false;
-submitBtn.textContent = 'Submit Review';
-messageDiv.textContent = 'Thank you! Your review has been submitted.';
-messageDiv.className = 'message success';
-messageDiv.style.display = 'block';
-reviewForm.reset();
-});
-});
+    // --- BACKGROUND NETWORK REQUESTS ---
+    // 1. Send to Database
+    if (window.addReviewToDB) {
+      window.addReviewToDB({
+        name: data.name,
+        dateWritten: data.reviewDate,
+        jobAccomplished: data.jobAccomplished,
+        rating: ratingNum,
+        review: data.review
+      });
+    }
+
+    // 2. Send Email Notification
+    fetch('https://formsubmit.co/ajax/48c30f798a368db91be2aa478276e43f', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({
+        name: data.name,
+        dateWritten: data.reviewDate,
+        jobAccomplished: data.jobAccomplished,
+        rating: data.rating + ' Stars',
+        review: data.review,
+        _subject: "New Customer Review Submitted via Website",
+        _captcha: "false"
+      })
+    }).finally(() => {
+        // Just re-enable the button when done
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Submit Review';
+    });
+  });
 }
 
 // --- Fix Favicon ---
